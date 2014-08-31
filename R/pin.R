@@ -26,11 +26,19 @@
 #' @export
 pin_format <- function(pin){
   pin <- as.character(pin)
+  
+  if(any(nchar(pin) == 10)) message("Assumption: All are less than 100 years old.")
 
   # Convert
   pin <- vapply(X = pin, FUN = pin_convert, FUN.VALUE = character(1), USE.NAMES = FALSE)
-
-  if(any(nchar(pin) == 10)) message("Assuming all are less than 100 years old.")
+  
+  ispin <- is.pin(pin = pin)
+  if(any(!ispin)) {
+    pin[!ispin] <- NA
+    warning("The following personal identity numbers are incorrect: ", 
+            paste(which(!ispin), sep=", "), 
+            call. = FALSE)
+  }  
   return(pin)
 }
 
@@ -48,13 +56,15 @@ pin_format <- function(pin){
 #'
 #' @export
 is.pin <- function(pin){
+  date <- as.Date(pin_coordn_correct(pin),"%Y%m%d")
   suppressWarnings(
   is.character(pin) && 
     all(!is.na(as.numeric(pin))) && 
-    all(nchar(pin)==12)
+    all(nchar(pin)==12) && 
+    !is.na(date) &&
+    date <= Sys.Date()
   )
 }
-
 
 #' @title
 #' pin_ctrl
@@ -122,7 +132,6 @@ pin_sex <- function(pin){
 #'
 #' @export
 pin_coordn <- function(pin) {
-  stopifnot(is.pin(pin))
   as.numeric(substr(pin,7,8)) > 60
 }
 
