@@ -89,3 +89,28 @@ pin_birthplace_internal <- function(pin, birth_vector){
   return(res)
 }
 
+
+
+#' @title
+#' pin_ctrl_internal
+#' 
+#' @description
+#' Calculates the control number and compare it with the control number in the personal identity number (pin).
+#' Called in pin_ctrl.
+#' 
+#' @param pin Element with swedish personal identity number.
+#' 
+#' @references 
+#' https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
+#' https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf
+#' 
+#' @return
+#' Logical element indicating if a pin is correct (TRUE) or not (FALSE)
+#'
+pin_ctrl_internal <- function(pin){
+  ret <- as.numeric(unlist(strsplit(pin, split="")))
+  calc <- ret * c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)
+  sumValue <- sum(calc %% 10) + sum(calc %/% 10)
+  output <- ret[12] == 10 - sumValue %% 10
+  return(output)
+}

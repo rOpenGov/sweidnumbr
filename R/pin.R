@@ -83,11 +83,9 @@ is.pin <- function(pin){
 #'
 #' @export
 pin_ctrl <- function(pin){
-  ret <- as.numeric(unlist(strsplit(pin, split="")))
-  calc <- ret * c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)
-  sumValue <- sum(calc %% 10) + sum(calc %/% 10)
-  output <- ret[12] == 10 - sumValue %% 10
-  return(output)
+  
+  vapply(pin, pin_ctrl_internal, logical(1), USE.NAMES = FALSE)
+
 }
 
 #' @title
