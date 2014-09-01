@@ -18,7 +18,8 @@ pin_convert <- function(pin){
                       substr(pin, 1, 6),
                       substr(pin, 8, 11), sep=""),
          "10" = paste(as.character(pin_century(pin)), pin ,sep=""),
-         pin)
+         "12" = pin,
+         as.character(NA))
 }
 
 #' @title
