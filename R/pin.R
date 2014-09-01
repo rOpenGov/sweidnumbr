@@ -58,10 +58,10 @@ pin_format <- function(pin){
 is.pin <- function(pin){
   date <- as.Date(pin_coordn_correct(pin),"%Y%m%d")
   suppressWarnings(
-  is.character(pin) && 
-    all(!is.na(as.numeric(pin))) && 
-    all(nchar(pin)==12) && 
-    !is.na(date) &&
+  is.character(pin) &
+    !is.na(as.numeric(pin)) & 
+    nchar(pin) == 12 & 
+    !is.na(date) &
     date <= Sys.Date()
   )
 }
