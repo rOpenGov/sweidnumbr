@@ -47,12 +47,13 @@ pin_format <- function(pin){
 #' is.pin
 #' 
 #' @description
-#' Test if a vector is of class "pin".
+#' Test which elements in a text vector that contains correct pin regarding format.
+#' To test the pin regarding the control number use \link{pin_ctrl}.
 #' 
-#' @param pin R object to be tested if it is a pin of the right format.
+#' @param pin Character vector to be tested if it is a pin of the right format.
 #' 
 #' @return
-#' Logical value indicating if the object is of class "pin"
+#' Logical vector indicating if the elements can be a personal identity number.
 #'
 #' @export
 is.pin <- function(pin){
@@ -152,8 +153,8 @@ pin_age <- function(pin, date=Sys.Date()) {
   date <- as.Date(date)
   pin <- pin_coordn_correct(pin)
   diff <- interval(ymd(paste(substr(pin,1,4), 
-                             substr(pin,6,7), 
-                             substr(pin,9,10), sep="-")),
+                             substr(pin,5,6), 
+                             substr(pin,7,8), sep="-")),
                    ymd(date))
   message(paste("The age has been calculated at ", as.character(date), ".", sep=""))
   return(as.integer(diff %/% years(1)))
