@@ -13,5 +13,4 @@ test_that(desc="birthplace",{
   expect_equal(pin_birthplace(pin = pin_test), expected = as.factor(pin_test_res))
 })
 
-levels(pin_birthplace(pin = pin_test))
 cat("\n")
