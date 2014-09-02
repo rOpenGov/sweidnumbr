@@ -1,0 +1,17 @@
+citHeader("Kindly cite the sweidnumbr R package as follows:")
+
+citEntry(entry="misc",
+         title = "sweidnumbr: R tools to handle of swedish identity numbers.",
+         author = personList(
+	   person(given = "Mans", family= "Magnusson", email = "mons.magnusson@gmail.com")
+         ),
+	 journal = "",
+	 year = "2014",
+         textVersion =
+         paste("(C) Mans Magnusson(2014). ",
+               "sweidnumbr: R tools to handle of swedish identity numbers.",
+	       "URL: http://github.com/MansMeg/sweidnumbr",
+               sep=" ")
+         )
+
+
