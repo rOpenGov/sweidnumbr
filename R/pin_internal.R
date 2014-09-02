@@ -93,13 +93,13 @@ pin_birthplace_internal <- function(pin, birth_vector){
 
 
 #' @title
-#' pin_ctrl_internal
+#' luhn
 #' 
 #' @description
-#' Calculates the control number and compare it with the control number in the personal identity number (pin).
-#' Called in pin_ctrl.
+#' Calculates the control number.
 #' 
-#' @param pin Element with swedish personal identity number.
+#' @param id Element with swedish personal identity number.
+#' @param multiplier What should each element in id be multiplied with
 #' 
 #' @references 
 #' https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
@@ -108,10 +108,10 @@ pin_birthplace_internal <- function(pin, birth_vector){
 #' @return
 #' Logical element indicating if a pin is correct (TRUE) or not (FALSE)
 #'
-pin_ctrl_internal <- function(pin){
-  ret <- as.numeric(unlist(strsplit(pin, split="")))
-  calc <- ret * c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)
+luhn_algo <- function(id, multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)){
+  ret <- as.numeric(unlist(strsplit(id, split="")))
+  calc <- ret * multiplier
   sumValue <- sum(calc %% 10) + sum(calc %/% 10)
-  output <- ret[12] == 10 - sumValue %% 10
+  output <- as.integer(10 - sumValue %% 10)
   return(output)
 }

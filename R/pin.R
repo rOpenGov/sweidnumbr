@@ -84,9 +84,10 @@ is.pin <- function(pin){
 #'
 #' @export
 pin_ctrl <- function(pin){
-  
-  vapply(pin, pin_ctrl_internal, logical(1), USE.NAMES = FALSE)
 
+  res <- vapply(pin, luhn_algo, integer(1), USE.NAMES = FALSE, 
+                multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
+  as.integer(substr(pin, 12, 12)) == res
 }
 
 #' @title
