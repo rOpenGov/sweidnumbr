@@ -9,6 +9,7 @@ Description: Structural handling of identity numbers used in the swedish
     administration such as personal identity numbers (personnummer) and
     organisational identity numbers (organisationsnummer).
 VignetteBuilder: knitr
+BugReports: https://github.com/MansMeg/sweidnumbr/issues
 License: BSD
 Suggests:
     lubridate,
