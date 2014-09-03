@@ -73,7 +73,7 @@ is.pin <- function(pin){
 #' @description
 #' Calculates the control number and compare it with the control number in the personal identity number (pin).
 #' 
-#' @param pin Vector with swedish personal identity numbers (of class "pin").
+#' @param pin Vector with swedish personal identity numbers.
 #' 
 #' @references 
 #' https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
