@@ -5,10 +5,10 @@
 #' Test which elements in a text vector that contains organization identity 
 #' number.
 #' 
-#' @param oin Character vector to be tested if it is an oin of the right format.
+#' @param oin Character vector to be tested if it is an \code{oin} of the right format.
 #' 
 #' @return
-#' Logical vector indicating if the elements can be an organisation identity number.
+#' Logical vector indicating if the elements can be an organization identity number.
 #'
 #' @export
 is.oin <- function(oin){
@@ -25,9 +25,9 @@ is.oin <- function(oin){
 #' Check the control numbers for \code{oin}
 #' 
 #' @description
-#' Calculates the control number using the luhn algorithm and compare it with the control number in the organization identity number (oin).
+#' Calculates the control number using the Luhn algorithm and compare it with the control number in the organization identity number (oin).
 #' 
-#' @param oin Vector with swedish organisation identity numbers (oin) in \code{NNNNNN-NNNN} format.
+#' @param oin Vector with swedish organization identity numbers (oin) in \code{NNNNNN-NNNN} format.
 #' 
 #' @references 
 #' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf}{SKV 709}

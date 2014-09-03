@@ -77,7 +77,7 @@ is.pin <- function(pin){
 #' Check control number from \code{pin}
 #' 
 #' @description
-#' Calculates the control number using the luhn algorithm and compare it with the 
+#' Calculates the control number using the Luhn algorithm and compare it with the 
 #' control number in the personal identity number.
 #' 
 #' @inheritParams is.pin
