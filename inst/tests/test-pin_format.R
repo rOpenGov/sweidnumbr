@@ -8,6 +8,7 @@ test_that(desc="numeric: YYYYMMDDNNNC",{
   expect_equal(pin_format(pin = 198112189876), expected = "198112189876")
   expect_equal(pin_format(196408233234), expected = "196408233234")
   expect_equal(pin_format(200108230000), expected = "200108230000")  
+  expect_is(pin_format(200108230000), "character")  
 })
 
 test_that(desc="numeric: YYMMDDNNNC",{

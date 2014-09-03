@@ -7,6 +7,7 @@ cat("pin_century : ")
 test_that(desc="century",{
   expect_equal(pin_century(pin = today_pin), expected = 20)
   expect_equal(pin_century(pin = tomorrow_pin), expected = 19)
+  expect_is(pin_century(pin = today_pin), "numeric")
 })
 
 cat("\n")

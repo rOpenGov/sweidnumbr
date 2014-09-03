@@ -6,6 +6,7 @@ test_oin_res[1:3] <- TRUE
 cat("is.oin : ")
 
 test_that(desc="is.pin",{
+  expect_is(is.oin(oin = test_oin), "logical")
   expect_equal(is.oin(oin = test_oin), expected = test_oin_res)
 })
 

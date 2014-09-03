@@ -7,6 +7,7 @@ cat("is.pin : ")
 
 
 test_that(desc="is.pin",{
+  expect_is(is.pin(pin = test_pin), "logical")
   expect_equal(is.pin(pin = test_pin), expected = test_pin_res)
 })
 

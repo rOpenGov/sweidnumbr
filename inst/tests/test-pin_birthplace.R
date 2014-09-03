@@ -11,6 +11,7 @@ pin_test_res <-
 
 test_that(desc="birthplace",{
   expect_equal(pin_birthplace(pin = pin_test), expected = as.factor(pin_test_res))
+  expect_is(pin_birthplace(pin = pin_test), "factor")
 })
 
 cat("\n")
