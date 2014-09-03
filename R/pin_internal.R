@@ -93,7 +93,7 @@ pin_birthplace_internal <- function(pin, birth_vector){
 
 
 #' @title
-#' luhn
+#' luhn_algo
 #' 
 #' @description
 #' Calculates the control number.
@@ -112,6 +112,6 @@ luhn_algo <- function(id, multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)){
   ret <- as.numeric(unlist(strsplit(id, split="")))
   calc <- ret * multiplier
   sumValue <- sum(calc %% 10) + sum(calc %/% 10)
-  output <- as.integer(10 - sumValue %% 10)
+  output <- as.integer((10 - sumValue %% 10) %% 10)
   return(output)
 }
