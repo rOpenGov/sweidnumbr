@@ -6,6 +6,7 @@ test_oin_res[1:3] <- rep(TRUE, 3)
 cat("oin_ctrl : ")
 
 test_that(desc="oin_ctrl",{
+  expect_is(oin_ctrl(oin = test_oin), "logical")
   expect_equal(oin_ctrl(oin = test_oin), expected = test_oin_res)
 })
 
