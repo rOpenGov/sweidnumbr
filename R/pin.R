@@ -123,7 +123,7 @@ pin_sex <- function(pin){
 
 
 #' @title
-#' Check if \code{pin} is a coordination number.
+#' Check if \code{pin} is a coordination number
 #' 
 #' @description
 #' Calculate if the personal identity number is a coordination number.
@@ -145,7 +145,7 @@ pin_coordn <- function(pin) {
 
 
 #' @title
-#' Calculate age of \code{pin} for a given date.
+#' Calculate age of \code{pin} for a given date
 #' 
 #' @description
 #' Calculate the age in full years for a given date.
@@ -171,7 +171,7 @@ pin_age <- function(pin, date=Sys.Date()) {
 
 
 #' @title
-#' Calculate the birthplace of \code{pin}.
+#' Calculate the birthplace of \code{pin}
 #' 
 #' @description
 #' Calculate the birthplace for a given personal identity number born before 1990. See details.
