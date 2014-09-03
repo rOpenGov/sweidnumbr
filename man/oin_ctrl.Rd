@@ -6,13 +6,13 @@
 oin_ctrl(oin)
 }
 \arguments{
-\item{oin}{Vector with swedish organisation identity numbers (oin) in \code{NNNNNN-NNNN} format.}
+\item{oin}{Vector with swedish organization identity numbers (oin) in \code{NNNNNN-NNNN} format.}
 }
 \value{
 Logical vector indicating if a oin is correct (\code{TRUE}) or not (\code{FALSE})
 }
 \description{
-Calculates the control number using the luhn algorithm and compare it with the control number in the organization identity number (oin).
+Calculates the control number using the Luhn algorithm and compare it with the control number in the organization identity number (oin).
 }
 \references{
 \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf}{SKV 709}

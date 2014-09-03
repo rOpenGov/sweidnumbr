@@ -12,7 +12,7 @@ pin_ctrl(pin)
 Logical vector indicating if a pin is correct (\code{TRUE}) or not (\code{FALSE})
 }
 \description{
-Calculates the control number using the luhn algorithm and compare it with the
+Calculates the control number using the Luhn algorithm and compare it with the
 control number in the personal identity number.
 }
 \references{

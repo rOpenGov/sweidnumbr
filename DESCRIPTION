@@ -11,7 +11,7 @@ Description: Structural handling of identity numbers used in the swedish
 VignetteBuilder: knitr
 URL: https://github.com/MansMeg/sweidnumbr/
 BugReports: https://github.com/MansMeg/sweidnumbr/issues
-License: BSD
+License: BSD_2_clause + file LICENSE
 Suggests:
     lubridate,
     testthat

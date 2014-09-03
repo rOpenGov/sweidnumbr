@@ -6,10 +6,10 @@
 is.oin(oin)
 }
 \arguments{
-\item{oin}{Character vector to be tested if it is an oin of the right format.}
+\item{oin}{Character vector to be tested if it is an \code{oin} of the right format.}
 }
 \value{
-Logical vector indicating if the elements can be an organisation identity number.
+Logical vector indicating if the elements can be an organization identity number.
 }
 \description{
 Test which elements in a text vector that contains organization identity

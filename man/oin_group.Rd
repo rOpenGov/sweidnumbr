@@ -6,7 +6,7 @@
 oin_group(oin)
 }
 \arguments{
-\item{oin}{Vector with swedish organisation identity numbers (oin) in \code{NNNNNN-NNNN} format.}
+\item{oin}{Vector with swedish organization identity numbers (oin) in \code{NNNNNN-NNNN} format.}
 }
 \value{
 Factor with organization categories.
