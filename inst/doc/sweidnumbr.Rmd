@@ -1,0 +1,99 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{pxweb}
+-->
+
+sweidnumbr : Structural handling of swedish identity numbers
+===========
+
+This R package provides tools to work with swedish identity numbers such as personal
+identity numbers (personnummer) and organizational identity numbers (organisationsnummer).
+
+## Table of contents
+
+[Installation](#installation) (Installation)  
+[Examples](#examples) (Examples)  
+[References](#references) (References)  
+
+## <a name="installation"></a>Installation
+
+Install the stable release version in R:
+
+```{r install, eval=FALSE}
+install.packages("sweidnumbr")
+```
+
+Test the installation by loading the library:
+
+```{r test, message=FALSE, warning=FALSE, eval=TRUE}
+library(sweidnumbr)
+```
+
+We also recommend setting the UTF-8 encoding:
+
+```{r locale, eval=FALSE}
+Sys.setlocale(locale="UTF-8") 
+```
+
+## <a name="examples"></a>Examples
+
+As a first step we need to convert personal identity numbers (pin) to the sam standard ABS format.
+
+```{r example1, message=FALSE, eval=TRUE}
+example_pin <- c("640823-3234", "6408233234", "19640823-3230")
+example_pin <- pin_format(example_pin)
+example_pin
+```
+
+The next step is to test if the format is correct. To do this we use the ```is_pin()``` function.
+
+```{r example2, message=FALSE, eval=TRUE}
+is.pin(example_pin)
+```
+
+This only check the format of the pin. To check the pin using the control number we use ```pin_ctrl()```.
+
+```{r example3, message=FALSE, eval=TRUE}
+pin_ctrl(example_pin)
+```
+
+We can now use ```pin_birthplace()``` and ```pin_sex()```. To get information on sex and birthplace.
+
+```{r example4, message=FALSE, eval=TRUE}
+pin_sex(example_pin)
+pin_birthplace(example_pin)
+```
+
+As the last step we can calculate the age based on the pin. We choose the date where we want to calculate the age. If date is not specified the current date is used.
+
+```{r example5, message=FALSE, eval=TRUE}
+pin_age(example_pin)
+pin_age(example_pin, date = "2000-01-01")
+```
+
+
+## Licensing and Citations
+
+This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION).
+
+Kindly cite the work as follows
+
+```{r citation, message=FALSE, eval=TRUE}
+citation("sweidnumbr")
+```
+
+
+## <a name="references"></a>References 
+
+- [Population registration in Sweden](https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf)
+- [SKV 704](https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf)
+- [SOU 2008:60 : Personnummer och samordningsnummer](http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/)
+
+
+## Session info
+
+This vignette was created with
+
+```{r sessioninfo, message=FALSE, warning=FALSE}
+sessionInfo()
+```
