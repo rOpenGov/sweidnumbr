@@ -1,5 +1,5 @@
 #' @title
-#' is.oin
+#' Test if a character vector contains correct \code{oin}
 #' 
 #' @description
 #' Test which elements in a text vector that contains organization identity 
@@ -22,18 +22,18 @@ is.oin <- function(oin){
 }
 
 #' @title
-#' oin_ctrl
+#' Check the control numbers for \code{oin}
 #' 
 #' @description
-#' Calculates the control number and compare it with the control number in the organization identity number (oin).
+#' Calculates the control number using the luhn algorithm and compare it with the control number in the organization identity number (oin).
 #' 
-#' @param oin Vector with swedish organisation identity numbers.
+#' @param oin Vector with swedish organisation identity numbers (oin) in \code{NNNNNN-NNNN} format.
 #' 
 #' @references 
-#' http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf
+#' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf}{SKV 709}
 #' 
 #' @return
-#' Logical vector indicating if a oin is correct (TRUE) or not (FALSE)
+#' Logical vector indicating if a oin is correct (\code{TRUE}) or not (\code{FALSE})
 #'
 #' @export
 oin_ctrl <- function(oin){
@@ -45,15 +45,15 @@ oin_ctrl <- function(oin){
 }
 
 #' @title
-#' oin_group
+#' Calculate organization group from \code{oin}
 #' 
 #' @description
 #' Calculates the organization group from the organization number.
 #' 
-#' @param oin Character vector with organization identity number.
+#' @inheritParams oin_ctrl
 #' 
 #' @references 
-#' http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf
+#' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf}{SKV 709}
 #' 
 #' @return
 #' Factor with organization categories.

@@ -1,27 +1,32 @@
 #' @title
-#' pin_format
+#' Parse personal identity numbers to ABS format
 #' 
 #' @description
-#' Converts a number of different pin formats to standard (ABS) pin format 'YYYYMMDDNNNC'.
+#' Converts personal identity numbers of different formats to standard (ABS) pin format \code{YYYYMMDDNNNC} 
+#' where \code{YYYYMMDD} is the date of birth, \code{NNN} is the birth number and \code{C} is the
+#' control number.
 #' 
 #' @details
 #' The function converts different formats of swedish personal identity numbers to
-#' the standard format. The formats that are converted are:
-#' - numeric: YYYYMMDDNNNC
-#' - numeric: YYMMDDNNNC
-#' - character: "YYYYMMDDNNNC"
-#' - character: "YYMMDD-NNNC"
-#' - character: "YYYYMMDD-NNNC"
-#' - character: "YYMMDDNNNC" (assuming < 100 years of age)
+#' the standard ABS format. The formats that can be converted are:
+#' \itemize{
+#'   \item numeric: \code{YYYYMMDDNNNC}
+#'   \item numeric: \code{YYMMDDNNNC} (assuming < 100 years of age)
+#'   \item character: \code{"YYYYMMDDNNNC"}
+#'   \item character: \code{"YYMMDD-NNNC"}
+#'   \item character: \code{"YYYYMMDD-NNNC"}
+#'   \item character: \code{"YYMMDDNNNC"} (assuming < 100 years of age)
+#' }
 #' 
 #' @param pin Vector with swedish personal identity numbers in character or numeric format. See details.
 #' 
 #' @references 
-#' https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
-#' https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf
+#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
+#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
 #' 
 #' @return
-#' Character vector with swedish personal identity numbers with standard format "YYYYMMDDNNNC".
+#' Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
 #'
 #' @export
 pin_format <- function(pin){
@@ -44,16 +49,17 @@ pin_format <- function(pin){
 
 
 #' @title
-#' is.pin
+#' Test if a character vector contains correct  \code{pin}
 #' 
 #' @description
-#' Test which elements in a text vector that contains correct pin regarding format.
+#' Test which elements of a character vector that contains correct personal 
+#' identity numbers (regarding format).
 #' To test the pin regarding the control number use \link{pin_ctrl}.
 #' 
-#' @param pin Character vector to be tested if it is a pin of the right format.
+#' @param pin Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}. See \link{pin_format}.
 #' 
 #' @return
-#' Logical vector indicating if the elements can be a personal identity number.
+#' Logical vector indicating if the elements can are of format personal identity number.
 #'
 #' @export
 is.pin <- function(pin){
@@ -68,19 +74,21 @@ is.pin <- function(pin){
 }
 
 #' @title
-#' pin_ctrl
+#' Check control number from \code{pin}
 #' 
 #' @description
-#' Calculates the control number and compare it with the control number in the personal identity number (pin).
+#' Calculates the control number using the luhn algorithm and compare it with the 
+#' control number in the personal identity number.
 #' 
-#' @param pin Vector with swedish personal identity numbers.
+#' @inheritParams is.pin
 #' 
 #' @references 
-#' https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
-#' https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf
+#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
+#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
 #' 
 #' @return
-#' Logical vector indicating if a pin is correct (TRUE) or not (FALSE)
+#' Logical vector indicating if a pin is correct (\code{TRUE}) or not (\code{FALSE})
 #'
 #' @export
 pin_ctrl <- function(pin){
@@ -91,17 +99,17 @@ pin_ctrl <- function(pin){
 }
 
 #' @title
-#' pin_sex
+#' Calculate sex from \code{pin}
 #' 
 #' @description
-#' Calculates the sex of from the personal identification number att the format given by \code{pin_format}.
+#' Calculates the sex of from the personal identification number.
 #' 
-#' @param pin Character vector with personal number with format 'YYYYMMDDNNNC'.
+#' @inheritParams is.pin
 #' 
 #' @references 
-#' https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
-#' https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf
-#' 
+#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
+#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
 #' @return
 #' Factor with label 'Male' and 'Female'.
 #'
@@ -115,20 +123,20 @@ pin_sex <- function(pin){
 
 
 #' @title
-#' pin_coordn
+#' Check if \code{pin} is a coordination number.
 #' 
 #' @description
-#' Calculates if the personal identity number is a coordination number.
+#' Calculate if the personal identity number is a coordination number.
 #' 
-#' @param pin Character vector with personal number with format 'YYYYMMDDNNNC'. See \link{pin_format}.
+#' @inheritParams is.pin
 #' 
 #' @references 
-#' https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
-#' https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf
-#' http://www.skatteverket.se/download/18.3dfca4f410f4fc63c86800016383/70702svartvit.pdf
+#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
+#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
 #' 
 #' @return
-#' Logical vector indicating if the pin is a coordination number (TRUE) or pin (FALSE).
+#' Logical vector indicating if the pin is a coordination number (\code{TRUE}) or pin (\code{FALSE}).
 #'
 #' @export
 pin_coordn <- function(pin) {
@@ -137,12 +145,12 @@ pin_coordn <- function(pin) {
 
 
 #' @title
-#' pin_age
+#' Calculate age of \code{pin} for a given date.
 #' 
 #' @description
 #' Calculate the age in full years for a given date.
 #' 
-#' @param pin Character vector with personal number with format 'YYYYMMDDNNNC'. See \link{pin_format}.
+#' @inheritParams is.pin
 #' @param date Date at which age is calculated.
 #' 
 #' @return
@@ -163,10 +171,10 @@ pin_age <- function(pin, date=Sys.Date()) {
 
 
 #' @title
-#' pin_birthplace
+#' Calculate the birthplace of \code{pin}.
 #' 
 #' @description
-#' Calculate the birthplace for a given personal identity number.
+#' Calculate the birthplace for a given personal identity number born before 1990. See details.
 #' 
 #' @details
 #' It is possible to calculate where people where born (and/or if a person has immigrated) 
@@ -182,15 +190,13 @@ pin_age <- function(pin, date=Sys.Date()) {
 #' During the period 1946 - 1989 the pin also contains information on whether one has 
 #' immigrated to Sweden during the period.
 #' 
-#' @param pin Character vector with personal number with format 'YYYYMMDDNNNC'. See \link{pin_format}.
+#' @inheritParams is.pin
 #' 
 #' @references
-#' 1946 års folkbokföringsförordning (1946:469)]
-#' 1967 års folkbokföringslag (1967:198)
-#' 1991 års folkbokföringslag (1991:481)
+#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
 #' 
 #' @return
-#' Age as an integer vector.
+#' Birthplace as factor.
 #'
 #' @export
 pin_birthplace <- function(pin){
