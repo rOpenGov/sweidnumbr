@@ -158,15 +158,14 @@ pin_coordn <- function(pin) {
 #'
 #' @export
 pin_age <- function(pin, date=Sys.Date()) {
-  require(lubridate)
   date <- as.Date(date)
   pin <- pin_coordn_correct(pin)
-  diff <- interval(ymd(paste(substr(pin,1,4), 
+  diff <- lubridate::interval(lubridate::ymd(paste(substr(pin,1,4), 
                              substr(pin,5,6), 
                              substr(pin,7,8), sep="-")),
-                   ymd(date))
+                   lubridate::ymd(date))
   message(paste("The age has been calculated at ", as.character(date), ".", sep=""))
-  return(as.integer(diff %/% years(1)))
+  return(as.integer(diff %/% lubridate::years(1)))
 }
 
 

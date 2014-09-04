@@ -15,7 +15,7 @@ is.oin <- function(oin){
   suppressWarnings(
   is.character(oin) &
     !is.na(as.numeric(substr(oin,1,6))) & 
-    grepl(pattern = "[-\x2014]", substr(oin,7,7)) &
+    grepl(pattern = "-", substr(oin,7,7)) &
     !is.na(as.numeric(substr(oin,8,11))) &
     as.numeric(substr(oin,3,3)) >= 2
   )
