@@ -28,6 +28,15 @@
 #' @return
 #' Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
 #'
+#' @examples
+#' # Examples taken from SKV 704 (see references)
+#' ex_pin1 <- c("196408233234", "640823-3234", "19640823-3234")
+#' pin_format(ex_pin1)
+#' ex_pin2 <- c("6408233234")
+#' pin_format(ex_pin2)
+#' ex_pin3 <- c(6408233234, 196408233234)
+#' pin_format(ex_pin3)
+#' 
 #' @export
 pin_format <- function(pin){
   pin <- as.character(pin)
@@ -61,6 +70,10 @@ pin_format <- function(pin){
 #' @return
 #' Logical vector indicating if the elements can are of format personal identity number.
 #'
+#' @examples
+#' ex_pin <- c("196408233234", "AA6408323234")
+#' is.pin(ex_pin)
+#'
 #' @export
 is.pin <- function(pin){
   date <- as.Date(pin_coordn_correct(pin),"%Y%m%d")
@@ -89,7 +102,12 @@ is.pin <- function(pin){
 #' 
 #' @return
 #' Logical vector indicating if a pin is correct (\code{TRUE}) or not (\code{FALSE})
-#'
+#' 
+#' @examples
+#' # Examples taken from SKV 704 (see references)
+#' ex_pin <- c("196408233234", "196408233235")
+#' pin_ctrl(ex_pin)
+#' 
 #' @export
 pin_ctrl <- function(pin){
 
@@ -110,12 +128,17 @@ pin_ctrl <- function(pin){
 #' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
 #' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
 #' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
+#' 
 #' @return
 #' Factor with label 'Male' and 'Female'.
+#' 
+#' @examples
+#' # Examples taken from SKV 704 (see references)
+#' ex_pin <- c("196408233234", "186408233224")
+#' pin_sex(ex_pin)
 #'
 #' @export
 pin_sex <- function(pin){
-  stopifnot(is.pin(pin))
   female <- as.numeric(substr(pin,11,11)) %% 2 == 0
   output <- factor(ifelse(female, "Female", "Male"))
   return(output)
@@ -138,6 +161,11 @@ pin_sex <- function(pin){
 #' @return
 #' Logical vector indicating if the pin is a coordination number (\code{TRUE}) or pin (\code{FALSE}).
 #'
+#' @examples
+#' # Examples taken from SKV 704 (see references)
+#' ex_pin <- c("196408233234", "196408833224")
+#' pin_coordn(ex_pin)
+#'
 #' @export
 pin_coordn <- function(pin) {
   as.numeric(substr(pin,7,8)) > 60
@@ -152,9 +180,21 @@ pin_coordn <- function(pin) {
 #' 
 #' @inheritParams is.pin
 #' @param date Date at which age is calculated.
-#' 
+#'
+#' @references 
+#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+#'   
 #' @return
 #' Age as an integer vector.
+#'
+#' @examples
+#' # Example with someone born today
+#' today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")
+#' pin_age(today_pin)
+#' 
+#' # Examples taken from SKV 704 (see references)
+#' ex_pin <- c("196408233234", "186408833224")
+#' pin_age(ex_pin, date = "2012-01-01")
 #'
 #' @export
 pin_age <- function(pin, date=Sys.Date()) {
@@ -196,6 +236,12 @@ pin_age <- function(pin, date=Sys.Date()) {
 #' 
 #' @return
 #' Birthplace as factor.
+#'
+#' @examples
+#' # Example with someone born today and from SKV 704 (see references)
+#' today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")#' 
+#' ex_pin <- c("196408233234", pin_today)
+#' pin_birthplace(ex_pin)
 #'
 #' @export
 pin_birthplace <- function(pin){
