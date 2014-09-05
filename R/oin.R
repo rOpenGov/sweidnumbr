@@ -10,6 +10,10 @@
 #' @return
 #' Logical vector indicating if the elements can be an organization identity number.
 #'
+#' @examples
+#' ex_oin <- c("556000-4615", "232100-0156", "802002-4280", "8020024280", "AA2002-4280")
+#' is.oin(ex_oin)
+#' 
 #' @export
 is.oin <- function(oin){
   suppressWarnings(
@@ -35,6 +39,10 @@ is.oin <- function(oin){
 #' @return
 #' Logical vector indicating if a oin is correct (\code{TRUE}) or not (\code{FALSE})
 #'
+#' @examples
+#' ex_oin <- c("556000-4615", "232100-0156", "802002-4280", "232100-0157", "802002-4281")
+#' oin_ctrl(ex_oin)
+#' 
 #' @export
 oin_ctrl <- function(oin){
 
@@ -57,6 +65,10 @@ oin_ctrl <- function(oin){
 #' 
 #' @return
 #' Factor with organization categories.
+#' 
+#' @examples
+#' ex_oin <- c("556000-4615", "232100-0156", "802002-4280")
+#' oin_group(ex_oin)
 #'
 #' @export
 oin_group <- function(oin){
