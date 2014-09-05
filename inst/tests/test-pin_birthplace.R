@@ -2,7 +2,7 @@
 cat("pin_birthplace : ")
 
 today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")
-pin_test <- c("198111219876", "198111819876","196408233234", "196408833234", today_pin, "196408830000")
+pin_test <- c("000000009876", "000000009876","196408233234", "196408833234", today_pin, "196408830000")
 pin_test_res <-
   c(rep("Extra number and immigrants (immigrated after 1946)", 2),
     rep("Gotlands län", 2),

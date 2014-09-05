@@ -1,6 +1,6 @@
 
 tomorrow_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()+1),split = "-")), collapse = ""),"0000",sep="")
-test_pin <- c("198112189876", tomorrow_pin, "AA8112189876", "19811218987", "198122189876", "198112489876", "19811248-876")
+test_pin <- c("196408233234", tomorrow_pin, "AA6408323234", "19640823323", "1964083332349", "196408333234", "19640823-334")
 test_pin_res <- c(TRUE, rep(FALSE, 6))
 
 cat("is.pin : ")
