@@ -1,7 +1,7 @@
 
 cat("pin_age : ")
 
-pin_test <- c("19811210000", "196408233234", "198111810000", "196408833234")
+pin_test <- c("198111210000", "196408233234", "198111810000", "196408833234")
 today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")
 
 test_that(desc="age",{
