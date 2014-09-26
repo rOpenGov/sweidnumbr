@@ -31,39 +31,38 @@
 #' @examples
 #' # Examples taken from SKV 704 (see references)
 #' ex_pin1 <- c("196408233234", "640823-3234", "19640823-3234")
-#' pin_format(ex_pin1)
+#' as.pin(pin = ex_pin1)
 #' ex_pin2 <- c("6408233234")
-#' pin_format(ex_pin2)
+#' as.pin(ex_pin2)
 #' ex_pin3 <- c(6408233234, 196408233234)
-#' pin_format(ex_pin3)
+#' as.pin(ex_pin3)
 #' 
 #' @export
-pin_format <- function(pin){
+as.pin <- function(pin){
+  pin_is_char <- is.character(pin)
   pin <- as.character(pin)
+  if(!pin_is_char){
+    pin <- vapply(pin, pin_add_zero, character(1), USE.NAMES = FALSE)
+  }
   
   if(any(nchar(pin) == 10)) message("Assumption: All are less than 100 years old.")
 
   # Convert
   pin <- vapply(X = pin, FUN = pin_convert, FUN.VALUE = character(1), USE.NAMES = FALSE)
   
-  ispin <- is.pin(pin = pin)
-  if(any(!ispin)) {
-    pin[!ispin] <- NA
+  isna <- is.na(pin)
+  if(any(isna)) {
     warning("The following personal identity numbers are incorrect: ", 
-            paste(which(!ispin), sep=", "), 
+            paste(which(isna), collapse = ", "), 
             call. = FALSE)
-  }  
+  }
+  class(pin) <- c("pin", "character")
   return(pin)
 }
 
-
 #' @title
-#' Test if a character vector contains correct  \code{pin}
+#' Test if a vector is of class \code{pin}
 #' 
-#' @description
-#' Test which elements of a character vector that contains correct personal 
-#' identity numbers (regarding format).
-#' To test the pin regarding the control number use \link{pin_ctrl}.
 #' 
 #' @param pin Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}. See \link{pin_format}.
 #' 
@@ -76,14 +75,7 @@ pin_format <- function(pin){
 #'
 #' @export
 is.pin <- function(pin){
-  date <- as.Date(pin_coordn_correct(pin),"%Y%m%d")
-  suppressWarnings(
-  is.character(pin) &
-    !is.na(as.numeric(pin)) & 
-    nchar(pin) == 12 & 
-    !is.na(date) &
-    date <= Sys.Date()
-  )
+  "pin" %in% class(pin)
 }
 
 #' @title
@@ -110,7 +102,7 @@ is.pin <- function(pin){
 #' 
 #' @export
 pin_ctrl <- function(pin){
-
+  if(!is.pin(pin)) pin <- as.pin(pin)
   res <- vapply(pin, luhn_algo, integer(1), USE.NAMES = FALSE, 
                 multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
   as.integer(substr(pin, 12, 12)) == res
@@ -139,6 +131,7 @@ pin_ctrl <- function(pin){
 #'
 #' @export
 pin_sex <- function(pin){
+  if(!is.pin(pin)) pin <- as.pin(pin)
   female <- as.numeric(substr(pin,11,11)) %% 2 == 0
   output <- factor(ifelse(female, "Female", "Male"))
   return(output)
@@ -168,6 +161,7 @@ pin_sex <- function(pin){
 #'
 #' @export
 pin_coordn <- function(pin) {
+  if(!is.pin(pin)) pin <- as.pin(pin)
   as.numeric(substr(pin,7,8)) > 60
 }
 
@@ -189,7 +183,9 @@ pin_coordn <- function(pin) {
 #'
 #' @examples
 #' # Example with someone born today
-#' today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")
+#' today_pin <- 
+#'   paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),
+#'         "0000",sep="")
 #' pin_age(today_pin)
 #' 
 #' # Examples taken from SKV 704 (see references)
@@ -198,6 +194,7 @@ pin_coordn <- function(pin) {
 #'
 #' @export
 pin_age <- function(pin, date=Sys.Date()) {
+  if(!is.pin(pin)) pin <- as.pin(pin)
   date <- as.Date(date)
   pin <- pin_coordn_correct(pin)
   diff <- lubridate::interval(lubridate::ymd(paste(substr(pin,1,4), 
@@ -239,13 +236,15 @@ pin_age <- function(pin, date=Sys.Date()) {
 #'
 #' @examples
 #' # Example with someone born today and from SKV 704 (see references)
-#' today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")#' 
-#' ex_pin <- c("196408233234", pin_today)
+#' today_pin <- 
+#'   paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),
+#'         "0000",sep="")
+#' ex_pin <- c("196408233234", today_pin)
 #' pin_birthplace(ex_pin)
 #'
 #' @export
 pin_birthplace <- function(pin){
-  
+  if(!is.pin(pin)) pin <- as.pin(pin)
   birth_vector <- 
     c(rep("Stockholm stad",10),
       rep("Stockholms l\u00E4n", 4),
@@ -283,6 +282,5 @@ pin_birthplace <- function(pin){
                           USE.NAMES = FALSE))
   
   return(res)
-
 }
 
