@@ -9,11 +9,8 @@
 #' @return
 #' Character element on standard format.
 #' 
-#' @example
-#' pin <-c("20121209-0122", "201212090122", "121209-0122", "1212090122")
-#' formats <- "^(18|19|20)[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
-#' pin_convert(pin[1], formats)
 #'
+
 pin_convert <- function(pin, format){
   if(length(pin) == 0) return(pin)
   switch(EXPR = format,
