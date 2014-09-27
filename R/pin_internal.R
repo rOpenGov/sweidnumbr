@@ -8,18 +8,23 @@
 #'  
 #' @return
 #' Character element on standard format.
+#' 
+#' @example
+#' pin <-c("20121209-0122", "201212090122", "121209-0122", "1212090122")
+#' formats <- "^(18|19|20)[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
+#' pin_convert(pin[1], formats)
 #'
-pin_convert <- function(pin){
-  switch(as.character(nchar(pin)),
-         "13" = paste(as.character(substr(pin, 1, 8)), as.character(substr(pin, 10, 13)) ,sep=""),
-         "11" = paste(ifelse(substr(pin,start=7,7) == "-",
+pin_convert <- function(pin, format){
+  if(length(pin) == 0) return(pin)
+  switch(EXPR = format,
+         "1" = pin,
+         "2" = paste(as.character(substr(pin, 1, 8)), as.character(substr(pin, 10, 13)) ,sep=""),
+         "3" = paste(ifelse(substr(pin,start=7,7) == "-",
                              as.character(pin_century(pin)),
                              as.character(pin_century(pin)-1)), 
                       substr(pin, 1, 6),
                       substr(pin, 8, 11), sep=""),
-         "10" = paste(as.character(pin_century(pin)), pin ,sep=""),
-         "12" = pin,
-         as.character(NA))
+         "4" = paste(as.character(pin_century(pin)), pin ,sep=""))
 }
 
 #' @title

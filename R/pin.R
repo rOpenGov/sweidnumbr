@@ -36,6 +36,11 @@
 #' as.pin(ex_pin2)
 #' ex_pin3 <- c(6408233234, 196408233234)
 #' as.pin(ex_pin3)
+#' ex_pin4 <-rep(c("20121209-0122", "201212090122", "121209-0122", "1212090122"),25000)
+#' system.time(as.pin(ex_pin4))
+#' ex_pin5 <-c("205012090122", "186512090122", "121209-0122", "121209-012A")
+#' as.pin(pin = ex_pin5)
+#' pin <-c("201212090122", "201212090122", "121209-0122", "1212090122")
 #' 
 #' @export
 as.pin <- function(pin){
@@ -45,19 +50,48 @@ as.pin <- function(pin){
     pin <- vapply(pin, pin_add_zero, character(1), USE.NAMES = FALSE)
   }
   
-  if(any(nchar(pin) == 10)) message("Assumption: All are less than 100 years old.")
-
-  # Convert
-  pin <- vapply(X = pin, FUN = pin_convert, FUN.VALUE = character(1), USE.NAMES = FALSE)
+  formats <- character(4)
+  # format 1: "YYYYMMDDNNNC"
+  formats[1] <- "^(18|19|20)[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
+  # format 2: "YYYYMMDD-NNNC"
+  formats[2] <- "^(18|19|20)[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{4}$"
+  # format 3: "YYMMDD-NNNC"
+  formats[3] <- "^[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{4}$"
+  # format 4: "YYMMDDNNNC"
+  formats[4] <- "^[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
   
-  isna <- is.na(pin)
+  # Convert
+  newpin <- rep(as.character(NA), length(pin))
+  logi_format <- rep(FALSE, length(pin))
+  for(i in 1:length(formats)){
+    logi_format <- grepl(formats[i], x = pin)
+    newpin[logi_format] <- pin_convert(pin[logi_format], format=i)
+    if(i == 4 & sum(logi_format, na.rm = TRUE) > 0) {
+      message("Assumption: \npin of format YYMMDDNNNC is assumed to be less than 100 years old.")}
+  }
+
+  # Add class
+  class(newpin) <- c("pin", "character")
+  
+  # Check dates
+  date <- as.Date(pin_coordn_correct(newpin),"%Y%m%d")
+  suppressWarnings( 
+    correct_date <-
+      !is.na(date) &
+      date <= Sys.Date() &
+      date >= as.Date("1870-01-01")
+  )
+  newpin[!correct_date] <- NA
+  
+  # Warning for incorrect pin
+  isna <- is.na(newpin)
   if(any(isna)) {
     warning("The following personal identity numbers are incorrect: ", 
             paste(which(isna), collapse = ", "), 
             call. = FALSE)
   }
-  class(pin) <- c("pin", "character")
-  return(pin)
+
+  return(newpin)
 }
 
 #' @title
