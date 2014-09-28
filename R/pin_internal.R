@@ -78,6 +78,7 @@ pin_coordn_correct <- function(pin){
 #' @return
 #' Character element containing birthplace
 pin_birthplace_internal <- function(pin, birth_vector){
+  if(is.na(pin)) return(pin)
   born <- as.numeric(substr(pin, 1, 4))
   if(born >= 1990){
     res <- "Born after 31 december 1989"
