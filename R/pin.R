@@ -208,6 +208,13 @@ pin_coordn <- function(pin) {
 #' 
 #' @inheritParams is.pin
 #' @param date Date at which age is calculated.
+#' @param timespan Timespan to use to calculate age. The actual timespans are:
+#' \itemize{
+#'   \item \code{years} (Default)
+#'   \item \code{months}
+#'   \item \code{weeks}
+#'   \item \code{days}
+#' }
 #'
 #' @references 
 #' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
@@ -227,7 +234,7 @@ pin_coordn <- function(pin) {
 #' pin_age(ex_pin, date = "2012-01-01")
 #'
 #' @export
-pin_age <- function(pin, date=Sys.Date()) {
+pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   if(!is.pin(pin)) pin <- as.pin(pin)
   date <- as.Date(date)
   pin <- pin_coordn_correct(pin)
@@ -235,8 +242,20 @@ pin_age <- function(pin, date=Sys.Date()) {
                              substr(pin,5,6), 
                              substr(pin,7,8), sep="-")),
                    lubridate::ymd(date))
-  message(paste("The age has been calculated at ", as.character(date), ".", sep=""))
-  return(as.integer(diff %/% lubridate::years(1)))
+  if(length(date) == 1){
+    message(paste("The age has been calculated at ", as.character(date), ".", sep=""))
+  } else {
+    warning("The age has been calculated for multiple dates.")
+  }
+
+  timespan_lubridate <-
+    switch(timespan,
+           "years" = lubridate::years(1),
+           "months" = lubridate::new_period(month=1),
+           "weeks" = lubridate::weeks(1),
+           "days" = lubridate::days(1))
+  
+  return(as.integer(diff %/% timespan_lubridate))
 }
 
 

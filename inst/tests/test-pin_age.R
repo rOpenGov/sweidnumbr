@@ -10,4 +10,20 @@ test_that(desc="age",{
   expect_is(pin_age(pin = pin_test, date = "2012-01-01"), "integer")
 })
 
+test_that(desc="age in years at leapyear",{
+  expect_equal(pin_age(pin = c("200002291234", "200002281234"), date = "2012-01-01"), expected = c(14, 14))
+})
+
+test_that(desc="age at leapyear",{
+  expect_equal(pin_age(pin = c("200002281234"), date = "2000-05-01", timespan = "months"), expected = 2)
+  expect_equal(pin_age(pin = c("200002011234"), date = "2000-02-08", timespan = "weeks"), expected = 1)
+  expect_equal(pin_age(pin = c("200002011234"), date = "2000-02-07", timespan = "weeks"), expected = 0)
+  expect_equal(pin_age(pin = c("200002011234"), date = "2000-02-07", timespan = "days"), expected = 6)
+})
+
+test_that(desc="age in years at leapyear",{
+  expect_warning(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01", "2013-01-01")))
+  expect_message(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01")))  
+})
+
 cat("\n")
