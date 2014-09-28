@@ -146,7 +146,7 @@ pin_ctrl <- function(pin){
 #' Calculate sex from \code{pin}
 #' 
 #' @description
-#' Calculates the sex of from the personal identification number.
+#' Calculates the sex from the personal identification number.
 #' 
 #' @inheritParams is.pin
 #' 
