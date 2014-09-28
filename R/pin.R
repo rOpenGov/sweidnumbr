@@ -79,7 +79,7 @@ as.pin <- function(pin){
     correct_date <-
       !is.na(date) &
       date <= Sys.Date() &
-      date >= as.Date("1870-01-01")
+      date >= as.Date("1830-01-01")
   )
   newpin[!correct_date] <- NA
   
