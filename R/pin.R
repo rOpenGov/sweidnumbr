@@ -36,8 +36,8 @@
 #' as.pin(ex_pin2)
 #' ex_pin3 <- c(6408233234, 196408233234)
 #' as.pin(ex_pin3)
-#' ex_pin4 <-rep(c("20121209-0122", "201212090122", "121209-0122", "1212090122"),25000)
-#' system.time(as.pin(ex_pin4))
+#' ex_pin4 <-rep(c("20121209-0122", "201212090122", "121209-0122", "1212090122"),250)
+#' as.pin(ex_pin4)
 #' ex_pin5 <-c("205012090122", "186512090122", "121209-0122", "121209-012A")
 #' as.pin(pin = ex_pin5)
 #' pin <-c("201212090122", "201212090122", "121209-0122", "1212090122")
@@ -255,7 +255,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
 
 
 #' @title
-#' Calculate the birthdate from a \code{pin}
+#' Calculate the date of birth from a \code{pin}
 #' 
 #' @description
 #' Calculates the date of birth in date format.
@@ -268,8 +268,9 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
 #' @examples
 #' # Examples taken from SKV 704 (see references)
 #' ex_pin <- c("196408233234", "186408833224")
-#' pin_age(ex_pin, date = "2012-01-01")
+#' pin_to_date(ex_pin)
 #' 
+#' @export
 pin_to_date <- function(pin) {
   if(!is.pin(pin)) pin <- as.pin(pin)
   pin <- pin_coordn_correct(pin)
