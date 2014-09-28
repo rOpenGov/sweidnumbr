@@ -5,6 +5,7 @@
 #' Converts one pin to standard format
 #' 
 #' @param pin A character element of length one.
+#' @param format Which format should be converted. See \link{as.pin}.
 #'  
 #' @return
 #' Character element on standard format.
@@ -49,7 +50,7 @@ pin_century <- function(pin_short){
 #' @description
 #' Remove the change of day in coordination numbers (to enable age calculation).
 #' 
-#' @param pin Vector of pins at format atandard fromat 'YYYYMMDDNNNC'. See \link{pin_format}.
+#' @param pin Vector of pins at format atandard fromat 'YYYYMMDDNNNC'. See \link{as.pin}.
 #' 
 #' @return
 #' Character vector with pin, corrected for coordination numbers.
@@ -72,7 +73,7 @@ pin_coordn_correct <- function(pin){
 #' @description
 #' Internal computation of birthplace (one for each pin)
 #' 
-#' @param pin Character element with pin at standard format 'YYYYMMDDNNNC'. See \link{pin_format}.
+#' @param pin Character element with pin at standard format 'YYYYMMDDNNNC'. See \link{as.pin}.
 #' @param birth_vector Vector mapping birth number to birthplace. See \link{pin_birthplace}.
 #' 
 #' @return

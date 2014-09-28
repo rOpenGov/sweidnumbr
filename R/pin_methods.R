@@ -8,8 +8,8 @@ as.data.frame.pin <- function (x, ...)
 }
 
 #' @export
-print.pin <- function (x) 
+print.pin <- function (x,...) 
 {
-  print(as.character(x))
+  print(as.character(x),...)
   cat("Personal identity number(s)")
 }
