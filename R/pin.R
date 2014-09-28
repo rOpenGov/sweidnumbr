@@ -97,8 +97,7 @@ as.pin <- function(pin){
 #' @title
 #' Test if a vector is of class \code{pin}
 #' 
-#' 
-#' @param pin Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}. See \link{pin_format}.
+#' @param pin A character vector to test if it is in \code{pin} format. See \link{as.pin}.
 #' 
 #' @return
 #' Logical vector indicating if the elements can are of format personal identity number.
@@ -119,7 +118,7 @@ is.pin <- function(pin){
 #' Calculates the control number using the Luhn algorithm and compare it with the 
 #' control number in the personal identity number.
 #' 
-#' @inheritParams is.pin
+#' @param pin A vector of class \code{pin}. See \link{as.pin}.
 #' 
 #' @references 
 #' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
@@ -148,7 +147,7 @@ pin_ctrl <- function(pin){
 #' @description
 #' Calculates the sex from the personal identification number.
 #' 
-#' @inheritParams is.pin
+#' @inheritParams pin_ctrl
 #' 
 #' @references 
 #' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
@@ -178,7 +177,7 @@ pin_sex <- function(pin){
 #' @description
 #' Calculate if the personal identity number is a coordination number.
 #' 
-#' @inheritParams is.pin
+#' @inheritParams pin_ctrl
 #' 
 #' @references 
 #' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
@@ -206,7 +205,7 @@ pin_coordn <- function(pin) {
 #' @description
 #' Calculate the age in full years for a given date.
 #' 
-#' @inheritParams is.pin
+#' @inheritParams pin_ctrl
 #' @param date Date at which age is calculated.
 #' @param timespan Timespan to use to calculate age. The actual timespans are:
 #' \itemize{
@@ -235,12 +234,8 @@ pin_coordn <- function(pin) {
 #'
 #' @export
 pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
-  if(!is.pin(pin)) pin <- as.pin(pin)
   date <- as.Date(date)
-  pin <- pin_coordn_correct(pin)
-  diff <- lubridate::interval(lubridate::ymd(paste(substr(pin,1,4), 
-                             substr(pin,5,6), 
-                             substr(pin,7,8), sep="-")),
+  diff <- lubridate::interval(pin_to_date(pin),
                    lubridate::ymd(date))
   if(length(date) == 1){
     message(paste("The age has been calculated at ", as.character(date), ".", sep=""))
@@ -256,6 +251,31 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
            "days" = lubridate::days(1))
   
   return(as.integer(diff %/% timespan_lubridate))
+}
+
+
+#' @title
+#' Calculate the birthdate from a \code{pin}
+#' 
+#' @description
+#' Calculates the date of birth in date format.
+#' 
+#' @inheritParams pin_ctrl
+#' 
+#' @return
+#' Date of birth as a vector in date format.
+#' 
+#' @examples
+#' # Examples taken from SKV 704 (see references)
+#' ex_pin <- c("196408233234", "186408833224")
+#' pin_age(ex_pin, date = "2012-01-01")
+#' 
+pin_to_date <- function(pin) {
+  if(!is.pin(pin)) pin <- as.pin(pin)
+  pin <- pin_coordn_correct(pin)
+  lubridate::ymd(paste(substr(pin,1,4), 
+                       substr(pin,5,6), 
+                       substr(pin,7,8), sep="-"))
 }
 
 
@@ -279,7 +299,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
 #' During the period 1946 - 1989 the pin also contains information on whether one has 
 #' immigrated to Sweden during the period.
 #' 
-#' @inheritParams is.pin
+#' @inheritParams pin_ctrl
 #' 
 #' @references
 #' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
