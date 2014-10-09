@@ -108,7 +108,7 @@ as.pin <- function(pin){
 #'
 #' @export
 is.pin <- function(pin){
-  "pin" %in% class(pin)
+  inherits(pin, "pin")
 }
 
 #' @title
