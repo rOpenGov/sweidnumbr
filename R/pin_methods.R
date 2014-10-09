@@ -11,5 +11,11 @@ as.data.frame.pin <- function (x, ...)
 print.pin <- function (x,...) 
 {
   print(as.character(x),...)
-  cat("Personal identity number(s)")
+ 
+  if (!attr(x, "non_personal")){
+    cat("Personal identity number(s)")
+  } else{
+    cat("Fake personal identity number(s) for tests or educational purposes.")
+  }
+  
 }
