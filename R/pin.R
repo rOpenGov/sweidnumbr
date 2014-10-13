@@ -47,7 +47,7 @@ as.pin <- function(pin){
   pin_is_char <- is.character(pin)
   pin <- as.character(pin)
   if(!pin_is_char){
-    pin <- vapply(pin, pin_add_zero, character(1), USE.NAMES = FALSE)
+    pin <- stringr::str_pad(pin, 10, pad = "0")
   }
   
   formats <- character(4)

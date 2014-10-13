@@ -12,7 +12,7 @@ print.pin <- function (x,...)
 {
   print(as.character(x),...)
  
-  if (!attr(x, "non_personal")){
+  if (!is.null(attr(x, "non_personal")) && !attr(x, "non_personal")) {
     cat("Personal identity number(s)")
   } else{
     cat("Fake personal identity number(s) for tests or educational purposes.")

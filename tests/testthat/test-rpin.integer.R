@@ -9,8 +9,7 @@ context("rpin.integer")
 ##########################################################################################
 
 
-.Options$test_rpin_seed()
-
+set.seed(3141592)
 
 p10   <- rpin.integer(10)
 p100  <- rpin.integer(100)

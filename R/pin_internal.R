@@ -120,23 +120,3 @@ luhn_algo <- function(id, multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)){
   return(output)
 }
 
-
-#' @title
-#' pin_add_zero
-#' 
-#' @description
-#' Adds zeroes in front of pin that are converted from numeric
-#' 
-#' @param pin Personal identity number
-#' 
-#' @return
-#' Corrected pin
-#' 
-pin_add_zero <- function(pin){
-  elem <- 12 - nchar(pin)
-  if(elem > 2) {
-    paste(paste(rep("0", elem - 2),collapse=""), pin, sep="")
-  } else {
-    pin
-  }
-}
