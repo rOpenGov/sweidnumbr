@@ -7,4 +7,6 @@
 
   packageStartupMessage("sweidnumbr: R tools to handle swedish identity numbers.\nCopyright (C) 2014 Mans Magnusson\nhttps://github.com/MansMeg/sweidnumbr\n\n")
 
+  # For easier testing of rpin
+  options("test_rpin_seed" = function () set.seed(3141592))
 }
