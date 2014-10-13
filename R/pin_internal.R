@@ -16,13 +16,13 @@ pin_convert <- function(pin, format){
   if(length(pin) == 0) return(pin)
   switch(EXPR = format,
          "1" = pin,
-         "2" = paste(as.character(substr(pin, 1, 8)), as.character(substr(pin, 10, 13)) ,sep=""),
-         "3" = paste(ifelse(substr(pin,start=7,7) == "-",
+         "2" = gsub("-", "", pin),
+         "3" = paste0(ifelse(substr(pin,start=7,7) == "-",
                              as.character(pin_century(pin)),
                              as.character(pin_century(pin)-1)), 
                       substr(pin, 1, 6),
-                      substr(pin, 8, 11), sep=""),
-         "4" = paste(as.character(pin_century(pin)), pin ,sep=""))
+                      substr(pin, 8, 11)),
+         "4" = paste0(as.character(pin_century(pin)), pin))
 }
 
 #' @title
@@ -37,7 +37,7 @@ pin_convert <- function(pin, format){
 #' Century vector in numeric format
 #' 
 pin_century <- function(pin_short){
-  pin_date <- as.Date(paste(paste(substr(Sys.Date(),1,2), substr(pin_short, 1,2), sep=""),
+  pin_date <- as.Date(paste(paste0(substr(Sys.Date(),1,2), substr(pin_short, 1,2)),
         substr(pin_short, 3,4), substr(pin_short, 5,6), sep="-"))
   ifelse(pin_date > Sys.Date(), 
          as.numeric(substr(Sys.Date(),1,2))-1,
@@ -58,10 +58,10 @@ pin_century <- function(pin_short){
 pin_coordn_correct <- function(pin){
   coordn <- pin_coordn(pin)
   pin <- ifelse(coordn,
-                paste(
+                paste0(
                   substr(pin,1,6), 
                   as.character(as.numeric(substr(pin,7,7)) - 6),
-                  substr(pin, 8, 12), sep=""), pin)
+                  substr(pin, 8, 12)), pin)
   return(pin)
 }
 
@@ -120,23 +120,3 @@ luhn_algo <- function(id, multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)){
   return(output)
 }
 
-
-#' @title
-#' pin_add_zero
-#' 
-#' @description
-#' Adds zeroes in front of pin that are converted from numeric
-#' 
-#' @param pin Personal identity number
-#' 
-#' @return
-#' Corrected pin
-#' 
-pin_add_zero <- function(pin){
-  elem <- 12 - nchar(pin)
-  if(elem > 2) {
-    paste(paste(rep("0", elem - 2),collapse=""), pin, sep="")
-  } else {
-    pin
-  }
-}

@@ -46,7 +46,7 @@ is.oin <- function(oin){
 #' @export
 oin_ctrl <- function(oin){
 
-  oin_char <- paste(substr(oin,1,6), substr(oin,8,11), sep="")
+  oin_char <- paste0(substr(oin,1,6), substr(oin,8,11))
   res <- vapply(oin_char, luhn_algo, integer(1), USE.NAMES = FALSE, 
                 multiplier = c(2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
   as.integer(substr(oin, 11, 11)) == res
