@@ -30,9 +30,7 @@ immigrated to Sweden during the period.
 }
 \examples{
 # Example with someone born today and from SKV 704 (see references)
-today_pin <-
-  paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),
-        "0000",sep="")
+today_pin <- paste0(format(Sys.Date(),"\%Y\%m\%d"), "0000")
 ex_pin <- c("196408233234", today_pin)
 pin_birthplace(ex_pin)
 }
