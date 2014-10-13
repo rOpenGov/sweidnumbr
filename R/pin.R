@@ -47,7 +47,7 @@ as.pin <- function(pin){
   pin_is_char <- is.character(pin)
   pin <- as.character(pin)
   if(!pin_is_char){
-    pin <- vapply(pin, pin_add_zero, character(1), USE.NAMES = FALSE)
+    pin <- stringr::str_pad(pin, 10, pad = "0")
   }
   
   formats <- character(4)
@@ -62,8 +62,8 @@ as.pin <- function(pin){
   
   # Convert
   newpin <- rep(as.character(NA), length(pin))
-  logi_format <- rep(FALSE, length(pin))
-  for(i in 1:length(formats)){
+  logi_format <- logical(length(pin))
+  for(i in seq_along(formats)){
     logi_format <- grepl(formats[i], x = pin)
     newpin[logi_format] <- pin_convert(pin[logi_format], format=i)
     if(i == 4 & sum(logi_format, na.rm = TRUE) > 0) {
@@ -238,7 +238,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   diff <- lubridate::interval(pin_to_date(pin),
                    lubridate::ymd(date))
   if(length(date) == 1){
-    message(paste("The age has been calculated at ", as.character(date), ".", sep=""))
+    message("The age has been calculated at ", as.character(date), ".")
   } else {
     warning("The age has been calculated for multiple dates.")
   }
@@ -274,9 +274,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
 pin_to_date <- function(pin) {
   if(!is.pin(pin)) pin <- as.pin(pin)
   pin <- pin_coordn_correct(pin)
-  lubridate::ymd(paste(substr(pin,1,4), 
-                       substr(pin,5,6), 
-                       substr(pin,7,8), sep="-"))
+  lubridate::ymd(substr(pin,1,8))
 }
 
 
@@ -310,9 +308,7 @@ pin_to_date <- function(pin) {
 #'
 #' @examples
 #' # Example with someone born today and from SKV 704 (see references)
-#' today_pin <- 
-#'   paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),
-#'         "0000",sep="")
+#' today_pin <- paste0(format(Sys.Date(),"%Y%m%d"), "0000")
 #' ex_pin <- c("196408233234", today_pin)
 #' pin_birthplace(ex_pin)
 #'
