@@ -3,7 +3,7 @@
 \alias{luhn_algo}
 \title{luhn_algo}
 \usage{
-luhn_algo(id, multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
+luhn_algo(id, multiplier)
 }
 \arguments{
 \item{id}{Element with swedish personal identity number.}
@@ -14,7 +14,25 @@ luhn_algo(id, multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
 The control number (12th digit in the personal identification number) calculated from \code{id} (as integer).
 }
 \description{
-Calculates the control number.
+Calculates the control number for a Swedish personal/organisational identity number using the Luhn algorithm.
+}
+\examples{
+luhn_algo("121212121212", c(0,0,2,1,2,1,2,1,2,1,2,0))
+luhn_algo(  "121212121",  c(      2,1,2,1,2,1,2,1,2))
+
+## If no multiplier, the default is
+## to find one that match the format of id
+luhn_algo("121212121212")
+luhn_algo("12121212121")
+luhn_algo("1212121212")
+luhn_algo("121212121")
+
+## Also for multiple pin
+## (as long they are all of the same format)
+luhn_algo(c("12121212121", "19850504333"))
+\donttest{
+luhn_algo(c("12121212121", "850504333")) ## Different formats should fail!
+}
 }
 \references{
 https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
