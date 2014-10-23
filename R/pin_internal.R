@@ -110,7 +110,7 @@ pin_birthplace_internal <- function(pin, birth_vector){
 #' https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf
 #' 
 #' @return
-#' Logical element indicating if a pin is correct (TRUE) or not (FALSE)
+#' The control number (12th digit in the personal identification number) calculated from \code{id} (as integer).
 #'
 luhn_algo <- function(id, multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)){
   ret <- as.numeric(unlist(strsplit(id, split="")))
