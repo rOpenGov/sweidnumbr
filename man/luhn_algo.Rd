@@ -11,7 +11,7 @@ luhn_algo(id, multiplier)
 \item{multiplier}{What should each element in id be multiplied with}
 }
 \value{
-The control number (12th digit in the personal identification number) calculated from \code{id} (as integer).
+The control number (last digit in the personal identification number) calculated from \code{id} (as integer).
 }
 \description{
 Calculates the control number for a Swedish personal/organisational identity number using the Luhn algorithm.
