@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MansMeg/sweidnumbr.svg)](https://travis-ci.org/MansMeg/sweidnumbr)
+
 sweidnumbr
 ==========
 
