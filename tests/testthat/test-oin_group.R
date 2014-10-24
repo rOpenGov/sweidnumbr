@@ -1,6 +1,6 @@
 
 test_oin <- c("556000-4615", "232100-0156", "802002–4280")
-test_oin_res <- c("Aktiebolag", "Stat, landsting, kommuner, församlingar", "Ideella föreningar och stiftelser")
+test_oin_res <- c("Aktiebolag", "Stat, landsting, kommuner, f\u00F6rsamlingar", "Ideella f\u00F6reningar och stiftelser")
 
 cat("oin_group : ")
 
