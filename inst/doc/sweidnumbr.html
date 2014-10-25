@@ -54,7 +54,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{pxweb}
+%\VignetteIndexEntry{sweidnumbr}
 -->
 
 <div id="sweidnumbr-structural-handling-of-swedish-identity-numbers" class="section level1">
@@ -62,7 +62,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>This R package provides tools to work with swedish identity numbers such as personal identity numbers (personnummer) and organizational identity numbers (organisationsnummer).</p>
 <div id="table-of-contents" class="section level2">
 <h2>Table of contents</h2>
-<p><a href="#installation">Installation</a> (Installation)<br /><a href="#examples">Examples</a> (Examples)<br /><a href="#references">References</a> (References)</p>
+<p><a href="#installation">Installation</a> (Installation)</p>
+<p><a href="#examplepin">Example: personal identity numbers</a> (Personal identity numbers)</p>
+<p><a href="#exampleoin">Example: organizational identity numbers</a> (Organizational identity number)</p>
+<p><a href="#licens">Licensing and Citations</a> (Licensing and Citations)</p>
+<p><a href="#references">References</a> (References)</p>
 </div>
 <div id="installation" class="section level2">
 <h2><a name="installation"></a>Installation</h2>
@@ -73,16 +77,17 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>We also recommend setting the UTF-8 encoding:</p>
 <pre class="r"><code>Sys.setlocale(locale=&quot;UTF-8&quot;) </code></pre>
 </div>
-<div id="examples" class="section level2">
-<h2><a name="examples"></a>Examples</h2>
+<div id="example-personal-identity-numbers" class="section level2">
+<h2><a name="examplepin"></a>Example: personal identity numbers</h2>
 <p>As a first step we need to convert personal identity numbers (pin) to the sam standard ABS format.</p>
 <pre class="r"><code>example_pin &lt;- c(&quot;640823-3234&quot;, &quot;6408233234&quot;, &quot;19640823-3230&quot;)
-example_pin &lt;- pin_format(example_pin)
+example_pin &lt;- as.pin(example_pin)
 example_pin</code></pre>
-<pre><code>## [1] &quot;196408233234&quot; &quot;196408233234&quot; &quot;196408233230&quot;</code></pre>
+<pre><code>## [1] &quot;196408233234&quot; &quot;196408233234&quot; &quot;196408233230&quot;
+## Personal identity number(s)</code></pre>
 <p>The next step is to test if the format is correct. To do this we use the <code>is_pin()</code> function.</p>
 <pre class="r"><code>is.pin(example_pin)</code></pre>
-<pre><code>## [1] TRUE TRUE TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>This only check the format of the pin. To check the pin using the control number we use <code>pin_ctrl()</code>.</p>
 <pre class="r"><code>pin_ctrl(example_pin)</code></pre>
 <pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
@@ -99,8 +104,29 @@ example_pin</code></pre>
 <pre class="r"><code>pin_age(example_pin, date = &quot;2000-01-01&quot;)</code></pre>
 <pre><code>## [1] 35 35 35</code></pre>
 </div>
+<div id="example-organizational-identity-numbers" class="section level2">
+<h2><a name="exampleoin"></a>Example: organizational identity numbers</h2>
+<p>Handling of organizational identity numbers is done in a similar fashion. But organizational numbers are only allowed to have one format.</p>
+<pre class="r"><code>example_oin &lt;- c(&quot;556000-4615&quot;, &quot;232100-0156&quot;, &quot;802002-4280&quot;)
+example_oin &lt;- as.oin(example_oin)
+example_oin</code></pre>
+<pre><code>## [1] &quot;556000-4615&quot; &quot;232100-0156&quot; &quot;802002-4280&quot;
+## Organizational identity number(s)</code></pre>
+<p>We can test if the vector has a correct format in a similar way as for <code>pin</code>.</p>
+<pre class="r"><code>is.oin(example_oin)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>With a vector of <code>oin</code> we can check if the control number is correct.</p>
+<pre class="r"><code>oin_ctrl(example_oin)</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE</code></pre>
+<p>We can also check the type of organization.</p>
+<pre class="r"><code>oin_group(example_oin)</code></pre>
+<pre><code>## [1] Aktiebolag                             
+## [2] Stat, landsting, kommuner, församlingar
+## [3] Ideella föreningar och stiftelser      
+## 3 Levels: Aktiebolag ... Stat, landsting, kommuner, församlingar</code></pre>
+</div>
 <div id="licensing-and-citations" class="section level2">
-<h2>Licensing and Citations</h2>
+<h2><a name="licens"></a>Licensing and Citations</h2>
 <p>This work can be freely used, modified and distributed under the open license specified in the <a href="https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION">DESCRIPTION file</a>.</p>
 <p>Kindly cite the work as follows</p>
 <pre class="r"><code>citation(&quot;sweidnumbr&quot;)</code></pre>
@@ -123,15 +149,17 @@ example_pin</code></pre>
 <h2><a name="references"></a>References</h2>
 <ul>
 <li><a href="https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf">Population registration in Sweden</a></li>
-<li><a href="https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf">SKV 704</a></li>
+<li><a href="https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf">SKV 704 : Personnummer</a></li>
 <li><a href="http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/">SOU 2008:60 : Personnummer och samordningsnummer</a></li>
+<li><a href="https://www.skatteverket.se/foretagorganisationer/myndigheter/aviseringavbefolkningsuppgifternavet/skyddadepersonuppgifter.4.18e1b10334ebe8bc80001399.html">Protected personal identity numbers</a></li>
+<li><a href="http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1359707510840/70909.pdf">SKV 709 : Organisationsnummer</a></li>
 </ul>
 </div>
 <div id="session-info" class="section level2">
 <h2>Session info</h2>
 <p>This vignette was created with</p>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>## R version 3.1.0 (2014-04-10)
+<pre><code>## R version 3.1.1 (2014-07-10)
 ## Platform: x86_64-apple-darwin13.1.0 (64-bit)
 ## 
 ## locale:
@@ -141,12 +169,13 @@ example_pin</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] lubridate_1.3.3 sweidnumbr_0.1 
+## [1] sweidnumbr_0.2.2
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] digest_0.6.4     evaluate_0.5.5   formatR_0.10     htmltools_0.2.4 
-##  [5] knitr_1.6        memoise_0.2.1    plyr_1.8.1       Rcpp_0.11.1     
-##  [9] rmarkdown_0.2.64 stringr_0.6.2    tools_3.1.0      yaml_2.1.13</code></pre>
+##  [5] knitr_1.6        lubridate_1.3.3  memoise_0.2.1    plyr_1.8.1      
+##  [9] Rcpp_0.11.1      rmarkdown_0.2.64 stringr_0.6.2    tools_3.1.1     
+## [13] yaml_2.1.13</code></pre>
 </div>
 </div>
 

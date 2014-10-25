@@ -17,7 +17,13 @@ identity numbers (personnummer) and organizational identity numbers (organisatio
 ## Table of contents
 
 [Installation](#installation) (Installation)  
-[Examples](#examples) (Examples)  
+
+[Example: personal identity numbers](#examplepin) (Personal identity numbers)
+
+[Example: organizational identity numbers](#exampleoin) (Organizational identity number)
+
+[Licensing and Citations](#licens) (Licensing and Citations)
+
 [References](#references) (References)  
 
 ## <a name="installation"></a>Installation
@@ -40,7 +46,7 @@ We also recommend setting the UTF-8 encoding:
 Sys.setlocale(locale="UTF-8") 
 ```
 
-## <a name="examples"></a>Examples
+## <a name="examplepin"></a>Example: personal identity numbers
 
 As a first step we need to convert personal identity numbers (pin) to the sam standard ABS format.
 
@@ -76,20 +82,35 @@ pin_age(example_pin)
 pin_age(example_pin, date = "2000-01-01")
 ```
 
-It is also possible to calculate in other timespans than years.
+## <a name="exampleoin"></a>Example: organizational identity numbers
 
-```{r example6, message=FALSE, eval=TRUE}
-pin_age(example_pin, date = "2000-01-01", timespan = "months")
-pin_age(example_pin, date = "2000-01-01", timespan = "weeks")
+Handling of organizational identity numbers is done in a similar fashion. But organizational numbers are only allowed to have one format.
+
+```{r oin1, message=FALSE, eval=TRUE}
+example_oin <- c("556000-4615", "232100-0156", "802002-4280")
+example_oin <- as.oin(example_oin)
+example_oin
 ```
 
-If the specific birthdates is needed these can be calculated with ```pin_to_date()```.
+We can test if the vector has a correct format in a similar way as for `pin`.
 
-```{r example7, message=FALSE, eval=TRUE}
-pin_to_date(example_pin)
+```{r oin2, message=FALSE, eval=TRUE}
+is.oin(example_oin)
 ```
 
-## Licensing and Citations
+With a vector of `oin` we can check if the control number is correct.
+
+```{r oin3, message=FALSE, eval=TRUE}
+oin_ctrl(example_oin)
+```
+
+We can also check the type of organization. 
+
+```{r oin4, message=FALSE, eval=TRUE}
+oin_group(example_oin)
+```
+
+## <a name="licens"></a>Licensing and Citations
 
 This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION).
 
@@ -103,9 +124,10 @@ citation("sweidnumbr")
 ## <a name="references"></a>References 
 
 - [Population registration in Sweden](https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf)
-- [SKV 704](https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf)
+- [SKV 704 : Personnummer](https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf)
 - [SOU 2008:60 : Personnummer och samordningsnummer](http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/)
-
+- [Protected personal identity numbers](https://www.skatteverket.se/foretagorganisationer/myndigheter/aviseringavbefolkningsuppgifternavet/skyddadepersonuppgifter.4.18e1b10334ebe8bc80001399.html)
+- [SKV 709 : Organisationsnummer](http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1359707510840/70909.pdf)
 
 ## Session info
 
