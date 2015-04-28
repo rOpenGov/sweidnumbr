@@ -13,3 +13,30 @@ print.pin <- function (x,...)
   print(as.character(x),...)
   cat("Personal identity number(s)")
 }
+
+# Helper function to create S3 method that preserves (most) 
+# attributes (including class)
+create_s3_method <- function(generic = NULL, object = NULL){
+  function(x, i, ...) {
+    r <- NextMethod(generic = generic, object = object)
+    mostattributes(r) <- attributes(x)
+    r
+  }
+}
+
+#' @export
+`[.pin` <- create_s3_method("[")
+#' @export
+rep.pin <- create_s3_method("rep")
+
+#' @export
+`[<-.pin` <- function(x, ..., value){
+  # Check that all values can be coerced to pin
+  if (!isTRUE(all(( !is.na(suppressWarnings(as.pin(value))) | is.na(value))))){
+    stop("You can not insert non pin values into a pin vector!", 
+         " Coerce to ", class(value)[1], " first!")
+  } else{
+    NextMethod()
+  }
+}
+
