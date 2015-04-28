@@ -44,12 +44,47 @@
 #' 
 #' @export
 as.pin <- function(pin){
-  pin_is_char <- is.character(pin)
+  UseMethod("as.pin")
+}
+
+#' @export
+as.pin.numeric <- function(pin){
   pin <- as.character(pin)
-  if(!pin_is_char){
-    pin <- stringr::str_pad(pin, 10, pad = "0")
+  pin <- stringr::str_pad(pin, 10, pad = "0")
+  as.pin(pin)
+}
+
+#' @export
+as.pin.pin <- function(pin){
+  pin
+}
+
+#' @export
+as.pin.factor <- function(pin){
+  as.pin(as.character(pin))
+}
+
+#' @export
+as.pin.default <- function(pin){
+  stop("Object of class ", paste(class(pin), collapse = ", "), 
+       " can not be coerced to pin!"
+  )
+}
+
+# Vector of only NA:s can also get the class attribute pin
+#' @export
+as.pin.logical <- function(pin){
+  if (all(is.na(pin))){
+    structure(pin, class = c("pin", "character"))
+  } else{
+    NextMethod()
   }
+}
   
+
+#' @export
+as.pin.character <- function(pin){
+ 
   formats <- character(4)
   # format 1: "YYYYMMDDNNNC"
   formats[1] <- "^(18|19|20)[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
