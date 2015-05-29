@@ -3,4 +3,4 @@
 ^\.travis\.yml$
 ^travis-tool\.sh$
 ^data-raw$
-^inst/blog.rmd$
+^blog$

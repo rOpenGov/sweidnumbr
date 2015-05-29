@@ -1,4 +1,4 @@
-#' Fake Swede personal identity numbers
+#' Fake Swede personal identity numbers and names
 #' 
 #' Data set with fake personal identity numbers and names to use as example.
 #' 
