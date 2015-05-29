@@ -1,8 +1,8 @@
 Package: sweidnumbr
 Type: Package
 Title: Handling of Swedish Identity Numbers
-Version: 0.3.0
-Date: 2014-10-21
+Version: 0.4.0
+Date: 2015-05-29
 Author: Mans Magnusson and Erik Bulow
 Maintainer: Mans Magnusson <mons.magnusson@gmail.com>
 Description: Structural handling of identity numbers used in the Swedish
@@ -12,9 +12,11 @@ VignetteBuilder: knitr
 URL: https://github.com/MansMeg/sweidnumbr/
 BugReports: https://github.com/MansMeg/sweidnumbr/issues
 License: BSD_2_clause + file LICENSE
+Depends: R (>= 2.10)
 Imports:
     lubridate,
     stringr
 Suggests:
     testthat,
     knitr
+LazyData: true
