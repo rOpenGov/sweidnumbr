@@ -12,9 +12,11 @@ VignetteBuilder: knitr
 URL: https://github.com/MansMeg/sweidnumbr/
 BugReports: https://github.com/MansMeg/sweidnumbr/issues
 License: BSD_2_clause + file LICENSE
+Depends: R (>= 2.10)
 Imports:
     lubridate,
     stringr
 Suggests:
     testthat,
     knitr
+LazyData: true
