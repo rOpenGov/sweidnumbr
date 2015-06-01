@@ -23,7 +23,7 @@ vignette("sweidnumbr")
 
 ## Reporting bugs
 
-Please use the GitHub issue tracker [here](https://github.com/MansMeg/sweidnumbr/issues) for reporting bugs and making further feature requests.
+Please use the GitHub issue tracker [here](https://github.com/rOpenGov/sweidnumbr/issues) for reporting bugs and making further feature requests.
 
 IMPORTANT: When submitting a bug, you can make the lives of the developers easier by submitting the following information along with your bug report:
 - The output of `sessionInfo()`

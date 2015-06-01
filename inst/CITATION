@@ -10,7 +10,7 @@ citEntry(entry="misc",
          textVersion =
          paste("(C) Mans Magnusson(2014). ",
                "sweidnumbr: R tools to handle of swedish identity numbers.",
-	       "URL: http://github.com/MansMeg/sweidnumbr",
+	       "URL: http://github.com/rOpenGov/sweidnumbr",
                sep=" ")
          )
 
