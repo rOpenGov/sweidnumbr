@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MansMeg/sweidnumbr.svg)](https://travis-ci.org/MansMeg/sweidnumbr)
+[![Build Status](https://travis-ci.org/rOpenGov/sweidnumbr.svg)](https://travis-ci.org/rOpenGov/sweidnumbr)
 
 sweidnumbr
 ==========
