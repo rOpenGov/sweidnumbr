@@ -29,4 +29,9 @@ test_that(desc="age in years at leapyear",{
   expect_message(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01")))  
 })
 
+test_that(desc="Negative ages",{
+  expect_warning(pin_age(pin = c("200002281234", "200002281234"), date = c("2000-01-01")))
+})
+
+
 cat("\n")

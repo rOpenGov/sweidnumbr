@@ -285,7 +285,9 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
            "weeks" = lubridate::weeks(1),
            "days" = lubridate::days(1))
   
-  return(as.integer(diff %/% timespan_lubridate))
+  age <- as.integer(diff %/% timespan_lubridate)
+  if(any(age < 0)) warning("Negative age(es).")
+  return(age)
 }
 
 
