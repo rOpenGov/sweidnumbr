@@ -19,6 +19,11 @@ test_that("1 pin works", {
               is_equivalent_to(4))  
 })
 
+test_that(desc="Handle NA in luhn_algo",{
+  skip_on_cran()
+  skip_on_travis()
+  expect_true(is.na(luhn_algo(c(NA,198501169885))[1]))
+})
 
 test_that("multiple pin works", {
   expect_that(suppressMessages(luhn_algo(c(198505043334,121212121212))), is_equivalent_to(c(4, 2)))

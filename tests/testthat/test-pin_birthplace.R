@@ -1,5 +1,5 @@
 
-cat("pin_birthplace : ")
+context("pin_birthplace")
 
 today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")
 pin_test <- c("0000000019876", "187001019876","196408233234", "196408833234", today_pin, "196408830000")
@@ -14,4 +14,6 @@ test_that(desc="birthplace",{
   suppressWarnings(expect_is(pin_birthplace(pin = pin_test), "factor"))
 })
 
-cat("\n")
+test_that(desc="Handle NA in pin_birthplace",{
+  expect_true(is.na(pin_birthplace(pin = as.pin(c("hejbaberiba","198501169885")))[1]))
+})

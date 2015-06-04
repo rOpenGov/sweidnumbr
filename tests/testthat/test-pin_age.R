@@ -1,5 +1,5 @@
 
-cat("pin_age : ")
+context("pin_age")
 
 pin_test <- c("198111210000", "196408233234", "198111810000", "196408833234")
 today_pin <- paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),"0000",sep="")
@@ -10,6 +10,11 @@ test_that(desc="age",{
   expect_is(suppressMessages(pin_age(pin = pin_test, date = "2012-01-01")), "integer")
 })
 
+test_that(desc="Handle NA in pin_age",{
+  skip_on_cran()
+  skip_on_travis()
+  expect_true(is.na(pin_age(pin = as.pin("hejbaberiba"), date = "2012-01-01")))
+})
 
 test_that(desc="age in years at leapyear",{
   skip_on_travis()
@@ -32,6 +37,3 @@ test_that(desc="age in years at leapyear",{
 test_that(desc="Negative ages",{
   expect_warning(pin_age(pin = c("200002281234", "200002281234"), date = c("2000-01-01")))
 })
-
-
-cat("\n")

@@ -1,5 +1,5 @@
 
-cat("pin_birthplace_internal : ")
+context("pin_birthplace_internal")
 
 
 test_that(desc="birthplace",{
@@ -8,5 +8,3 @@ test_that(desc="birthplace",{
   expect_equal(pin_birthplace_internal(pin = "194000009900", birth_vector = as.character(1:100)), expected = "100")
   expect_is(pin_birthplace_internal(pin = "194000009900", birth_vector = as.character(1:100)), "character")
 })
-
-cat("\n")
