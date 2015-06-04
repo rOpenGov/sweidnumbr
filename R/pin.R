@@ -121,9 +121,7 @@ as.pin.character <- function(pin){
   # Warning for incorrect pin
   isna <- is.na(newpin)
   if(any(isna)) {
-    warning("The following personal identity numbers are incorrect: ", 
-            paste(which(isna), collapse = ", "), 
-            call. = FALSE)
+    warning("Erroneous pin(s) (set to NA).")
   }
 
   return(newpin)

@@ -31,12 +31,7 @@ rep.pin <- create_s3_method("rep")
 
 #' @export
 `[<-.pin` <- function(x, ..., value){
-  # Check that all values can be coerced to pin
-  if (!isTRUE(all(( !is.na(suppressWarnings(as.pin(value))) | is.na(value))))){
-    stop("You can not insert non pin values into a pin vector!", 
-         " Coerce to ", class(value)[1], " first!")
-  } else{
-    NextMethod()
-  }
+  value <- as.pin(value)
+  NextMethod()
 }
 
