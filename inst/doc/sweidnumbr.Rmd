@@ -50,34 +50,40 @@ Sys.setlocale(locale="UTF-8")
 
 As a first step we need to convert personal identity numbers (pin) to the sam standard ABS format.
 
-```{r example1, message=FALSE, eval=TRUE}
-example_pin <- c("640823-3234", "6408233234", "19640823-3230")
+```{r example1, eval=TRUE}
+example_pin <- c("640823-3234", "6408233234", "19640883-3230", "20080710-1023")
 example_pin <- as.pin(example_pin)
 example_pin
 ```
 
 The next step is to test if the format is correct. To do this we use the ```is_pin()``` function.
 
-```{r example2, message=FALSE, eval=TRUE}
+```{r example2, eval=TRUE}
 is.pin(example_pin)
 ```
 
 This only check the format of the pin. To check the pin using the control number we use ```pin_ctrl()```.
 
-```{r example3, message=FALSE, eval=TRUE}
+```{r example3, eval=TRUE}
 pin_ctrl(example_pin)
 ```
 
 We can now use ```pin_birthplace()``` and ```pin_sex()```. To get information on sex and birthplace.
 
-```{r example4, message=FALSE, eval=TRUE}
+```{r example4, eval=TRUE}
 pin_sex(example_pin)
 pin_birthplace(example_pin)
 ```
 
+Use ```pin_coordn()``` to check if it is a coordination number.
+
+```{r example5, eval=TRUE}
+pin_coordn(example_pin)
+```
+
 As the last step we can calculate the age based on the pin. We choose the date where we want to calculate the age. If date is not specified the current date is used.
 
-```{r example5, message=FALSE, eval=TRUE}
+```{r example6, eval=TRUE}
 pin_age(example_pin)
 pin_age(example_pin, date = "2000-01-01")
 ```

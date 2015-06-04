@@ -80,29 +80,38 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="example-personal-identity-numbers" class="section level2">
 <h2><a name="examplepin"></a>Example: personal identity numbers</h2>
 <p>As a first step we need to convert personal identity numbers (pin) to the sam standard ABS format.</p>
-<pre class="r"><code>example_pin &lt;- c(&quot;640823-3234&quot;, &quot;6408233234&quot;, &quot;19640823-3230&quot;)
-example_pin &lt;- as.pin(example_pin)
-example_pin</code></pre>
-<pre><code>## [1] &quot;196408233234&quot; &quot;196408233234&quot; &quot;196408233230&quot;
+<pre class="r"><code>example_pin &lt;- c(&quot;640823-3234&quot;, &quot;6408233234&quot;, &quot;19640883-3230&quot;, &quot;20080710-1023&quot;)
+example_pin &lt;- as.pin(example_pin)</code></pre>
+<pre><code>## Assumption: 
+## pin of format YYMMDDNNNC is assumed to be less than 100 years old.</code></pre>
+<pre class="r"><code>example_pin</code></pre>
+<pre><code>## [1] &quot;196408233234&quot; &quot;196408233234&quot; &quot;196408833230&quot; &quot;200807101023&quot;
 ## Personal identity number(s)</code></pre>
 <p>The next step is to test if the format is correct. To do this we use the <code>is_pin()</code> function.</p>
 <pre class="r"><code>is.pin(example_pin)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>This only check the format of the pin. To check the pin using the control number we use <code>pin_ctrl()</code>.</p>
 <pre class="r"><code>pin_ctrl(example_pin)</code></pre>
-<pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE</code></pre>
 <p>We can now use <code>pin_birthplace()</code> and <code>pin_sex()</code>. To get information on sex and birthplace.</p>
 <pre class="r"><code>pin_sex(example_pin)</code></pre>
-<pre><code>## [1] Male Male Male
-## Levels: Male</code></pre>
+<pre><code>## [1] Male   Male   Male   Female
+## Levels: Female Male</code></pre>
 <pre class="r"><code>pin_birthplace(example_pin)</code></pre>
-<pre><code>## [1] Gotlands län Gotlands län Gotlands län
-## Levels: Gotlands län</code></pre>
+<pre><code>## [1] Gotlands län                Gotlands län               
+## [3] Gotlands län                Born after 31 december 1989
+## Levels: Born after 31 december 1989 Gotlands län</code></pre>
+<p>Use <code>pin_coordn()</code> to check if it is a coordination number.</p>
+<pre class="r"><code>pin_coordn(example_pin)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
 <p>As the last step we can calculate the age based on the pin. We choose the date where we want to calculate the age. If date is not specified the current date is used.</p>
 <pre class="r"><code>pin_age(example_pin)</code></pre>
-<pre><code>## [1] 50 50 50</code></pre>
+<pre><code>## The age has been calculated at 2015-06-04.</code></pre>
+<pre><code>## [1] 50 50 50  6</code></pre>
 <pre class="r"><code>pin_age(example_pin, date = &quot;2000-01-01&quot;)</code></pre>
-<pre><code>## [1] 35 35 35</code></pre>
+<pre><code>## The age has been calculated at 2000-01-01.</code></pre>
+<pre><code>## Warning: Negative age(es).</code></pre>
+<pre><code>## [1] 35 35 35 -9</code></pre>
 </div>
 <div id="example-organizational-identity-numbers" class="section level2">
 <h2><a name="exampleoin"></a>Example: organizational identity numbers</h2>
@@ -159,8 +168,8 @@ example_oin</code></pre>
 <h2>Session info</h2>
 <p>This vignette was created with</p>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>## R version 3.1.1 (2014-07-10)
-## Platform: x86_64-apple-darwin13.1.0 (64-bit)
+<pre><code>## R version 3.1.2 (2014-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
 ## 
 ## locale:
 ## [1] sv_SE.UTF-8/sv_SE.UTF-8/sv_SE.UTF-8/C/sv_SE.UTF-8/sv_SE.UTF-8
@@ -169,13 +178,13 @@ example_oin</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] sweidnumbr_0.2.2
+## [1] sweidnumbr_0.4.2
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] digest_0.6.4     evaluate_0.5.5   formatR_0.10     htmltools_0.2.4 
-##  [5] knitr_1.6        lubridate_1.3.3  memoise_0.2.1    plyr_1.8.1      
-##  [9] Rcpp_0.11.1      rmarkdown_0.2.64 stringr_0.6.2    tools_3.1.1     
-## [13] yaml_2.1.13</code></pre>
+##  [1] digest_0.6.4         evaluate_0.5.5       formatR_0.10        
+##  [4] htmltools_0.2.6      knitr_1.6            lubridate_1.4.0.9500
+##  [7] rmarkdown_0.3.10     stringr_0.6.2        tools_3.1.2         
+## [10] yaml_2.1.13</code></pre>
 </div>
 </div>
 
