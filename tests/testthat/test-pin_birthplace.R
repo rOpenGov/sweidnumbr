@@ -14,6 +14,9 @@ test_that(desc="birthplace",{
   suppressWarnings(expect_is(pin_birthplace(pin = pin_test), "factor"))
 })
 
-test_that(desc="Handle NA in pin_birthplace",{
+test_that(desc="Handle NA, interim and coordn in pin_birthplace",{
+  skip_on_cran()
+  skip_on_travis()
   expect_true(is.na(pin_birthplace(pin = as.pin(c("hejbaberiba","198501169885")))[1]))
+  expect_true(all(is.na(pin_birthplace(pin = c("19000625P816","190006859816")))))
 })

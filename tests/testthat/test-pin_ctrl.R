@@ -9,9 +9,11 @@ test_that(desc="control number",{
   expect_equal(pin_ctrl(pin = pin_test), expected = pin_test_res)
 })
 
-test_that(desc="Handle NA",{
+test_that(desc="Handle NA, interim and coordn in pin_ctrl",{
   skip_on_cran()
   skip_on_travis()
+  expect_equal(pin_ctrl(pin = c("195812793098", "195812793099", "19581279P092", "19581279P091")),
+               c(TRUE, FALSE, TRUE, FALSE))
   expect_true(is.na(pin_ctrl(as.pin(c(NA,"198501169885")))[1]))
   expect_false(is.na(pin_ctrl(as.pin(c(NA,"198501169885")))[2]))
 })

@@ -10,10 +10,11 @@ test_that(desc="age",{
   expect_is(suppressMessages(pin_age(pin = pin_test, date = "2012-01-01")), "integer")
 })
 
-test_that(desc="Handle NA in pin_age",{
+test_that(desc="Handle NA and interimn in pin_age",{
   skip_on_cran()
   skip_on_travis()
   expect_true(is.na(pin_age(pin = as.pin("hejbaberiba"), date = "2012-01-01")))
+  expect_equal(suppressMessages(pin_age(pin = "19811121P000", date = "2012-01-01")), c(30))
 })
 
 test_that(desc="age in years at leapyear",{
