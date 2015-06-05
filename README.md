@@ -9,7 +9,13 @@ sweidnumbr
 
 ## Installation
 
-Use the `devtools` package to install the latest version:
+To install from CRAN just write:
+
+```r
+install.packages(sweidnumbr)
+```
+
+Use the `devtools` package to install the latest version from GitHub:
 ```r
 devtools::install_github("rOpenGov/sweidnumbr")
 library(sweidnumbr)
