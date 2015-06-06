@@ -272,6 +272,7 @@ pin_coordn <- function(pin) {
 #' @export
 pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   date <- as.Date(date)
+  if(!is.pin(pin)) pin <- as.pin(pin)
   
   all_pins <- pin
   pin <- all_pins[!is.na(all_pins)]
@@ -366,7 +367,7 @@ pin_birthplace <- function(pin){
       rep("Stockholms l\u00E4n", 4),
       rep("Uppsala l\u00E4n", 2),
       rep("S\u00F6dermanlands l\u00E4n", 3),
-      rep("\u00F6sterg\u00F6tlands l\u00E4n", 5),
+      rep("\u00D6sterg\u00F6tlands l\u00E4n", 5),
       rep("J\u00F6nk\u00F6pings l\u00E4n", 3),
       rep("Kronobergs l\u00E4n", 2),
       rep("Kalmar l\u00E4n", 3),
@@ -376,11 +377,11 @@ pin_birthplace <- function(pin){
       rep("Malm\u00F6hus l\u00E4n", 7),
       rep("Hallands l\u00E4n", 2),
       rep("G\u00F6teborgs och Bohus l\u00E4n", 7),
-      rep("\u00E4lvsborgs l\u00E4n", 4),
+      rep("\u00C4lvsborgs l\u00E4n", 4),
       rep("Skaraborgs l\u00E4n", 3),
       rep("V\u00E4rmlands l\u00E4n", 3),
       rep("Extra number", 1),
-      rep("\u00F6rebro l\u00E4n", 3),
+      rep("\u00D6rebro l\u00E4n", 3),
       rep("V\u00E4stmanlands l\u00E4n", 2),
       rep("Kopparbergs l\u00E4n", 3),
       rep("Extra number", 1),
@@ -390,13 +391,18 @@ pin_birthplace <- function(pin){
       rep("V\u00E4sterbottens l\u00E4n", 4),
       rep("Norrbottens l\u00E4n", 4),
       rep("Extra number and immigrants (immigrated after 1946)", 7))
-    
-  res <- as.factor(vapply(X = pin, 
-                          FUN = pin_birthplace_internal, 
-                          FUN.VALUE = character(1), 
-                          birth_vector = birth_vector, 
-                          USE.NAMES = FALSE))
+  birth_other_text <- "Born after 31 december 1989"  
   
+  to_na <- pin_coordn(pin)
+  to_na[is.na(to_na)] <- TRUE
+  
+  res <- factor(vapply(X = pin, 
+                       FUN = pin_birthplace_internal, 
+                       FUN.VALUE = character(1), 
+                       birth_vector = birth_vector, 
+                       birth_other_text = birth_other_text,
+                       USE.NAMES = FALSE), levels = c(unique(birth_vector), birth_other_text))
+  res[to_na] <- NA  
   return(res)
 }
 

@@ -75,14 +75,15 @@ pin_coordn_correct <- function(pin){
 #' 
 #' @param pin Character element with pin at standard format 'YYYYMMDDNNNC'. See \link{as.pin}.
 #' @param birth_vector Vector mapping birth number to birthplace. See \link{pin_birthplace}.
+#' @param birth_other_text Text to return if born >= 1990. See \link{pin_birthplace}.
 #' 
 #' @return
 #' Character element containing birthplace
-pin_birthplace_internal <- function(pin, birth_vector){
+pin_birthplace_internal <- function(pin, birth_vector, birth_other_text){
   if(is.na(pin)) return(pin)
   born <- as.numeric(substr(pin, 1, 4))
   if(born >= 1990){
-    res <- "Born after 31 december 1989"
+    res <- birth_other_text
   } else {
     birth_number <- as.numeric(substr(pin, 9, 10))
     if(born >= 1968 & birth_number <= 13) {
