@@ -137,6 +137,7 @@ luhn_algo <- function(id, multiplier){
   all_ids <- id
   id <- as.character(all_ids[!is.na(all_ids)])
   n <- as.character(stringr::str_length(id))
+  if(length(n)==0) return(NA)
   
   if (!(all(n == 9) || all(n == 10) || all(n == 11) || all(n == 12))){
     stop("All elements of x must have the same length with 9-12 digits!")

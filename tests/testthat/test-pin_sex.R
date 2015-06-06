@@ -12,7 +12,5 @@ test_that(desc="control number",{
 test_that(desc="Handle NA, interim and coordn",{
   expect_true(is.na(pin_sex(c(NA,"198501169885"))[1]))
   expect_false(is.na(pin_sex(c(NA,"198501169885"))[2]))
-  skip_on_travis()
-  skip_on_cran()
-  suppressWarnings(expect_equal(pin_sex(pin = c("19640823A234", "198112780000")), expected = as.factor("Male", "Female")))
+  suppressWarnings(expect_equal(pin_sex(pin = c("19640823A234", "198112780000")), expected = as.factor(c(NA, "Female"))))
 })

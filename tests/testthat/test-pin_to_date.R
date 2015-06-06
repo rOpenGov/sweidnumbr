@@ -9,7 +9,5 @@ test_that(desc="pin_to_date",{
 test_that(desc="Handle NA and interimn in pin_to_date",{
   expect_true(is.na(pin_to_date(as.pin(c(NA,"198501169885")))[1]))
   expect_false(is.na(pin_to_date(as.pin(c(NA,"198501169885")))[2]))
-  skip_on_cran()
-  skip_on_travis()
-  expect_equal(pin_to_date(pin = c("19640823C234", "18640883D224")), expected = lubridate::ymd(c("1964-08-23","1864-08-23")))  
+  expect_true(all(is.na(pin_to_date(pin = c("19640823C234", "18640883D224")))))
 })

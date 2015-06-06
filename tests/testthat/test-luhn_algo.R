@@ -20,8 +20,6 @@ test_that("1 pin works", {
 })
 
 test_that(desc="Handle NA in luhn_algo",{
-  skip_on_cran()
-  skip_on_travis()
   expect_true(is.na(luhn_algo(id = c(NA,198501169885))[1]))
 })
 
