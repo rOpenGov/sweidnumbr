@@ -50,7 +50,7 @@ as.pin <- function(pin){
 #' @export
 as.pin.numeric <- function(pin){
   pin <- as.character(pin)
-  pin <- stringr::str_pad(pin, 10, pad = "0")
+  pin[!is.na(pin)] <- stringr::str_pad(pin[!is.na(pin)], 10, pad = "0")
   as.pin(pin)
 }
 
@@ -85,6 +85,9 @@ as.pin.logical <- function(pin){
 #' @export
 as.pin.character <- function(pin){
  
+  all_pins <- pin
+  pin <- all_pins[!is.na(all_pins)]
+  
   formats <- character(4)
   # format 1: "YYYYMMDDNNNC"
   formats[1] <- "^(18|19|20)[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
@@ -97,6 +100,8 @@ as.pin.character <- function(pin){
   
   # Convert
   newpin <- rep(as.character(NA), length(pin))
+  class(newpin) <- class(pin) <- c("pin", "character")
+  
   logi_format <- logical(length(pin))
   for(i in seq_along(formats)){
     logi_format <- grepl(formats[i], x = pin)
@@ -104,9 +109,6 @@ as.pin.character <- function(pin){
     if(i == 4 & sum(logi_format, na.rm = TRUE) > 0) {
       message("Assumption: \npin of format YYMMDDNNNC is assumed to be less than 100 years old.")}
   }
-
-  # Add class
-  class(newpin) <- c("pin", "character")
   
   # Check dates
   date <- as.Date(pin_coordn_correct(newpin),"%Y%m%d")
@@ -124,7 +126,9 @@ as.pin.character <- function(pin){
     warning("Erroneous pin(s) (set to NA).")
   }
 
-  return(newpin)
+  all_pins[!is.na(all_pins)] <- newpin    
+  class(all_pins) <- c("pin", "character")
+  return(all_pins)
 }
 
 #' @title
@@ -268,12 +272,16 @@ pin_coordn <- function(pin) {
 #' @export
 pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   date <- as.Date(date)
+  
+  all_pins <- pin
+  pin <- all_pins[!is.na(all_pins)]
+  
   diff <- lubridate::interval(pin_to_date(pin),
                    lubridate::ymd(date))
   if(length(date) == 1){
     message("The age has been calculated at ", as.character(date), ".")
   } else {
-    warning("The age has been calculated for multiple dates.")
+    stop("Multiple dates used.")
   }
 
   timespan_lubridate <-
@@ -285,7 +293,10 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   
   age <- as.integer(diff %/% timespan_lubridate)
   if(any(age < 0)) warning("Negative age(es).")
-  return(age)
+  
+  all_age <- rep(as.integer(NA), length(all_pins))
+  all_age[!is.na(all_pins)] <- age
+  all_age
 }
 
 

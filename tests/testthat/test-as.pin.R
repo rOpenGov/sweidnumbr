@@ -12,17 +12,14 @@ test_that(desc="numeric: YYYYMMDDNNNC",{
   expect_equal(as.character(suppressMessages(as.pin(196408233234))), expected = "196408233234")
   expect_equal(as.character(suppressMessages(as.pin(200108230000))), expected = "200108230000")  
   expect_is(as.character(suppressMessages(as.pin(200108230000))), "character")  
-  skip_on_cran()
-  skip_on_travis()
-  expect_is(as.character(suppressMessages(as.pin(c(NA,198501169885)))), "character")
+  expect_is(as.character(suppressMessages(as.pin(pin = c(NA,198501169885)))), "character")
+  expect_is(as.character(suppressMessages(as.pin(pin = as.numeric(NA)))), "character")
 })
 
 test_that(desc="numeric: YYMMDDNNNC",{
   expect_equal(as.character(suppressMessages(as.pin(6408233234))), expected = "196408233234")
   expect_equal(as.character(suppressMessages(as.pin(108230000))), expected = "200108230000")
   expect_equal(as.character(suppressMessages(as.pin(pin = c(8230000,108230000)))), expected = c("200008230000", "200108230000"))
-  skip_on_cran()
-  skip_on_travis()
   expect_is(as.character(suppressMessages(as.pin(c(NA,8501169885)))), "character")
 })
 
@@ -34,6 +31,11 @@ test_that(desc="character: 'YYMMDDNNNC'",{
   skip_on_cran()
   skip_on_travis()
   expect_false(is.na(as.character(suppressMessages(as.pin("640228P367")))))
+})
+
+test_that(desc="factor: 'YYMMDDNNNC'",{
+  expect_equal(as.character(suppressMessages(as.pin(as.factor("6408233234")))), expected = "196408233234")  
+  expect_equal(as.character(suppressMessages(as.pin(as.factor("0008230000")))), expected = "200008230000")
 })
 
 

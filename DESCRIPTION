@@ -1,7 +1,7 @@
 Package: sweidnumbr
 Type: Package
 Title: Handling of Swedish Identity Numbers
-Version: 0.4.3
+Version: 0.5.0
 Date: 2015-06-04
 Author: Mans Magnusson and Erik Bulow
 Maintainer: Mans Magnusson <mons.magnusson@gmail.com>

@@ -11,9 +11,7 @@ test_that(desc="age",{
 })
 
 test_that(desc="Handle NA and interimn in pin_age",{
-  skip_on_cran()
-  skip_on_travis()
-  expect_true(is.na(pin_age(pin = as.pin("hejbaberiba"), date = "2012-01-01")))
+  expect_true(is.na(pin_age(pin = as.pin(c("hejbaberiba", "196408833234")), date = "2012-01-01")[1]))
   expect_equal(suppressMessages(pin_age(pin = "19811121P000", date = "2012-01-01")), c(30))
 })
 
@@ -31,7 +29,7 @@ test_that(desc="age at leapyear",{
 })
 
 test_that(desc="age in years at leapyear",{
-  expect_warning(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01", "2013-01-01")))
+  expect_error(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01", "2013-01-01")))
   expect_message(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01")))  
 })
 

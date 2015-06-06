@@ -133,8 +133,8 @@ pin_birthplace_internal <- function(pin, birth_vector){
 #' 
 #' @export
 luhn_algo <- function(id, multiplier){
-  
-  id <- as.character(id)
+  all_ids <- id
+  id <- as.character(all_ids[!is.na(all_ids)])
   n <- as.character(stringr::str_length(id))
   
   if (!(all(n == 9) || all(n == 10) || all(n == 11) || all(n == 12))){
@@ -171,11 +171,10 @@ luhn_algo <- function(id, multiplier){
   }
   
   ## control number for all id:s
-  output <- integer(length(id))
-  for (i in seq_along(id)){
-    output[i] <- luhn_algo1(id[i], multiplier)
-  }
-  
-  output
+  output <- vapply(id, FUN = luhn_algo1, FUN.VALUE = integer(1), 
+                   multiplier = multiplier, USE.NAMES = FALSE)  
+  all_output <- rep(as.integer(NA), length(all_ids))
+  all_output[!is.na(all_ids)] <- output
+  all_output
 }
 
