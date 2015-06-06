@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rOpenGov/sweidnumbr.svg)](https://travis-ci.org/rOpenGov/sweidnumbr)
+[![Build Status](https://travis-ci.org/rOpenGov/sweidnumbr.svg)](https://travis-ci.org/rOpenGov/sweidnumbr) [![Coverage Status](https://coveralls.io/repos/rOpenGov/sweidnumbr/badge.svg)](https://coveralls.io/r/rOpenGov/sweidnumbr)
 
 sweidnumbr
 ==========
