@@ -8,4 +8,8 @@ test_that("class attribut preserved", {
   expect_true(nchar(x[1])==12)
   expect_warning(x[1] <- "hejsan svejsan")
   expect_true(is.na(x[1]))
+  expect_output(print(x), regexp = "Personal identity number")
+  expect_output(print(x), regexp = "191212121212|198505043334")
+  expect_is(as.data.frame(x), "data.frame")
+  expect_is(as.data.frame(x)[[1]], "pin")
   })
