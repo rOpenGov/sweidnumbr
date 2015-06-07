@@ -87,31 +87,36 @@ example_pin &lt;- as.pin(example_pin)</code></pre>
 <pre class="r"><code>example_pin</code></pre>
 <pre><code>## [1] &quot;196408233234&quot; &quot;196408233234&quot; &quot;196408833230&quot; &quot;200807101023&quot;
 ## Personal identity number(s)</code></pre>
+<p>To change a ‘pin’ follows ordinary R handling of vectors:</p>
+<pre class="r"><code>example_pin[1] &lt;- &quot;20080710-1023&quot;
+example_pin</code></pre>
+<pre><code>## [1] &quot;200807101023&quot; &quot;196408233234&quot; &quot;196408833230&quot; &quot;200807101023&quot;
+## Personal identity number(s)</code></pre>
 <p>The next step is to test if the format is correct. To do this we use the <code>is_pin()</code> function.</p>
 <pre class="r"><code>is.pin(example_pin)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>This only check the format of the pin. To check the pin using the control number we use <code>pin_ctrl()</code>.</p>
 <pre class="r"><code>pin_ctrl(example_pin)</code></pre>
-<pre><code>## [1]  TRUE  TRUE FALSE FALSE</code></pre>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE</code></pre>
 <p>We can now use <code>pin_birthplace()</code> and <code>pin_sex()</code>. To get information on sex and birthplace.</p>
 <pre class="r"><code>pin_sex(example_pin)</code></pre>
-<pre><code>## [1] Male   Male   Male   Female
+<pre><code>## [1] Female Male   Male   Female
 ## Levels: Female Male</code></pre>
 <pre class="r"><code>pin_birthplace(example_pin)</code></pre>
-<pre><code>## [1] Gotlands län                Gotlands län               
-## [3] Gotlands län                Born after 31 december 1989
-## Levels: Born after 31 december 1989 Gotlands län</code></pre>
+<pre><code>## [1] Born after 31 december 1989 Gotlands län               
+## [3] &lt;NA&gt;                        Born after 31 december 1989
+## 28 Levels: Stockholm stad Stockholms län Uppsala län ... Born after 31 december 1989</code></pre>
 <p>Use <code>pin_coordn()</code> to check if it is a coordination number.</p>
 <pre class="r"><code>pin_coordn(example_pin)</code></pre>
 <pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
 <p>As the last step we can calculate the age based on the pin. We choose the date where we want to calculate the age. If date is not specified the current date is used.</p>
 <pre class="r"><code>pin_age(example_pin)</code></pre>
-<pre><code>## The age has been calculated at 2015-06-04.</code></pre>
-<pre><code>## [1] 50 50 50  6</code></pre>
+<pre><code>## The age has been calculated at 2015-06-07.</code></pre>
+<pre><code>## [1]  6 50 50  6</code></pre>
 <pre class="r"><code>pin_age(example_pin, date = &quot;2000-01-01&quot;)</code></pre>
 <pre><code>## The age has been calculated at 2000-01-01.</code></pre>
 <pre><code>## Warning: Negative age(es).</code></pre>
-<pre><code>## [1] 35 35 35 -9</code></pre>
+<pre><code>## [1] -9 35 35 -9</code></pre>
 </div>
 <div id="example-organizational-identity-numbers" class="section level2">
 <h2><a name="exampleoin"></a>Example: organizational identity numbers</h2>
@@ -120,6 +125,10 @@ example_pin &lt;- as.pin(example_pin)</code></pre>
 example_oin &lt;- as.oin(example_oin)
 example_oin</code></pre>
 <pre><code>## [1] &quot;556000-4615&quot; &quot;232100-0156&quot; &quot;802002-4280&quot;
+## Organizational identity number(s)</code></pre>
+<pre class="r"><code>example_oin[3] &lt;- &quot;556000-4615&quot;
+example_oin</code></pre>
+<pre><code>## [1] &quot;556000-4615&quot; &quot;232100-0156&quot; &quot;556000-4615&quot;
 ## Organizational identity number(s)</code></pre>
 <p>We can test if the vector has a correct format in a similar way as for <code>pin</code>.</p>
 <pre class="r"><code>is.oin(example_oin)</code></pre>
@@ -131,12 +140,12 @@ example_oin</code></pre>
 <pre class="r"><code>oin_group(example_oin)</code></pre>
 <pre><code>## [1] Aktiebolag                             
 ## [2] Stat, landsting, kommuner, församlingar
-## [3] Ideella föreningar och stiftelser      
-## 3 Levels: Aktiebolag ... Stat, landsting, kommuner, församlingar</code></pre>
+## [3] Aktiebolag                             
+## Levels: Aktiebolag Stat, landsting, kommuner, församlingar</code></pre>
 </div>
 <div id="licensing-and-citations" class="section level2">
 <h2><a name="licens"></a>Licensing and Citations</h2>
-<p>This work can be freely used, modified and distributed under the open license specified in the <a href="https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION">DESCRIPTION file</a>.</p>
+<p>This work can be freely used, modified and distributed under the open license specified in the <a href="https://github.com/rOpenGov/sweidnumbr/blob/master/DESCRIPTION">DESCRIPTION file</a>.</p>
 <p>Kindly cite the work as follows</p>
 <pre class="r"><code>citation(&quot;sweidnumbr&quot;)</code></pre>
 <pre><code>## 
@@ -144,7 +153,7 @@ example_oin</code></pre>
 ## 
 ##   (C) Mans Magnusson(2014).  sweidnumbr: R tools to handle of
 ##   swedish identity numbers. URL:
-##   http://github.com/MansMeg/sweidnumbr
+##   http://github.com/rOpenGov/sweidnumbr
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -178,7 +187,7 @@ example_oin</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] sweidnumbr_0.4.2
+## [1] sweidnumbr_0.5.0
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] digest_0.6.4         evaluate_0.5.5       formatR_0.10        

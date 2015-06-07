@@ -1,4 +1,4 @@
-context("S3 methods")
+context("pin S3 methods")
 
 x <- as.pin(c(191212121212, 198505043334))
 

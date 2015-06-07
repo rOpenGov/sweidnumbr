@@ -56,6 +56,13 @@ example_pin <- as.pin(example_pin)
 example_pin
 ```
 
+To change a 'pin' follows ordinary R handling of vectors:
+
+```{r example_subset, eval=TRUE}
+example_pin[1] <- "20080710-1023"
+example_pin
+```
+
 The next step is to test if the format is correct. To do this we use the ```is_pin()``` function.
 
 ```{r example2, eval=TRUE}
@@ -95,6 +102,9 @@ Handling of organizational identity numbers is done in a similar fashion. But or
 ```{r oin1, message=FALSE, eval=TRUE}
 example_oin <- c("556000-4615", "232100-0156", "802002-4280")
 example_oin <- as.oin(example_oin)
+example_oin
+
+example_oin[3] <- "556000-4615"
 example_oin
 ```
 

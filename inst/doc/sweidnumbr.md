@@ -68,6 +68,19 @@ example_pin
 ## Personal identity number(s)
 ```
 
+To change a 'pin' follows ordinary R handling of vectors:
+
+
+```r
+example_pin[1] <- "20080710-1023"
+example_pin
+```
+
+```
+## [1] "200807101023" "196408233234" "196408833230" "200807101023"
+## Personal identity number(s)
+```
+
 The next step is to test if the format is correct. To do this we use the ```is_pin()``` function.
 
 
@@ -87,7 +100,7 @@ pin_ctrl(example_pin)
 ```
 
 ```
-## [1]  TRUE  TRUE FALSE FALSE
+## [1] FALSE  TRUE FALSE FALSE
 ```
 
 We can now use ```pin_birthplace()``` and ```pin_sex()```. To get information on sex and birthplace.
@@ -98,7 +111,7 @@ pin_sex(example_pin)
 ```
 
 ```
-## [1] Male   Male   Male   Female
+## [1] Female Male   Male   Female
 ## Levels: Female Male
 ```
 
@@ -107,9 +120,9 @@ pin_birthplace(example_pin)
 ```
 
 ```
-## [1] Gotlands län                Gotlands län               
-## [3] Gotlands län                Born after 31 december 1989
-## Levels: Born after 31 december 1989 Gotlands län
+## [1] Born after 31 december 1989 Gotlands län               
+## [3] <NA>                        Born after 31 december 1989
+## 28 Levels: Stockholm stad Stockholms län Uppsala län ... Born after 31 december 1989
 ```
 
 Use ```pin_coordn()``` to check if it is a coordination number.
@@ -131,11 +144,11 @@ pin_age(example_pin)
 ```
 
 ```
-## The age has been calculated at 2015-06-04.
+## The age has been calculated at 2015-06-07.
 ```
 
 ```
-## [1] 50 50 50  6
+## [1]  6 50 50  6
 ```
 
 ```r
@@ -151,7 +164,7 @@ pin_age(example_pin, date = "2000-01-01")
 ```
 
 ```
-## [1] 35 35 35 -9
+## [1] -9 35 35 -9
 ```
 
 ## <a name="exampleoin"></a>Example: organizational identity numbers
@@ -167,6 +180,16 @@ example_oin
 
 ```
 ## [1] "556000-4615" "232100-0156" "802002-4280"
+## Organizational identity number(s)
+```
+
+```r
+example_oin[3] <- "556000-4615"
+example_oin
+```
+
+```
+## [1] "556000-4615" "232100-0156" "556000-4615"
 ## Organizational identity number(s)
 ```
 
@@ -202,13 +225,13 @@ oin_group(example_oin)
 ```
 ## [1] Aktiebolag                             
 ## [2] Stat, landsting, kommuner, församlingar
-## [3] Ideella föreningar och stiftelser      
-## 3 Levels: Aktiebolag ... Stat, landsting, kommuner, församlingar
+## [3] Aktiebolag                             
+## Levels: Aktiebolag Stat, landsting, kommuner, församlingar
 ```
 
 ## <a name="licens"></a>Licensing and Citations
 
-This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION).
+This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/rOpenGov/sweidnumbr/blob/master/DESCRIPTION).
 
 Kindly cite the work as follows
 
@@ -223,7 +246,7 @@ citation("sweidnumbr")
 ## 
 ##   (C) Mans Magnusson(2014).  sweidnumbr: R tools to handle of
 ##   swedish identity numbers. URL:
-##   http://github.com/MansMeg/sweidnumbr
+##   http://github.com/rOpenGov/sweidnumbr
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -263,7 +286,7 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] sweidnumbr_0.4.2
+## [1] sweidnumbr_0.5.0
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] digest_0.6.4         evaluate_0.5.5       formatR_0.10        
