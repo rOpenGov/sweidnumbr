@@ -67,4 +67,9 @@ test_that(desc="error expected",{
   test_pin_res <- c(TRUE, rep(FALSE, 6))
   suppressWarnings(expect_equal(!is.na(as.pin(test_pin)), test_pin_res))
   
+  non_relevant_class <- lm(1:10~rep(1:5,2))
+  expect_error(as.pin(non_relevant_class))
+  expect_error(as.pin(c(TRUE,FALSE)))
 })
+
+
