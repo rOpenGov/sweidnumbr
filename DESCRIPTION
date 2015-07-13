@@ -1,8 +1,8 @@
 Package: sweidnumbr
 Type: Package
 Title: Handling of Swedish Identity Numbers
-Version: 0.6.0
-Date: 2015-06-07
+Version: 0.6.1
+Date: 2015-07-13
 Author: Mans Magnusson and Erik Bulow
 Maintainer: Mans Magnusson <mons.magnusson@gmail.com>
 Description: Structural handling of identity numbers used in the Swedish
