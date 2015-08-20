@@ -12,7 +12,7 @@ sweidnumbr
 Use the `devtools` package to install the latest version:
 ```r
 library("devtools")
-devtools::install_github("sweidnumbr","MansMeg")
+devtools::install_github("rOpenGov/sweidnumbr")
 library(sweidnumbr)
 ```
 

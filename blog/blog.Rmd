@@ -82,4 +82,4 @@ functions in the package. Feel free to try them out ...
 
 
 # Keep in touch!
-... and feel free to suggest enhancements and report bugs to https://github.com/MansMeg/rOpenGov/issues 
+... and feel free to suggest enhancements and report bugs to https://github.com/rOpenGov/sweidnumbr/issues 
