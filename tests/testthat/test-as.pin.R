@@ -12,22 +12,32 @@ test_that(desc="numeric: YYYYMMDDNNNC",{
   expect_equal(as.character(suppressMessages(as.pin(196408233234))), expected = "196408233234")
   expect_equal(as.character(suppressMessages(as.pin(200108230000))), expected = "200108230000")  
   expect_is(as.character(suppressMessages(as.pin(200108230000))), "character")  
+  expect_is(as.character(suppressMessages(as.pin(pin = c(NA,198501169885)))), "character")
+  expect_is(as.character(suppressMessages(as.pin(pin = as.numeric(NA)))), "character")
 })
 
 test_that(desc="numeric: YYMMDDNNNC",{
   expect_equal(as.character(suppressMessages(as.pin(6408233234))), expected = "196408233234")
   expect_equal(as.character(suppressMessages(as.pin(108230000))), expected = "200108230000")
   expect_equal(as.character(suppressMessages(as.pin(pin = c(8230000,108230000)))), expected = c("200008230000", "200108230000"))
+  expect_is(as.character(suppressMessages(as.pin(c(NA,8501169885)))), "character")
 })
 
 test_that(desc="character: 'YYMMDDNNNC'",{
   expect_equal(as.character(suppressMessages(as.pin("6408233234"))), expected = "196408233234")  
   expect_equal(as.character(suppressMessages(as.pin("0008230000"))), expected = "200008230000")
   expect_equal(as.character(suppressMessages(as.pin(today_pin))), expected = paste("20",today_pin, sep=""))  
+  expect_is(as.character(suppressMessages(as.pin(c(NA,"8501169885")))), "character")
+})
+
+test_that(desc="factor: 'YYMMDDNNNC'",{
+  expect_equal(as.character(suppressMessages(as.pin(as.factor("6408233234")))), expected = "196408233234")  
+  expect_equal(as.character(suppressMessages(as.pin(as.factor("0008230000")))), expected = "200008230000")
 })
 
 test_that(desc="character: 'YYYYMMDDNNNC'",{
   expect_equal(as.character(suppressMessages(as.pin("196408233234"))), expected = "196408233234")  
+  expect_is(as.character(suppressMessages(as.pin(c(NA,"198501169885")))), "character")
 })
 
 test_that(desc="different formats",{
@@ -57,4 +67,9 @@ test_that(desc="error expected",{
   test_pin_res <- c(TRUE, rep(FALSE, 6))
   suppressWarnings(expect_equal(!is.na(as.pin(test_pin)), test_pin_res))
   
+  non_relevant_class <- lm(1:10~rep(1:5,2))
+  expect_error(as.pin(non_relevant_class))
+  expect_error(as.pin(c(TRUE,FALSE)))
 })
+
+

@@ -75,14 +75,15 @@ pin_coordn_correct <- function(pin){
 #' 
 #' @param pin Character element with pin at standard format 'YYYYMMDDNNNC'. See \link{as.pin}.
 #' @param birth_vector Vector mapping birth number to birthplace. See \link{pin_birthplace}.
+#' @param birth_other_text Text to return if born >= 1990. See \link{pin_birthplace}.
 #' 
 #' @return
 #' Character element containing birthplace
-pin_birthplace_internal <- function(pin, birth_vector){
+pin_birthplace_internal <- function(pin, birth_vector, birth_other_text){
   if(is.na(pin)) return(pin)
   born <- as.numeric(substr(pin, 1, 4))
   if(born >= 1990){
-    res <- "Born after 31 december 1989"
+    res <- birth_other_text
   } else {
     birth_number <- as.numeric(substr(pin, 9, 10))
     if(born >= 1968 & birth_number <= 13) {
@@ -133,9 +134,10 @@ pin_birthplace_internal <- function(pin, birth_vector){
 #' 
 #' @export
 luhn_algo <- function(id, multiplier){
-  
-  id <- as.character(id)
+  all_ids <- id
+  id <- as.character(all_ids[!is.na(all_ids)])
   n <- as.character(stringr::str_length(id))
+  if(length(n)==0) return(NA)
   
   if (!(all(n == 9) || all(n == 10) || all(n == 11) || all(n == 12))){
     stop("All elements of x must have the same length with 9-12 digits!")
@@ -171,11 +173,10 @@ luhn_algo <- function(id, multiplier){
   }
   
   ## control number for all id:s
-  output <- integer(length(id))
-  for (i in seq_along(id)){
-    output[i] <- luhn_algo1(id[i], multiplier)
-  }
-  
-  output
+  output <- vapply(id, FUN = luhn_algo1, FUN.VALUE = integer(1), 
+                   multiplier = multiplier, USE.NAMES = FALSE)  
+  all_output <- rep(as.integer(NA), length(all_ids))
+  all_output[!is.na(all_ids)] <- output
+  all_output
 }
 

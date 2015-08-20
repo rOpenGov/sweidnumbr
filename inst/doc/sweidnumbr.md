@@ -50,13 +50,34 @@ As a first step we need to convert personal identity numbers (pin) to the sam st
 
 
 ```r
-example_pin <- c("640823-3234", "6408233234", "19640823-3230")
+example_pin <- c("640823-3234", "6408233234", "19640883-3230", "20080710-1023")
 example_pin <- as.pin(example_pin)
+```
+
+```
+## Assumption: 
+## pin of format YYMMDDNNNC is assumed to be less than 100 years old.
+```
+
+```r
 example_pin
 ```
 
 ```
-## [1] "196408233234" "196408233234" "196408233230"
+## [1] "196408233234" "196408233234" "196408833230" "200807101023"
+## Personal identity number(s)
+```
+
+To change a 'pin' follows ordinary R handling of vectors:
+
+
+```r
+example_pin[1] <- "20080710-1023"
+example_pin
+```
+
+```
+## [1] "200807101023" "196408233234" "196408833230" "200807101023"
 ## Personal identity number(s)
 ```
 
@@ -79,7 +100,7 @@ pin_ctrl(example_pin)
 ```
 
 ```
-## [1]  TRUE  TRUE FALSE
+## [1] FALSE  TRUE FALSE FALSE
 ```
 
 We can now use ```pin_birthplace()``` and ```pin_sex()```. To get information on sex and birthplace.
@@ -90,8 +111,8 @@ pin_sex(example_pin)
 ```
 
 ```
-## [1] Male Male Male
-## Levels: Male
+## [1] Female Male   Male   Female
+## Levels: Female Male
 ```
 
 ```r
@@ -99,8 +120,20 @@ pin_birthplace(example_pin)
 ```
 
 ```
-## [1] Gotlands län Gotlands län Gotlands län
-## Levels: Gotlands län
+## [1] Born after 31 december 1989 Gotlands län               
+## [3] <NA>                        Born after 31 december 1989
+## 28 Levels: Stockholm stad Stockholms län Uppsala län ... Born after 31 december 1989
+```
+
+Use ```pin_coordn()``` to check if it is a coordination number.
+
+
+```r
+pin_coordn(example_pin)
+```
+
+```
+## [1] FALSE FALSE  TRUE FALSE
 ```
 
 As the last step we can calculate the age based on the pin. We choose the date where we want to calculate the age. If date is not specified the current date is used.
@@ -111,7 +144,11 @@ pin_age(example_pin)
 ```
 
 ```
-## [1] 50 50 50
+## The age has been calculated at 2015-06-07.
+```
+
+```
+## [1]  6 50 50  6
 ```
 
 ```r
@@ -119,7 +156,15 @@ pin_age(example_pin, date = "2000-01-01")
 ```
 
 ```
-## [1] 35 35 35
+## The age has been calculated at 2000-01-01.
+```
+
+```
+## Warning: Negative age(es).
+```
+
+```
+## [1] -9 35 35 -9
 ```
 
 ## <a name="exampleoin"></a>Example: organizational identity numbers
@@ -135,6 +180,16 @@ example_oin
 
 ```
 ## [1] "556000-4615" "232100-0156" "802002-4280"
+## Organizational identity number(s)
+```
+
+```r
+example_oin[3] <- "556000-4615"
+example_oin
+```
+
+```
+## [1] "556000-4615" "232100-0156" "556000-4615"
 ## Organizational identity number(s)
 ```
 
@@ -170,13 +225,13 @@ oin_group(example_oin)
 ```
 ## [1] Aktiebolag                             
 ## [2] Stat, landsting, kommuner, församlingar
-## [3] Ideella föreningar och stiftelser      
-## 3 Levels: Aktiebolag ... Stat, landsting, kommuner, församlingar
+## [3] Aktiebolag                             
+## Levels: Aktiebolag Stat, landsting, kommuner, församlingar
 ```
 
 ## <a name="licens"></a>Licensing and Citations
 
-This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION).
+This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/rOpenGov/sweidnumbr/blob/master/DESCRIPTION).
 
 Kindly cite the work as follows
 
@@ -191,7 +246,7 @@ citation("sweidnumbr")
 ## 
 ##   (C) Mans Magnusson(2014).  sweidnumbr: R tools to handle of
 ##   swedish identity numbers. URL:
-##   http://github.com/MansMeg/sweidnumbr
+##   http://github.com/rOpenGov/sweidnumbr
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -221,8 +276,8 @@ sessionInfo()
 ```
 
 ```
-## R version 3.1.1 (2014-07-10)
-## Platform: x86_64-apple-darwin13.1.0 (64-bit)
+## R version 3.1.2 (2014-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
 ## 
 ## locale:
 ## [1] sv_SE.UTF-8/sv_SE.UTF-8/sv_SE.UTF-8/C/sv_SE.UTF-8/sv_SE.UTF-8
@@ -231,11 +286,11 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] sweidnumbr_0.2.2
+## [1] sweidnumbr_0.5.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] digest_0.6.4     evaluate_0.5.5   formatR_0.10     htmltools_0.2.4 
-##  [5] knitr_1.6        lubridate_1.3.3  memoise_0.2.1    plyr_1.8.1      
-##  [9] Rcpp_0.11.1      rmarkdown_0.2.64 stringr_0.6.2    tools_3.1.1     
-## [13] yaml_2.1.13
+##  [1] digest_0.6.4         evaluate_0.5.5       formatR_0.10        
+##  [4] htmltools_0.2.6      knitr_1.6            lubridate_1.4.0.9500
+##  [7] rmarkdown_0.3.10     stringr_0.6.2        tools_3.1.2         
+## [10] yaml_2.1.13
 ```

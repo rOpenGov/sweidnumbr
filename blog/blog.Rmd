@@ -35,14 +35,14 @@ Up until now however, with the lack of a consistent R convention to handle "pins
 
 Let's look at some data (all pins are fake; they have a valid syntax but do not identify any real individuals):
 
-```{r}
+```{r, results='asis'}
 library(sweidnumbr)
-knitr::kable(head(fake_swedes))
+knitr::kable(tail(fake_pins,10))
 ```
 
 So far, pin is just a standard character vector but let's change that to benefit from all of `sweidnumbr`'s features:
 ```{r}
-pin <- as.pin(fake_swedes$pin)
+pin <- as.pin(fake_pins$pin)
 str(pin)
 ```
 
@@ -79,7 +79,5 @@ luhn_algo("191212121211") # The correct control number can be calculated by the 
 Not only individual has their personal identification number, so do companies and NGO:s. These features are covered by the _oin_ group of 
 functions in the package. Feel free to try them out ...
 
-
-
 # Keep in touch!
-... and feel free to suggest enhancements and report bugs to https://github.com/MansMeg/rOpenGov/issues 
+... and feel free to suggest enhancements and report bugs to https://github.com/rOpenGov/sweidnumbr/issues 

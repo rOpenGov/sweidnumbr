@@ -1,7 +1,7 @@
 
 context("as.oin")
 
-test_that(desc="class: pin",{
+test_that(desc="class: oin",{
   expect_is(as.oin("556000-4615"), class = "oin")
 })
 
