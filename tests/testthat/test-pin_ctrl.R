@@ -1,5 +1,5 @@
 
-cat("pin_ctrl : ")
+context("pin_ctrl")
 
 pin_test <- c("196408233234", "196408233235")
 pin_test_res <- c(TRUE, FALSE)
@@ -9,4 +9,9 @@ test_that(desc="control number",{
   expect_equal(pin_ctrl(pin = pin_test), expected = pin_test_res)
 })
 
-cat("\n")
+test_that(desc="Handle NA, interim and coordn in pin_ctrl",{
+  expect_equal(pin_ctrl(pin = c("195812793098", "195812793099", "19581279P092", "19581279P091")),
+               c(TRUE, FALSE, NA, NA))
+  expect_true(is.na(pin_ctrl(c(NA,"198501169885"))[1]))
+  expect_false(is.na(pin_ctrl(c(NA,"198501169885"))[2]))
+})

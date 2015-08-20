@@ -50,7 +50,7 @@ as.pin <- function(pin){
 #' @export
 as.pin.numeric <- function(pin){
   pin <- as.character(pin)
-  pin <- stringr::str_pad(pin, 10, pad = "0")
+  pin[!is.na(pin)] <- stringr::str_pad(pin[!is.na(pin)], 10, pad = "0")
   as.pin(pin)
 }
 
@@ -85,6 +85,9 @@ as.pin.logical <- function(pin){
 #' @export
 as.pin.character <- function(pin){
  
+  all_pins <- pin
+  pin <- all_pins[!is.na(all_pins)]
+  
   formats <- character(4)
   # format 1: "YYYYMMDDNNNC"
   formats[1] <- "^(18|19|20)[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
@@ -97,6 +100,8 @@ as.pin.character <- function(pin){
   
   # Convert
   newpin <- rep(as.character(NA), length(pin))
+  class(newpin) <- class(pin) <- c("pin", "character")
+  
   logi_format <- logical(length(pin))
   for(i in seq_along(formats)){
     logi_format <- grepl(formats[i], x = pin)
@@ -104,9 +109,6 @@ as.pin.character <- function(pin){
     if(i == 4 & sum(logi_format, na.rm = TRUE) > 0) {
       message("Assumption: \npin of format YYMMDDNNNC is assumed to be less than 100 years old.")}
   }
-
-  # Add class
-  class(newpin) <- c("pin", "character")
   
   # Check dates
   date <- as.Date(pin_coordn_correct(newpin),"%Y%m%d")
@@ -121,12 +123,12 @@ as.pin.character <- function(pin){
   # Warning for incorrect pin
   isna <- is.na(newpin)
   if(any(isna)) {
-    warning("The following personal identity numbers are incorrect: ", 
-            paste(which(isna), collapse = ", "), 
-            call. = FALSE)
+    warning("Erroneous pin(s) (set to NA).")
   }
 
-  return(newpin)
+  all_pins[!is.na(all_pins)] <- newpin    
+  class(all_pins) <- c("pin", "character")
+  return(all_pins)
 }
 
 #' @title
@@ -270,12 +272,17 @@ pin_coordn <- function(pin) {
 #' @export
 pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   date <- as.Date(date)
+  if(!is.pin(pin)) pin <- as.pin(pin)
+  
+  all_pins <- pin
+  pin <- all_pins[!is.na(all_pins)]
+  
   diff <- lubridate::interval(pin_to_date(pin),
                    lubridate::ymd(date))
   if(length(date) == 1){
     message("The age has been calculated at ", as.character(date), ".")
   } else {
-    warning("The age has been calculated for multiple dates.")
+    stop("Multiple dates used.")
   }
 
   timespan_lubridate <-
@@ -285,7 +292,12 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
            "weeks" = lubridate::weeks(1),
            "days" = lubridate::days(1))
   
-  return(as.integer(diff %/% timespan_lubridate))
+  age <- as.integer(diff %/% timespan_lubridate)
+  if(any(age < 0)) warning("Negative age(es).")
+  
+  all_age <- rep(as.integer(NA), length(all_pins))
+  all_age[!is.na(all_pins)] <- age
+  all_age
 }
 
 
@@ -355,7 +367,7 @@ pin_birthplace <- function(pin){
       rep("Stockholms l\u00E4n", 4),
       rep("Uppsala l\u00E4n", 2),
       rep("S\u00F6dermanlands l\u00E4n", 3),
-      rep("\u00F6sterg\u00F6tlands l\u00E4n", 5),
+      rep("\u00D6sterg\u00F6tlands l\u00E4n", 5),
       rep("J\u00F6nk\u00F6pings l\u00E4n", 3),
       rep("Kronobergs l\u00E4n", 2),
       rep("Kalmar l\u00E4n", 3),
@@ -365,11 +377,11 @@ pin_birthplace <- function(pin){
       rep("Malm\u00F6hus l\u00E4n", 7),
       rep("Hallands l\u00E4n", 2),
       rep("G\u00F6teborgs och Bohus l\u00E4n", 7),
-      rep("\u00E4lvsborgs l\u00E4n", 4),
+      rep("\u00C4lvsborgs l\u00E4n", 4),
       rep("Skaraborgs l\u00E4n", 3),
       rep("V\u00E4rmlands l\u00E4n", 3),
       rep("Extra number", 1),
-      rep("\u00F6rebro l\u00E4n", 3),
+      rep("\u00D6rebro l\u00E4n", 3),
       rep("V\u00E4stmanlands l\u00E4n", 2),
       rep("Kopparbergs l\u00E4n", 3),
       rep("Extra number", 1),
@@ -379,13 +391,18 @@ pin_birthplace <- function(pin){
       rep("V\u00E4sterbottens l\u00E4n", 4),
       rep("Norrbottens l\u00E4n", 4),
       rep("Extra number and immigrants (immigrated after 1946)", 7))
-    
-  res <- as.factor(vapply(X = pin, 
-                          FUN = pin_birthplace_internal, 
-                          FUN.VALUE = character(1), 
-                          birth_vector = birth_vector, 
-                          USE.NAMES = FALSE))
+  birth_other_text <- "Born after 31 december 1989"  
   
+  to_na <- pin_coordn(pin)
+  to_na[is.na(to_na)] <- TRUE
+  
+  res <- factor(vapply(X = pin, 
+                       FUN = pin_birthplace_internal, 
+                       FUN.VALUE = character(1), 
+                       birth_vector = birth_vector, 
+                       birth_other_text = birth_other_text,
+                       USE.NAMES = FALSE), levels = c(unique(birth_vector), birth_other_text))
+  res[to_na] <- NA  
   return(res)
 }
 

@@ -1,5 +1,5 @@
 
-cat("pin_convert : ")
+context("pin_convert")
 
 test_that(desc="pin_convert",{
   expect_equal(pin_convert(pin = "198112189876", format = 1), expected = "198112189876")
@@ -9,5 +9,3 @@ test_that(desc="pin_convert",{
   expect_equal(pin_convert(pin = "001218-0000", format = 3), expected = "200012180000")
   expect_is(pin_convert(pin = "001218-0000", format = 3), "character")
 })
-
-cat("\n")
