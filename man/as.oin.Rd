@@ -10,7 +10,7 @@ as.oin(oin)
 \item{oin}{Vector with swedish organizational identity numbers in character format. See details.}
 }
 \value{
-Character vector (of class \code{oin}) with swedish organizational identity numbers.
+Character vector (of class \code{oin} and \code{AsIs}) with swedish organizational identity numbers.
 }
 \description{
 Parse organizational identity numbers
