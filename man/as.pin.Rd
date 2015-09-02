@@ -10,7 +10,7 @@ as.pin(pin)
 \item{pin}{Vector with swedish personal identity numbers in character or numeric format. See details.}
 }
 \value{
-Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
+Vector of class "pin" (with additional classes "AsIs" and character) with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
 }
 \description{
 Converts personal identity numbers of different formats to standard (ABS) pin format \code{YYYYMMDDNNNC}

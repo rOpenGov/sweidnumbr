@@ -26,7 +26,7 @@
 #' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
 #' 
 #' @return
-#' Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
+#' Vector of class "pin" (with additional classes "AsIs" and character) with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
 #'
 #' @examples
 #' # Examples taken from SKV 704 (see references)
@@ -75,7 +75,7 @@ as.pin.default <- function(pin){
 #' @export
 as.pin.logical <- function(pin){
   if (all(is.na(pin))){
-    structure(pin, class = c("pin", "character"))
+    structure(pin, class = c("AsIs", "pin", "character"))
   } else{
     NextMethod()
   }
@@ -127,7 +127,7 @@ as.pin.character <- function(pin){
   }
 
   all_pins[!is.na(all_pins)] <- newpin    
-  class(all_pins) <- c("pin", "character")
+  class(all_pins) <- c("AsIs", "pin", "character")
   return(all_pins)
 }
 
