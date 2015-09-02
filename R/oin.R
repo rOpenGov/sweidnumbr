@@ -14,7 +14,7 @@
 #' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1359707510840/70909.pdf}{SKV 709}
 #' 
 #' @return
-#' Character vector (of class \code{oin}) with swedish organizational identity numbers.
+#' Character vector (of class \code{oin} and \code{AsIs}) with swedish organizational identity numbers.
 #'
 #' @examples
 #' ex_oin <- c("556000-4615", "232100-0156", "802002-4280", "8020024280", "AA2002-4280")
@@ -43,7 +43,7 @@ as.oin <- function(oin){
   }
   
   # Add class
-  class(newoin) <- c("oin", "character")
+  class(newoin) <- c("AsIs", "oin", "character")
   
   return(newoin)
 }
