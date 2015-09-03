@@ -73,3 +73,14 @@ test_that(desc="error expected",{
 })
 
 
+
+test_pins <- c("18920822-2298", "18920822-2299", "19920419-1923")
+test_that("Recycling rules", {
+  expect_is(data.frame(as.pin(test_pins), 1:9), "data.frame")
+  expect_equal(nrow(data.frame(as.pin(test_pins), 1:9)), 9)
+  expect_equal(data.frame(as.pin(test_pins), 1:9)[1:3, 1], data.frame(as.pin(test_pins), 1:9)[4:6, 1])
+  expect_equal(data.frame(as.pin(test_pins), 1:9)[1:3, 1], data.frame(as.pin(test_pins), 1:9)[7:9, 1])
+})
+
+
+
