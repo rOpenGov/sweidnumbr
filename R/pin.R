@@ -243,7 +243,8 @@ pin_coordn <- function(pin) {
 #' Calculate the age in full years for a given date.
 #' 
 #' @inheritParams pin_ctrl
-#' @param date Date at which age is calculated.
+#' @param date Date at which age is calculated. If a vector is provided it must be
+#'  of the same length as the \code{pin} argument.
 #' @param timespan Timespan to use to calculate age. The actual timespans are:
 #' \itemize{
 #'   \item \code{years} (Default)
@@ -271,19 +272,30 @@ pin_coordn <- function(pin) {
 #'
 #' @export
 pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
+  if (length(date) == 1) {
+    message("The age has been calculated at ", as.character(date), 
+            ".")
+  } 
+  else if (length(date) == length(pin)){
+    message("The age is calculated relative to the '", deparse(substitute(date)), "' date")
+  }
+  else {
+    stop("Multiple dates used.")
+  }
+  
   date <- as.Date(date)
   if(!is.pin(pin)) pin <- as.pin(pin)
   
   all_pins <- pin
-  pin <- all_pins[!is.na(all_pins)]
+  if (length(date) > 1){
+    valid_diff <- !is.na(all_pins) & !is.na(date)
+  }else{
+    valid_diff <- !is.na(all_pins)
+  }
+  pin <- all_pins[valid_diff]
   
   diff <- lubridate::interval(pin_to_date(pin),
                    lubridate::ymd(date))
-  if(length(date) == 1){
-    message("The age has been calculated at ", as.character(date), ".")
-  } else {
-    stop("Multiple dates used.")
-  }
 
   timespan_lubridate <-
     switch(timespan,
@@ -296,7 +308,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   if(any(age < 0)) warning("Negative age(es).")
   
   all_age <- rep(as.integer(NA), length(all_pins))
-  all_age[!is.na(all_pins)] <- age
+  all_age[valid_diff] <- age
   all_age
 }
 

@@ -28,8 +28,9 @@ test_that(desc="age at leapyear",{
 })
 
 test_that(desc="age in years at leapyear",{
-  expect_error(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01", "2013-01-01")))
-  expect_message(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01")))  
+  expect_equal(suppressMessages(pin_age(pin = c("200002281234", "200002281234"), date = c("2012-01-01", "2013-01-01"))), 
+               expected = c(11, 12))
+  expect_message(pin_age(pin = c("200002281234", "200002291234"), date = c("2012-01-01")))  
 })
 
 test_that(desc="Negative ages",{
