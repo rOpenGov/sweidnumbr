@@ -98,6 +98,17 @@ as.pin.character <- function(pin){
   # format 4: "YYMMDDNNNC"
   formats[4] <- "^[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
   
+  #  Additional formats for old "pins" for people deceased 1947 - 1967
+  # format 1: "YYYYMMDDNNNC"
+  formats[5] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX]$"
+  # format 2: "YYYYMMDD-NNNC"
+  formats[6] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX]$"
+  # format 3: "YYMMDD-NNNC"
+  formats[7] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX]$"
+  # format 4: "YYMMDDNNNC"
+  formats[8] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX]$"
+  
+  
   # Convert
   newpin <- rep(as.character(NA), length(pin))
   class(newpin) <- class(pin) <- c("pin", "character")
@@ -105,9 +116,14 @@ as.pin.character <- function(pin){
   logi_format <- logical(length(pin))
   for(i in seq_along(formats)){
     logi_format <- grepl(formats[i], x = pin)
-    newpin[logi_format] <- pin_convert(pin[logi_format], format=i)
-    if(i == 4 & sum(logi_format, na.rm = TRUE) > 0) {
+    newpin[logi_format] <- pin_convert(pin[logi_format], format = i - (i %/% 5) * 4)
+    if(i %in% c(4, 8) & sum(logi_format, na.rm = TRUE) > 0) {
       message("Assumption: \npin of format YYMMDDNNNC is assumed to be less than 100 years old.")}
+    if(i %in% 5:8 & sum(logi_format, na.rm = TRUE) > 0) {
+      message("Assumption: people with birth year before 1967 and ",
+              "character 'A', 'T' or 'X' instead of control number ",
+              "assumed deceast before 1967.")
+    }
   }
   
   # Check dates
@@ -175,7 +191,8 @@ pin_ctrl <- function(pin){
   if(!is.pin(pin)) pin <- as.pin(pin)
   res <- vapply(pin, luhn_algo, integer(1), USE.NAMES = FALSE, 
                 multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
-  as.integer(substr(pin, 12, 12)) == res
+  old_pin_format <- format(pin_to_date(pin), format = "%Y") <= "1967" & grepl("*[ATX]$", pin)
+  as.integer(substr(pin, 12, 12)) == res | old_pin_format
 }
 
 #' @title

@@ -64,7 +64,7 @@ test_that(desc="error expected",{
   expect_warning(as.pin("196408333234"))
   
   test_pin <- c("196408233234", tomorrow_pin, "AA6408323234", "19640823323", "1964083332349", "196408333234", "19640823-334")
-  test_pin_res <- c(TRUE, rep(FALSE, 6))
+  test_pin_res <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE)
   suppressWarnings(expect_equal(!is.na(as.pin(test_pin)), test_pin_res))
   
   non_relevant_class <- lm(1:10~rep(1:5,2))
