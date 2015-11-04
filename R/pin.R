@@ -115,7 +115,6 @@ as.pin.character <- function(pin){
   
   # Convert
   newpin <- rep(as.character(NA), length(pin))
-  # class(newpin) <- class(pin) <- c("pin", "character")
   
   logi_format <- logical(length(pin))
   msg <- NA
