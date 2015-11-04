@@ -102,16 +102,15 @@ as.pin.character <- function(pin){
   # format 4: "YYMMDDNNNC"
   formats[4] <- "^[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
   
-  #  Additional formats for old "pins" for people deceased 1947 - 1967
+  #  Additional formats for old "pins" for people deceased 1947 - 1967 (i.e. ctrl numbr is missing/replaced with A,T or X)
   # format 1: "YYYYMMDDNNNC"
-  formats[5] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX]$"
+  formats[5] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX ]$"
   # format 2: "YYYYMMDD-NNNC"
-  formats[6] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX]$"
+  formats[6] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX ]$"
   # format 3: "YYMMDD-NNNC"
-  formats[7] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX]$"
+  formats[7] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX ]$"
   # format 4: "YYMMDDNNNC"
-  formats[8] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX]$"
-  
+  formats[8] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX ]$"
   
   # Convert
   newpin <- rep(as.character(NA), length(pin))
@@ -120,7 +119,7 @@ as.pin.character <- function(pin){
   msg <- NA
   for (i in seq_along(formats)){
     logi_format <- grepl(formats[i], x = pin)
-    newpin[logi_format] <- pin_convert(pin[logi_format], format = i - (i %/% 5) * 4)
+    newpin[logi_format] <- sweidnumbr:::pin_convert(pin[logi_format], format = i - (i %/% 5) * 4)
     if (any(logi_format)) {
       if (i %in% c(3:4, 7:8)) {
         msg[1] <- "pin of format YYMMDDNNNC is assumed to be less than 100 years old"
@@ -134,8 +133,11 @@ as.pin.character <- function(pin){
   }
   # Maximum one of each message is enough, messages are therefore stored and possibly 
   # overwritten but not printed inside the loop
-  if (!isTRUE(is.na(msg))) message(paste("Assumption:", paste(na.omit(msg), collapse = " and ")))
-    
+  if (!isTRUE(is.na(msg))) {
+    msg <- paste(na.omit(msg), collapse = " and ")
+    message(paste("Assumption:", paste(toupper(substring(msg, 1, 1)), substring(msg, 2), sep = "", collapse = " ")))
+    }
+
   # Check dates
   date <- as.Date(pin_coordn_correct(structure(newpin, class = "pin")),"%Y%m%d")
   suppressWarnings( 
