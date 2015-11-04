@@ -13,20 +13,25 @@
 #'   \item numeric: \code{YYYYMMDDNNNC}
 #'   \item numeric: \code{YYMMDDNNNC} (assuming < 100 years of age)
 #'   \item character: \code{"YYYYMMDDNNNC"}
-#'   \item character: \code{"YYMMDD-NNNC"}
+#'   \item character: \code{"YYMMDD-NNNC"},  \code{"YYMMDD+NNNC"}
 #'   \item character: \code{"YYYYMMDD-NNNC"}
 #'   \item character: \code{"YYMMDDNNNC"} (assuming < 100 years of age)
 #' }
 #' 
+#' @encoding UTF8
+#' 
 #' @param pin Vector with swedish personal identity numbers in character or numeric format. See details.
 #' 
 #' @references 
-#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
-#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
-#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
-#' 
+#' \itemize{
+#'  \item \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
+#'  \item \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+#'  \item \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
+#'  \item \emph{Personnummer: information från Centrala folkbokförings- och uppbördsnämnden.} (1967). Stockholm
+#'  \item \emph{Den svenska folkbokföringens historia under tre sekel.} (1982). Solna: Riksskatteverket \href{http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html}{URL}
+#' }
 #' @return
-#' Character vector with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
+#' Vector of class "pin" (with additional classes "AsIs" and character) with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
 #'
 #' @examples
 #' # Examples taken from SKV 704 (see references)
@@ -75,7 +80,7 @@ as.pin.default <- function(pin){
 #' @export
 as.pin.logical <- function(pin){
   if (all(is.na(pin))){
-    structure(pin, class = c("pin", "character"))
+    structure(pin, class = c("AsIs", "pin", "character"))
   } else{
     NextMethod()
   }
@@ -127,7 +132,7 @@ as.pin.character <- function(pin){
   }
 
   all_pins[!is.na(all_pins)] <- newpin    
-  class(all_pins) <- c("pin", "character")
+  class(all_pins) <- c("AsIs", "pin", "character")
   return(all_pins)
 }
 
@@ -243,7 +248,8 @@ pin_coordn <- function(pin) {
 #' Calculate the age in full years for a given date.
 #' 
 #' @inheritParams pin_ctrl
-#' @param date Date at which age is calculated.
+#' @param date Date at which age is calculated. If a vector is provided it must be
+#'  of the same length as the \code{pin} argument.
 #' @param timespan Timespan to use to calculate age. The actual timespans are:
 #' \itemize{
 #'   \item \code{years} (Default)
@@ -271,19 +277,30 @@ pin_coordn <- function(pin) {
 #'
 #' @export
 pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
+  if (length(date) == 1) {
+    message("The age has been calculated at ", as.character(date), 
+            ".")
+  } 
+  else if (length(date) == length(pin)){
+    message("The age is calculated relative to the '", deparse(substitute(date)), "' date")
+  }
+  else {
+    stop("Multiple dates used.")
+  }
+  
   date <- as.Date(date)
   if(!is.pin(pin)) pin <- as.pin(pin)
   
   all_pins <- pin
-  pin <- all_pins[!is.na(all_pins)]
+  if (length(date) > 1){
+    valid_diff <- !is.na(all_pins) & !is.na(date)
+  }else{
+    valid_diff <- !is.na(all_pins)
+  }
+  pin <- all_pins[valid_diff]
   
   diff <- lubridate::interval(pin_to_date(pin),
                    lubridate::ymd(date))
-  if(length(date) == 1){
-    message("The age has been calculated at ", as.character(date), ".")
-  } else {
-    stop("Multiple dates used.")
-  }
 
   timespan_lubridate <-
     switch(timespan,
@@ -296,7 +313,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   if(any(age < 0)) warning("Negative age(es).")
   
   all_age <- rep(as.integer(NA), length(all_pins))
-  all_age[!is.na(all_pins)] <- age
+  all_age[valid_diff] <- age
   all_age
 }
 

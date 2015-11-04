@@ -9,7 +9,8 @@ pin_age(pin, date = Sys.Date(), timespan = "years")
 \arguments{
 \item{pin}{A vector of class \code{pin}. See \link{as.pin}.}
 
-\item{date}{Date at which age is calculated.}
+\item{date}{Date at which age is calculated. If a vector is provided it must be
+of the same length as the \code{pin} argument.}
 
 \item{timespan}{Timespan to use to calculate age. The actual timespans are:
 \itemize{

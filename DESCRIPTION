@@ -1,8 +1,8 @@
 Package: sweidnumbr
 Type: Package
 Title: Handling of Swedish Identity Numbers
-Version: 0.6.1
-Date: 2015-07-13
+Version: 0.7.3
+Date: 2015-11-04
 Author: Mans Magnusson and Erik Bulow
 Maintainer: Mans Magnusson <mons.magnusson@gmail.com>
 Description: Structural handling of identity numbers used in the Swedish
@@ -14,7 +14,7 @@ BugReports: https://github.com/rOpenGov/sweidnumbr/issues
 License: BSD_2_clause + file LICENSE
 Depends: R (>= 2.10)
 Imports:
-    lubridate,
+    lubridate (>= 1.4),
     stringr
 Suggests:
     testthat,

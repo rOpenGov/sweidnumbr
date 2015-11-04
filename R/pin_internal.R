@@ -128,8 +128,8 @@ pin_birthplace_internal <- function(pin, birth_vector, birth_other_text){
 #' ## Also for multiple pin 
 #' ## (as long they are all of the same format)
 #' luhn_algo(c("12121212121", "19850504333"))
-#' \donttest{
-#' luhn_algo(c("12121212121", "850504333")) ## Different formats should fail!
+#' \dontrun{
+#' try(luhn_algo(c("12121212121", "850504333"))) ## Different formats should fail!
 #' }
 #' 
 #' @export
