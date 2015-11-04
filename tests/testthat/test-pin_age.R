@@ -36,3 +36,8 @@ test_that(desc="age in years at leapyear",{
 test_that(desc="Negative ages",{
   expect_warning(pin_age(pin = c("200002281234", "200002281234"), date = c("2000-01-01")))
 })
+
+test_that("multiple dates", {
+  expect_error(pin_age(pin_test, c("2010-10-10", "2000-01-01"), "Multiple dates used."))
+  expect_error(pin_age(pin_test, c("2010-10-10", "2000-01-01", "2002-12-31", "2010-05-06"), "Multiple dates used."))
+})

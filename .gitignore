@@ -3,3 +3,4 @@
 .RData
 *.Rproj
 blog/blog.html
+inst/doc/*.R*

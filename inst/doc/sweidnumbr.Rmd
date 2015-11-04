@@ -50,49 +50,43 @@ Sys.setlocale(locale="UTF-8")
 
 As a first step we need to convert personal identity numbers (pin) to the sam standard ABS format.
 
-```{r example1, eval=TRUE}
-example_pin <- c("640823-3234", "6408233234", "19640883-3230", "20080710-1023")
+```{r example1, message=FALSE, eval=TRUE}
+example_pin <- c("640823-3234", "6408233234", "19640823-3230")
 example_pin <- as.pin(example_pin)
 example_pin
 ```
 
-To change a 'pin' follows ordinary R handling of vectors:
+The next step is to test if the format is correct. To do this we use the ```is.pin()``` function.
 
-```{r example_subset, eval=TRUE}
-example_pin[1] <- "20080710-1023"
-example_pin
-```
-
-The next step is to test if the format is correct. To do this we use the ```is_pin()``` function.
-
-```{r example2, eval=TRUE}
+```{r example2, message=FALSE, eval=TRUE}
 is.pin(example_pin)
 ```
 
 This only check the format of the pin. To check the pin using the control number we use ```pin_ctrl()```.
 
-```{r example3, eval=TRUE}
+```{r example3, message=FALSE, eval=TRUE}
 pin_ctrl(example_pin)
 ```
 
 We can now use ```pin_birthplace()``` and ```pin_sex()```. To get information on sex and birthplace.
 
-```{r example4, eval=TRUE}
+```{r example4, message=FALSE, eval=TRUE}
 pin_sex(example_pin)
 pin_birthplace(example_pin)
 ```
 
-Use ```pin_coordn()``` to check if it is a coordination number.
-
-```{r example5, eval=TRUE}
-pin_coordn(example_pin)
-```
-
 As the last step we can calculate the age based on the pin. We choose the date where we want to calculate the age. If date is not specified the current date is used.
 
-```{r example6, eval=TRUE}
+```{r example5, message=FALSE, eval=TRUE}
 pin_age(example_pin)
 pin_age(example_pin, date = "2000-01-01")
+```
+
+It is also possible to format the pin for presentation in different forms. (Note however that the output of `format` is just a character and no longer a pin):
+
+```{r example6, message=FALSE, eval=TRUE}
+format(example_pin, "%Y-%m-%d-%N")
+format(example_pin, "%P")
 ```
 
 ## <a name="exampleoin"></a>Example: organizational identity numbers
@@ -102,9 +96,6 @@ Handling of organizational identity numbers is done in a similar fashion. But or
 ```{r oin1, message=FALSE, eval=TRUE}
 example_oin <- c("556000-4615", "232100-0156", "802002-4280")
 example_oin <- as.oin(example_oin)
-example_oin
-
-example_oin[3] <- "556000-4615"
 example_oin
 ```
 
@@ -128,7 +119,7 @@ oin_group(example_oin)
 
 ## <a name="licens"></a>Licensing and Citations
 
-This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/rOpenGov/sweidnumbr/blob/master/DESCRIPTION).
+This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION).
 
 Kindly cite the work as follows
 
