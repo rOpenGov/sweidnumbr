@@ -83,4 +83,12 @@ test_that("Recycling rules", {
 })
 
 
+semi_pins <- c("550504333A", "19280118123X", "850504111T")
+test_that("deceased 1947 - 1967", {
+  expect_is(as.pin(semi_pins), "pin")
+  expect_warning(as.pin(semi_pins[3]), "Erroneous pin")
+  expect_message(as.pin(semi_pins[1]), "less than 100 years old and people with birth year")
+  expect_message(as.pin(semi_pins[2]), "Assumption: people with birth year before 1967 and character")
+})
+
 
