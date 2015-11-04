@@ -73,6 +73,15 @@ test_that(desc="error expected",{
 })
 
 
+test_that("as.pin.pin", {
+  expect_equal(as.pin(as.pin("test_pin")), as.pin("test_pin"))
+})
+
+test_that("as.pin.logical", {
+  expect_is(as.pin(NA), "pin")
+  expect_error(as.pin(TRUE))
+})
+
 
 test_pins <- c("18920822-2298", "18920822-2299", "19920419-1923")
 test_that("Recycling rules", {
