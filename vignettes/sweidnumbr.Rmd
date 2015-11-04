@@ -56,7 +56,7 @@ example_pin <- as.pin(example_pin)
 example_pin
 ```
 
-The next step is to test if the format is correct. To do this we use the ```is_pin()``` function.
+The next step is to test if the format is correct. To do this we use the ```is.pin()``` function.
 
 ```{r example2, message=FALSE, eval=TRUE}
 is.pin(example_pin)
@@ -80,6 +80,13 @@ As the last step we can calculate the age based on the pin. We choose the date w
 ```{r example5, message=FALSE, eval=TRUE}
 pin_age(example_pin)
 pin_age(example_pin, date = "2000-01-01")
+```
+
+It is also possible to format the pin for presentation in different forms. (Note however that the output of `format` is just a character and no longer a pin):
+
+```{r example6, message=FALSE, eval=TRUE}
+format(example_pin, "%Y-%m-%d-%N")
+format(example_pin, "%P")
 ```
 
 ## <a name="exampleoin"></a>Example: organizational identity numbers

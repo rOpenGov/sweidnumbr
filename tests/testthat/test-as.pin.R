@@ -73,6 +73,15 @@ test_that(desc="error expected",{
 })
 
 
+test_that("as.pin.pin", {
+  expect_equal(as.pin(as.pin("test_pin")), as.pin("test_pin"))
+})
+
+test_that("as.pin.logical", {
+  expect_is(as.pin(NA), "pin")
+  expect_error(as.pin(TRUE))
+})
+
 
 test_pins <- c("18920822-2298", "18920822-2299", "19920419-1923")
 test_that("Recycling rules", {
@@ -82,5 +91,13 @@ test_that("Recycling rules", {
   expect_equal(data.frame(as.pin(test_pins), 1:9)[1:3, 1], data.frame(as.pin(test_pins), 1:9)[7:9, 1])
 })
 
+
+semi_pins <- c("550504333A", "19280118123X", "850504111T")
+test_that("deceased 1947 - 1967", {
+  expect_is(as.pin(semi_pins), "pin")
+  expect_warning(as.pin(semi_pins[3]), "Erroneous pin")
+  expect_message(as.pin(semi_pins[1]), "less than 100 years old and people with birth year")
+  expect_message(as.pin(semi_pins[2]), "Assumption: people with birth year before 1967 and character")
+})
 
 
