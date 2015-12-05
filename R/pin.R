@@ -18,8 +18,6 @@
 #'   \item character: \code{"YYMMDDNNNC"} (assuming < 100 years of age)
 #' }
 #' 
-#' @encoding UTF8
-#' 
 #' @param pin Vector with swedish personal identity numbers in character or numeric format. See details.
 #' 
 #' @references 
@@ -27,8 +25,8 @@
 #'  \item \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
 #'  \item \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
 #'  \item \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
-#'  \item \emph{Personnummer: information från Centrala folkbokförings- och uppbördsnämnden.} (1967). Stockholm
-#'  \item \emph{Den svenska folkbokföringens historia under tre sekel.} (1982). Solna: Riksskatteverket \href{http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html}{URL}
+#'  \item \emph{Personnummer: information fran Centrala folkbokforings- och uppbordsnamnden.} (1967). Stockholm
+#'  \item \emph{Den svenska folkbokforingens historia under tre sekel.} (1982). Solna: Riksskatteverket \href{http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html}{URL}
 #' }
 #' @return
 #' Vector of class "pin" (with additional classes "AsIs" and character) with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
@@ -134,7 +132,7 @@ as.pin.character <- function(pin){
   # Maximum one of each message is enough, messages are therefore stored and possibly 
   # overwritten but not printed inside the loop
   if (!isTRUE(is.na(msg))) {
-    msg <- paste(na.omit(msg), collapse = " and ")
+    msg <- paste(stats::na.omit(msg), collapse = " and ")
     message(paste("Assumption:", paste(toupper(substring(msg, 1, 1)), substring(msg, 2), sep = "", collapse = " ")))
     }
 
