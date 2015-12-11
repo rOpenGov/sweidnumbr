@@ -82,11 +82,11 @@ pin_age(example_pin)
 pin_age(example_pin, date = "2000-01-01")
 ```
 
-It is also possible to format the pin for presentation in different forms. (Note however that the output of `format` is just a character and no longer a pin):
+It is also possible to format the pin for presentation in different forms. (Note however that the output of `format_pin` is just a character and no longer a pin):
 
 ```{r example6, message=FALSE, eval=TRUE}
-format(example_pin, "%Y-%m-%d-%N")
-format(example_pin, "%P")
+format_pin(example_pin, "%Y-%m-%d-%N")
+format_pin(example_pin, "%P")
 ```
 
 ## <a name="exampleoin"></a>Example: organizational identity numbers
