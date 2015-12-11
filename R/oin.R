@@ -1,8 +1,10 @@
 #' @title
 #' Parse organizational identity numbers
-#' 
-#' @details
+#'
+#' @description
 #' Check and convert a vector of organizational identity numbers. 
+#' 
+#' @details 
 #' The following format is accepted: 
 #' \itemize{
 #'   \item character: \code{GNNNNN-NNNC}
