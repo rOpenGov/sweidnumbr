@@ -18,8 +18,6 @@
 #'   \item character: \code{"YYMMDDNNNC"} (assuming < 100 years of age)
 #' }
 #' 
-#' @encoding UTF8
-#' 
 #' @param pin Vector with swedish personal identity numbers in character or numeric format. See details.
 #' 
 #' @references 
@@ -27,7 +25,7 @@
 #'  \item \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
 #'  \item \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
 #'  \item \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
-#'  \item \emph{Personnummer: information från Centrala folkbokförings- och uppbördsnämnden.} (1967). Stockholm
+#'  \item \emph{Personnummer: information fran Centrala folkbokförings- och uppbördsnämnden.} (1967). Stockholm
 #'  \item \emph{Den svenska folkbokföringens historia under tre sekel.} (1982). Solna: Riksskatteverket \href{http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html}{URL}
 #' }
 #' @return
@@ -102,16 +100,15 @@ as.pin.character <- function(pin){
   # format 4: "YYMMDDNNNC"
   formats[4] <- "^[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
   
-  #  Additional formats for old "pins" for people deceased 1947 - 1967
+  #  Additional formats for old "pins" for people deceased 1947 - 1967 (i.e. ctrl numbr is missing/replaced with A,T or X)
   # format 1: "YYYYMMDDNNNC"
-  formats[5] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX]$"
+  formats[5] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX ]$"
   # format 2: "YYYYMMDD-NNNC"
-  formats[6] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX]$"
+  formats[6] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX ]$"
   # format 3: "YYMMDD-NNNC"
-  formats[7] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX]$"
+  formats[7] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX ]$"
   # format 4: "YYMMDDNNNC"
-  formats[8] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX]$"
-  
+  formats[8] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX ]$"
   
   # Convert
   newpin <- rep(as.character(NA), length(pin))
@@ -134,8 +131,11 @@ as.pin.character <- function(pin){
   }
   # Maximum one of each message is enough, messages are therefore stored and possibly 
   # overwritten but not printed inside the loop
-  if (!isTRUE(is.na(msg))) message(paste("Assumption:", paste(na.omit(msg), collapse = " and ")))
-    
+  if (!isTRUE(is.na(msg))) {
+    msg <- paste(stats::na.omit(msg), collapse = " and ")
+    message(paste("Assumption:", paste(toupper(substring(msg, 1, 1)), substring(msg, 2), sep = "", collapse = " ")))
+    }
+
   # Check dates
   date <- as.Date(pin_coordn_correct(structure(newpin, class = "pin")),"%Y%m%d")
   suppressWarnings( 

@@ -16,8 +16,7 @@ test_that(desc="Handle NA and interimn in pin_age",{
 })
 
 test_that(desc="age in years at leapyear",{
-#  skip("Test fails currently due to lubridate error/bug.") # Bug fixed with lubridate 1.4
-#  expect_equal(pin_age(pin = c("200002291234", "200002281234"), date = "2012-01-01"), expected = c(11, 11))
+  expect_equal(pin_age(pin = c("200002291234", "200002281234"), date = "2012-01-01"), expected = c(11, 11))
 })
 
 test_that(desc="age at leapyear",{
