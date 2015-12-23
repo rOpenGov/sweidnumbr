@@ -70,7 +70,7 @@ as.oin <- function(oin){
 #' 
 #' @export
 is.oin <- function(oin){
-  "oin" %in% class(oin)
+  inherits(oin, "oin")
 }
 
 #' @title

@@ -2,8 +2,9 @@
 #' Parse personal identity numbers to ABS format
 #' 
 #' @description
-#' \code{as.pin} Converts personal identity numbers of different formats to standard (ABS) pin format \code{YYYYMMDDNNNC} 
-#' where \code{YYYYMMDD} is the date of birth, \code{NNN} is the birth number and \code{C} is the
+#' \code{as.pin} Converts personal identity numbers of different formats to standard (ABS) 
+#' pin format \code{YYYYMMDDNNNC} where \code{YYYYMMDD} is the date of birth, \code{NNN} 
+#' is the birth number and \code{C} is the
 #' control number.
 #' \code{is.pin} checks wether an R object is of class "pin".
 #' 
@@ -18,8 +19,10 @@
 #'   \item character: \code{"YYYYMMDD-NNNC"}
 #'   \item character: \code{"YYMMDDNNNC"} (assuming < 100 years of age)
 #' }
+#' (where "C" can be substituted by characters "A", "T" or "X" if "YYYY" < 1967).
 #' 
-#' @param pin Vector with swedish personal identity numbers in character or numeric format. See details.
+#' @param pin Vector with swedish personal identity numbers in character or numeric format. 
+#' See details.
 #' 
 #' @references 
 #' \itemize{
@@ -30,8 +33,9 @@
 #'  \item \emph{Den svenska folkbokföringens historia under tre sekel.} (1982). Solna: Riksskatteverket \href{http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html}{URL}
 #' }
 #' @return
-#' \code{as.pin} returns a vector of class "pin" (with additional classes "AsIs" and character) with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
-#' \code{is.pin} returns \code{TRUE} if \code{pin} is of class "pin", otherwise false.
+#' \code{as.pin} returns a vector of class "pin" (with additional classes "AsIs" and character) 
+#' with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
+#' \code{is.pin} returns \code{TRUE} if \code{pin} is of class "pin", otherwise \code{FALSE}.
 #'
 #' @examples
 #' # Examples taken from SKV 704 (see references)
@@ -104,13 +108,13 @@ as.pin.character <- function(pin){
   formats[4] <- "^[0-9]{2}(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{4}$"
   
   #  Additional formats for old "pins" for people deceased 1947 - 1967 (i.e. ctrl numbr is missing/replaced with A,T or X)
-  # format 1: "YYYYMMDDNNNC"
+  # format 5: "YYYYMMDDNNNC"
   formats[5] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX ]$"
-  # format 2: "YYYYMMDD-NNNC"
+  # format 6: "YYYYMMDD-NNNC"
   formats[6] <- "^(18[0-9]{2}|19([0-5][0-9]|6[0-6]))(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX ]$"
-  # format 3: "YYMMDD-NNNC"
+  # format 7: "YYMMDD-NNNC"
   formats[7] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[-+][0-9]{3}[ATX ]$"
-  # format 4: "YYMMDDNNNC"
+  # format 8: "YYMMDDNNNC"
   formats[8] <- "^([0-5][0-9]|6[0-6])(0[1-9]|1[0-2])([06][1-9]|[1278][0-9]|[39][0-1])[0-9]{3}[ATX ]$"
   
   # Convert
