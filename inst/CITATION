@@ -1,17 +1,22 @@
 citHeader("Kindly cite the sweidnumbr R package as follows:")
 
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
 citEntry(entry="misc",
          title = "sweidnumbr: R tools to handle of swedish identity numbers.",
          author = personList(
-	   person(given = "Mans", family= "Magnusson", email = "mons.magnusson@gmail.com")
+	   person(given = "Mans", family= "Magnusson", email = "mons.magnusson@gmail.com"),
+	   person(given = "Erik", family= "Bulow", email = "eriklgb@gmail.com")
          ),
 	 journal = "",
-	 year = "2014",
+	 URL = "http://github.com/rOpenGov/sweidnumbr", 
+   year = year,
+   note = vers,
          textVersion =
-         paste("(C) Mans Magnusson(2014). ",
-               "sweidnumbr: R tools to handle of swedish identity numbers.",
-	       "URL: http://github.com/rOpenGov/sweidnumbr",
-               sep=" ")
-         )
-
-
+         paste("Magnusson, Mans and Bulow, Erik (",year,"). ",
+               "sweidnumbr: R tools to handle of swedish identity numbers. ",
+               vers,
+	             " URL: http://github.com/rOpenGov/sweidnumbr",
+               sep="")
+                )

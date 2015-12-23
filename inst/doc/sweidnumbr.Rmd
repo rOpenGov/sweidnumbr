@@ -6,6 +6,7 @@ output:
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{sweidnumbr}
+\usepackage[utf8]{inputenc}
 -->
 
 sweidnumbr : Structural handling of swedish identity numbers
@@ -48,7 +49,7 @@ Sys.setlocale(locale="UTF-8")
 
 ## <a name="examplepin"></a>Example: personal identity numbers
 
-As a first step we need to convert personal identity numbers (pin) to the sam standard ABS format.
+As a first step we need to convert personal identity numbers (pin) to the same standard format used by the Swedish tax authority.
 
 ```{r example1, message=FALSE, eval=TRUE}
 example_pin <- c("640823-3234", "6408233234", "19640823-3230")
@@ -56,7 +57,7 @@ example_pin <- as.pin(example_pin)
 example_pin
 ```
 
-The next step is to test if the format is correct. To do this we use the ```is.pin()``` function.
+The next step is to test if the vector is a ```pin``` object. To do this we use the ```is.pin()``` function.
 
 ```{r example2, message=FALSE, eval=TRUE}
 is.pin(example_pin)
@@ -82,11 +83,11 @@ pin_age(example_pin)
 pin_age(example_pin, date = "2000-01-01")
 ```
 
-It is also possible to format the pin for presentation in different forms. (Note however that the output of `format` is just a character and no longer a pin):
+It is also possible to format the pin for presentation in different forms. (Note however that the output of `format_pin` is just a character and no longer a `pin` object):
 
 ```{r example6, message=FALSE, eval=TRUE}
-format(example_pin, "%Y-%m-%d-%N")
-format(example_pin, "%P")
+format_pin(example_pin, "%Y-%m-%d-%N")
+format_pin(example_pin, "%P")
 ```
 
 ## <a name="exampleoin"></a>Example: organizational identity numbers
@@ -105,7 +106,7 @@ We can test if the vector has a correct format in a similar way as for `pin`.
 is.oin(example_oin)
 ```
 
-With a vector of `oin` we can check if the control number is correct.
+With a vector of `oin` we can check if the organizational number is correct.
 
 ```{r oin3, message=FALSE, eval=TRUE}
 oin_ctrl(example_oin)
@@ -134,7 +135,10 @@ citation("sweidnumbr")
 - [SKV 704 : Personnummer](https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf)
 - [SOU 2008:60 : Personnummer och samordningsnummer](http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/)
 - [Protected personal identity numbers](https://www.skatteverket.se/foretagorganisationer/myndigheter/aviseringavbefolkningsuppgifternavet/skyddadepersonuppgifter.4.18e1b10334ebe8bc80001399.html)
+- Personnummer: information fran Centrala folkbokförings- och uppbördsnämnden. (1967). Stockholm
+- Den svenska folkbokföringens historia under tre sekel. (1982). Solna: Riksskatteverket [URL](http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html)
 - [SKV 709 : Organisationsnummer](http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1359707510840/70909.pdf)
+
 
 ## Session info
 
