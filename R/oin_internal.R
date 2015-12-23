@@ -1,6 +1,6 @@
 
 #' @title
-#' oin_group
+#' oin_group_element
 #' 
 #' @description
 #' Calculates the organization group from the organization number for one oin.

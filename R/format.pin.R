@@ -2,7 +2,7 @@
 #' 
 #' Format \code{pin} for pretty printing
 #'
-#' @param x pin vector or a vector that can be coerced to such
+#' @param x vector of class "pin" (see \code{\link{as.pin}}) or a vector that can be coerced to such
 #' @param format. character string specifying the output format. 
 #' \code{\%N} is used as a reference for the last four digits of the pin.
 #' Format of the date is handled via \code{\link{strptime}}.
