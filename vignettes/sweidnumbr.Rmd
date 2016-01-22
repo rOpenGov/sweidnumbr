@@ -4,7 +4,7 @@ author: "Mans Magnusson and Erik Bulow"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{markmyassignment}
+  %\VignetteIndexEntry{sweidnumbr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
