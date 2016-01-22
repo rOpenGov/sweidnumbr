@@ -1,16 +1,13 @@
 ---
-output:
-  html_document:
-    keep_md: yes
+title: "sweidnumbr : Structural handling of swedish identity numbers"
+author: "Mans Magnusson and Erik Bulow"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{markmyassignment}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{sweidnumbr}
-\usepackage[utf8]{inputenc}
--->
-
-sweidnumbr : Structural handling of swedish identity numbers
-===========
 
 This R package provides tools to work with swedish identity numbers such as personal
 identity numbers (personnummer) and organizational identity numbers (organisationsnummer).
