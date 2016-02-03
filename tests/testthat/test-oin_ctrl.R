@@ -19,3 +19,11 @@ test_that(desc="Expect force_logical",{
   expect_equal(oin_ctrl(num_to_check, force_logical=TRUE), 
                c(FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE))
 })
+
+
+test_that(desc="Expect that NA don't cause error",{
+  num_to_check <- c("202100-6255","121212-1212","19121212-1212","121212+1212","1212121212",
+                    1212121212, NA, Inf, TRUE, F, "foo", 123, 456L)
+  expect_that(oin_ctrl(num_to_check), not(throws_error()))
+})
+
