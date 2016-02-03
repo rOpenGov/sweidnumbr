@@ -77,7 +77,8 @@ is.oin <- function(oin){
 #' @description
 #' Calculates the control number using the Luhn algorithm and compare it with the control number in the organization identity number (oin).
 #' 
-#' @param oin Vector with swedish organization identity numbers (oin) in \code{NNNNNN-NNNN} format.
+#' @param oin A vector of class \code{oin}. See \link{as.oin}.
+#' @param force_logical If TRUE, force all NA in oin to be FALSE. Default is FALSE.
 #' 
 #' @references 
 #' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf}{SKV 709}
@@ -90,13 +91,22 @@ is.oin <- function(oin){
 #' oin_ctrl(ex_oin)
 #' 
 #' @export
-oin_ctrl <- function(oin){
-  if(!is.oin(oin)) oin <- as.oin(oin)
+oin_ctrl <- function(oin, force_logical = FALSE){
+  if(force_logical){
+    if(!is.oin(oin)) oin <- suppressWarnings(as.oin(oin))
+  } else {
+    if(!is.oin(oin)) oin <- as.oin(oin)
+  }
   
   oin_char <- paste0(substr(oin,1,6), substr(oin,8,11))
+  oin_char[is.na(oin)] <- NA
+    
   res <- vapply(oin_char, luhn_algo, integer(1), USE.NAMES = FALSE, 
                 multiplier = c(2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
-  as.integer(substr(oin, 11, 11)) == res
+  res <- as.integer(substr(oin, 11, 11)) == res
+  if(force_logical) res[is.na(res)] <- FALSE
+  
+  res
 }
 
 #' @title
