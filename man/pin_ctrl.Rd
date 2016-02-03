@@ -4,7 +4,7 @@
 \alias{pin_ctrl}
 \title{Check control number from \code{pin}}
 \usage{
-pin_ctrl(pin)
+pin_ctrl(pin, force_logical = FALSE)
 }
 \arguments{
 \item{pin}{A vector of class \code{pin}. See \link{as.pin}.}
