@@ -124,9 +124,9 @@ as.pin.character <- function(pin){
   msg <- NA
   for (i in seq_along(formats)){
     logi_format <- grepl(formats[i], x = pin)
-    newpin[logi_format] <- pin_convert(pin[logi_format], format = i - (i %/% 5) * 4)
+    newpin[logi_format] <- sweidnumbr:::pin_convert(pin[logi_format], format = i - (i %/% 5) * 4)
     if (any(logi_format)) {
-      if (i %in% c(3:4, 7:8)) {
+      if (i %in% c(4, 8)) {
         msg[1] <- "pin of format YYMMDDNNNC is assumed to be less than 100 years old"
       } 
       if (i %in% 5:8) {
