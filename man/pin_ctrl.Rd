@@ -8,6 +8,8 @@ pin_ctrl(pin)
 }
 \arguments{
 \item{pin}{A vector of class \code{pin}. See \link{as.pin}.}
+
+\item{force_logical}{If TRUE, force all NA in pin to be FALSE. Default is FALSE.}
 }
 \value{
 Logical vector indicating if a pin is correct (\code{TRUE}) or not (\code{FALSE})

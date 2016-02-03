@@ -176,6 +176,7 @@ is.pin <- function(pin) inherits(pin, "pin")
 #' control number in the personal identity number.
 #' 
 #' @param pin A vector of class \code{pin}. See \link{as.pin}.
+#' @param force_logical If TRUE, force all NA in pin to be FALSE. Default is FALSE.
 #' 
 #' @references 
 #' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
@@ -191,12 +192,19 @@ is.pin <- function(pin) inherits(pin, "pin")
 #' pin_ctrl(ex_pin)
 #' 
 #' @export
-pin_ctrl <- function(pin){
-  if(!is.pin(pin)) pin <- as.pin(pin)
+pin_ctrl <- function(pin, force_logical = FALSE){
+  if(force_logical){
+    if(!is.pin(pin)) pin <- suppressWarnings(as.pin(pin))
+  } else {
+    if(!is.pin(pin)) pin <- as.pin(pin)
+  }
+
   res <- vapply(pin, luhn_algo, integer(1), USE.NAMES = FALSE, 
                 multiplier = c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0))
   old_pin_format <- format(pin_to_date(pin), format = "%Y") <= "1967" & grepl("*[ATX]$", pin)
-  as.integer(substr(pin, 12, 12)) == res | old_pin_format
+  res <- as.integer(substr(pin, 12, 12)) == res | old_pin_format
+  if(force_logical) res[is.na(res)] <- FALSE
+  res
 }
 
 #' @title
