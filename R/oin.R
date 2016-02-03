@@ -39,9 +39,7 @@ as.oin <- function(oin){
   # Warning for incorrect pin
   isna <- is.na(newoin)
   if(any(isna)) {
-    warning("The following personal identity numbers are incorrect: ", 
-            paste(which(isna), collapse = ", "), 
-            call. = FALSE)
+    warning("Erroneous oin(s) (set to NA).")
   }
   
   # Add class
