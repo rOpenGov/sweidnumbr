@@ -26,6 +26,6 @@ test_that("Recycling rules", {
 
 test_that("Same error messages as in as.pin() is used", {
   num_to_check <- c("202100-6255","121212-1212","19121212-1212","121212+1212", 1212121212, NA, Inf, TRUE, F, "foo", 123, 456L)
-  expect_warning(as.oin(num_to_check), "Erroneous oin(s) (set to NA).")
+  expect_warning(as.oin(num_to_check), "Erroneous oin\\(s\\) \\(set to NA\\)\\.")
 })
 
