@@ -2,7 +2,7 @@
 % Please edit documentation in R/oin_internal.R
 \name{oin_group_element}
 \alias{oin_group_element}
-\title{oin_group}
+\title{oin_group_element}
 \usage{
 oin_group_element(one_oin)
 }
