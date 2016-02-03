@@ -103,3 +103,7 @@ test_that("deceased 1947 - 1967", {
 })
 
 
+test_that("Expect message only when YYMMDDNNNC format is used", {
+  num_to_check <- c("202100-6255","121212-1212","19121212-1212","121212+1212", 1212121212, NA, Inf, TRUE, F, "foo", 123, 456L)
+  expect_that(as.pin(num_to_check), not(shows_message()))
+})

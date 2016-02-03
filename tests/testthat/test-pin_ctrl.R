@@ -15,3 +15,17 @@ test_that(desc="Handle NA, interim and coordn in pin_ctrl",{
   expect_true(is.na(pin_ctrl(c(NA,"198501169885"))[1]))
   expect_false(is.na(pin_ctrl(c(NA,"198501169885"))[2]))
 })
+
+
+test_that(desc="Expect force_logical",{
+  num_to_check <- c("202100-6255","121212-1212","19121212-1212","121212+1212","1212121212",
+                    1212121212, NA, Inf, TRUE, F, "foo", 123, 456L)
+  expect_equal(pin_ctrl(num_to_check), 
+               c(NA, TRUE, TRUE, TRUE, TRUE, TRUE, NA, NA, NA, NA, NA, NA, NA))
+  expect_equal(pin_ctrl(num_to_check, force_logical=TRUE), 
+               c(FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE))
+  
+})
+
+
+
