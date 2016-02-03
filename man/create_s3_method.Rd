@@ -17,4 +17,5 @@ for example the "["-function.
 \description{
 Helper function to create S3 method that preserves (most)
 }
+\keyword{internal}
 
