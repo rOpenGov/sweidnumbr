@@ -2,7 +2,7 @@
 % Please edit documentation in R/oin_internal.R
 \name{oin_group_element}
 \alias{oin_group_element}
-\title{oin_group}
+\title{oin_group_element}
 \usage{
 oin_group_element(one_oin)
 }
@@ -18,4 +18,5 @@ Calculates the organization group from the organization number for one oin.
 \references{
 http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf
 }
+\keyword{internal}
 

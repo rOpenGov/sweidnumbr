@@ -1,25 +1,27 @@
 Package: sweidnumbr
 Type: Package
 Title: Handling of Swedish Identity Numbers
-Version: 1.0.1
-Date: 2016-01-22
+Version: 1.1.0
+Date: 2016-02-03
 Author: Mans Magnusson and Erik Bulow
 Maintainer: Mans Magnusson <mons.magnusson@gmail.com>
 Description: Structural handling of identity numbers used in the Swedish
     administration such as personal identity numbers ('personnummer') and
     organizational identity numbers ('organisationsnummer').
-VignetteBuilder: rmarkdown
+VignetteBuilder: rmarkdown,
+    knitr
 URL: https://github.com/rOpenGov/sweidnumbr/
 BugReports: https://github.com/rOpenGov/sweidnumbr/issues
 License: BSD_2_clause + file LICENSE
-Depends:
+Depends: 
     R (>= 3.2)
 Encoding: UTF-8
-Imports:
+Imports: 
     lubridate (>= 1.4),
     stringr
-Suggests:
+Suggests: 
     testthat,
-    rmarkdown
+    rmarkdown,
+    knitr
 LazyData: true
 RoxygenNote: 5.0.1

@@ -4,10 +4,12 @@
 \alias{pin_ctrl}
 \title{Check control number from \code{pin}}
 \usage{
-pin_ctrl(pin)
+pin_ctrl(pin, force_logical = FALSE)
 }
 \arguments{
 \item{pin}{A vector of class \code{pin}. See \link{as.pin}.}
+
+\item{force_logical}{If TRUE, force all NA in pin to be FALSE. Default is FALSE.}
 }
 \value{
 Logical vector indicating if a pin is correct (\code{TRUE}) or not (\code{FALSE})

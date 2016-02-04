@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rOpenGov/sweidnumbr.svg)](https://travis-ci.org/rOpenGov/sweidnumbr) [![Coverage Status](https://coveralls.io/repos/rOpenGov/sweidnumbr/badge.svg)](https://coveralls.io/r/rOpenGov/sweidnumbr) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
+[![Build Status](https://travis-ci.org/rOpenGov/sweidnumbr.svg?branch=master)](https://travis-ci.org/rOpenGov/sweidnumbr) [![Coverage Status](https://coveralls.io/repos/rOpenGov/sweidnumbr/badge.svg)](https://coveralls.io/r/rOpenGov/sweidnumbr) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/sweidnumbr)](http://cran.rstudio.com/web/packages/sweidnumbr)
 
 sweidnumbr

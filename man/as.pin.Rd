@@ -10,15 +10,18 @@ as.pin(pin)
 is.pin(pin)
 }
 \arguments{
-\item{pin}{Vector with swedish personal identity numbers in character or numeric format. See details.}
+\item{pin}{Vector with swedish personal identity numbers in character or numeric format. 
+See details.}
 }
 \value{
-\code{as.pin} returns a vector of class "pin" (with additional classes "AsIs" and character) with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
-\code{is.pin} returns \code{TRUE} if \code{pin} is of class "pin", otherwise false.
+\code{as.pin} returns a vector of class "pin" (with additional classes "AsIs" and character) 
+with swedish personal identity numbers with standard ABS format \code{"YYYYMMDDNNNC"}.
+\code{is.pin} returns \code{TRUE} if \code{pin} is of class "pin", otherwise \code{FALSE}.
 }
 \description{
-\code{as.pin} Converts personal identity numbers of different formats to standard (ABS) pin format \code{YYYYMMDDNNNC} 
-where \code{YYYYMMDD} is the date of birth, \code{NNN} is the birth number and \code{C} is the
+\code{as.pin} Converts personal identity numbers of different formats to standard (ABS) 
+pin format \code{YYYYMMDDNNNC} where \code{YYYYMMDD} is the date of birth, \code{NNN} 
+is the birth number and \code{C} is the
 control number.
 \code{is.pin} checks wether an R object is of class "pin".
 }
@@ -33,6 +36,7 @@ the standard ABS format. The formats that can be converted are:
   \item character: \code{"YYYYMMDD-NNNC"}
   \item character: \code{"YYMMDDNNNC"} (assuming < 100 years of age)
 }
+(where "C" can be substituted by characters "A", "T" or "X" if "YYYY" < 1967).
 }
 \examples{
 # Examples taken from SKV 704 (see references)

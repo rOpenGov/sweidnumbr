@@ -8,6 +8,7 @@ print.oin <- function (x,...)
 
 #' @export
 `[.oin` <- create_s3_method("[")
+
 #' @export
 rep.oin <- create_s3_method("rep")
 

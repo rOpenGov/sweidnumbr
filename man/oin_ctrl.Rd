@@ -4,10 +4,12 @@
 \alias{oin_ctrl}
 \title{Check the control numbers for \code{oin}}
 \usage{
-oin_ctrl(oin)
+oin_ctrl(oin, force_logical = FALSE)
 }
 \arguments{
-\item{oin}{Vector with swedish organization identity numbers (oin) in \code{NNNNNN-NNNN} format.}
+\item{oin}{A vector of class \code{oin}. See \link{as.oin}.}
+
+\item{force_logical}{If TRUE, force all NA in oin to be FALSE. Default is FALSE.}
 }
 \value{
 Logical vector indicating if a oin is correct (\code{TRUE}) or not (\code{FALSE})

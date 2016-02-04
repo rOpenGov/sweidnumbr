@@ -5,6 +5,8 @@
 #' 
 #' @param generic,object arguments passed to \code{\link{NextMethod}}
 #' 
+#' @keywords internal
+#' 
 #' @return 
 #' Function with arguments "x", "i", and "...". 
 #' The "i" argument can be thought of as "index" if the method defined is 

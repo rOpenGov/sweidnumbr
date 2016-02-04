@@ -15,4 +15,5 @@ Century vector in numeric format
 \description{
 Assuming that the person is less than 100 years old, calculate the century of birth.
 }
+\keyword{internal}
 
