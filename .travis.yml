@@ -1,6 +1,10 @@
 # Native R Travis Github
 
 language: r
+r:
+  - oldrel
+  - release
+  - devel
 sudo: required
 
 # Be strict when checking our package
