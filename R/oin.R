@@ -31,7 +31,8 @@ as.oin <- function(oin){
         !is.na(as.numeric(substr(oin,1,6))) & 
         grepl(pattern = "-", substr(oin,7,7)) &
         !is.na(as.numeric(substr(oin,8,11))) &
-        as.numeric(substr(oin,3,3)) >= 2
+        as.numeric(substr(oin,3,3)) >= 2 &
+        nchar(oin) == 11
   )
   newoin <- oin
   newoin[!correct] <- NA
