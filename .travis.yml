@@ -1,6 +1,9 @@
 # Native R Travis Github
 
 language: r
+r:
+  - release
+  - devel
 sudo: required
 
 # Be strict when checking our package
