@@ -11,7 +11,7 @@ test_that(desc="character: GNNNNNN-NNNC",{
 })
 
 test_that(desc="error expected",{
-  expect_equal(as.character(suppressWarnings(as.oin(c("8020024280", "AA2002-4280")))), as.character(c(NA,NA)))  
+  expect_equal(as.character(suppressWarnings(as.oin(c("8020024280", "AA2002-4280","5560.0-4.15")))), as.character(c(NA,NA,NA)))  
 })
 
 
