@@ -20,7 +20,7 @@ Imports:
     lubridate (>= 1.4),
     stringr
 Suggests: 
-    testthat (>= 0.12),
+    testthat (>= 1.0.0),
     rmarkdown,
     knitr
 LazyData: true
