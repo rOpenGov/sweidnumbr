@@ -23,8 +23,12 @@
 #' as.oin(ex_oin)
 #' 
 #' @export
-#' 
 as.oin <- function(oin){
+  UseMethod("as.oin")
+}
+
+#' @export
+as.oin.character <- function(oin){
   suppressWarnings(
     correct <- 
       is.character(oin) &
@@ -44,6 +48,23 @@ as.oin <- function(oin){
   class(newoin) <- c("AsIs", "oin", "character")
   
   return(newoin)
+}
+
+#' @export
+as.oin.oin <- function(oin){
+  oin
+}
+
+#' @export
+as.oin.factor <- function(oin){
+  as.oin(as.character(oin))
+}
+
+#' @export
+as.oin.default <- function(oin){
+  stop("Object of class ", paste(class(oin), collapse = ", "), 
+       " can not be coerced to oin!"
+  )
 }
 
 
