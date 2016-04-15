@@ -29,3 +29,8 @@ test_that("Same error messages as in as.pin() is used", {
   expect_warning(as.oin(num_to_check), "Erroneous oin\\(s\\) \\(set to NA\\)\\.")
 })
 
+test_that("as.oin classes", {
+  to_check <- factor(c("556000-4615"))
+  expect_silent(as.oin(to_check))
+})
+
