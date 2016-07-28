@@ -87,6 +87,13 @@ format_pin(example_pin, "%Y-%m-%d-%N")
 format_pin(example_pin, "%P")
 ```
 
+Sometimes we want some example `pin`s. We can easily simulate `pin`s using `rpin()`:
+
+```{r example_rpin, message=FALSE, eval=TRUE}
+rpin(3)
+```
+
+
 ## <a name="exampleoin"></a>Example: organizational identity numbers
 
 Handling of organizational identity numbers is done in a similar fashion. But organizational numbers are only allowed to have one format.
@@ -114,6 +121,13 @@ We can also check the type of organization.
 ```{r oin4, message=FALSE, eval=TRUE}
 oin_group(example_oin)
 ```
+
+Sometimes we want some example `pin`s. We can easily simulate `pin`s using `roin()`:
+
+```{r example_roin, message=FALSE, eval=TRUE}
+roin(3)
+```
+
 
 ## <a name="licens"></a>Licensing and Citations
 

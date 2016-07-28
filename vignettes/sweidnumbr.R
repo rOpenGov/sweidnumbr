@@ -30,6 +30,9 @@ pin_age(example_pin, date = "2000-01-01")
 format_pin(example_pin, "%Y-%m-%d-%N")
 format_pin(example_pin, "%P")
 
+## ----example_rpin, message=FALSE, eval=TRUE------------------------------
+rpin(3)
+
 ## ----oin1, message=FALSE, eval=TRUE--------------------------------------
 example_oin <- c("556000-4615", "232100-0156", "802002-4280")
 example_oin <- as.oin(example_oin)
@@ -43,6 +46,9 @@ oin_ctrl(example_oin)
 
 ## ----oin4, message=FALSE, eval=TRUE--------------------------------------
 oin_group(example_oin)
+
+## ----example_roin, message=FALSE, eval=TRUE------------------------------
+roin(3)
 
 ## ----citation, message=FALSE, eval=TRUE----------------------------------
 citation("sweidnumbr")
