@@ -304,11 +304,9 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   if (length(date) == 1) {
     message("The age has been calculated at ", as.character(date), 
             ".")
-  } 
-  else if (length(date) == length(pin)){
+  } else if (length(date) == length(pin)){
     message("The age is calculated relative to the '", deparse(substitute(date)), "' date")
-  }
-  else {
+  } else {
     stop("Multiple dates used.")
   }
   
@@ -334,7 +332,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
            "days" = lubridate::days(1))
   
   age <- as.integer(diff %/% timespan_lubridate)
-  if(any(age < 0)) warning("Negative age(es).")
+  if(any(age < 0)) warning("Negative age(s).")
   
   all_age <- rep(as.integer(NA), length(all_pins))
   all_age[valid_diff] <- age

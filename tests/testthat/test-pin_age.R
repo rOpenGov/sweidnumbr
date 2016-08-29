@@ -33,7 +33,7 @@ test_that(desc="age in years at leapyear",{
 })
 
 test_that(desc="Negative ages",{
-  expect_warning(pin_age(pin = c("200002281234", "200002281234"), date = c("2000-01-01")))
+  expect_warning(pin_age(pin = c("200102281234", "200102281234"), date = c("2000-01-01")))
 })
 
 test_that("multiple dates", {
