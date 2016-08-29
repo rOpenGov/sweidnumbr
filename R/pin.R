@@ -310,7 +310,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
     stop("Multiple dates used.")
   }
   
-  date <- as.Date(date)
+  date <- lubridate::ymd(date)
   if(!is.pin(pin)) pin <- as.pin(pin)
   
   all_pins <- pin
@@ -321,8 +321,8 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   }
   pin <- all_pins[valid_diff]
   
-  diff <- lubridate::interval(pin_to_date(pin),
-                   lubridate::ymd(date))
+  pin_dates <- pin_to_date(pin)
+  diff <- lubridate::interval(pin_dates, date)
 
   timespan_lubridate <-
     switch(timespan,
@@ -332,7 +332,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
            "days" = lubridate::days(1))
   
   age <- as.integer(diff %/% timespan_lubridate)
-  if(any(age < 0)) warning("Negative age(s).")
+  if(any(date < pin_dates)) warning("Negative age(s).")
   
   all_age <- rep(as.integer(NA), length(all_pins))
   all_age[valid_diff] <- age
