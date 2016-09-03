@@ -13,7 +13,7 @@
 #' @param oin Vector with swedish organizational identity numbers in character format. See details.
 #' 
 #' @references 
-#' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1359707510840/70909.pdf}{SKV 709}
+#' \hrefhttp://www.riksdagen.se/sv/dokument-lagar/dokument/svensk-forfattningssamling/lag-1974174-om-identitetsbeteckning-for_sfs-1974-174}{Lag (1974:174) om identitetsbeteckning for juridiska personer m.fl.}
 #' 
 #' @return
 #' Character vector (of class \code{oin} and \code{AsIs}) with swedish organizational identity numbers.
