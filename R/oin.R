@@ -118,7 +118,7 @@ is.oin <- function(oin){
 #' @param force_logical If TRUE, force all NA in oin to be FALSE. Default is FALSE.
 #' 
 #' @references 
-#' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf}{SKV 709}
+#' \href{http://www.skatteverket.se/foretagochorganisationer/foretagare/startaochregistrera/organisationsnummer.4.361dc8c15312eff6fd235d1.html?q=organisationsnummer}{Organisationsnummer Skatteverket}
 #' 
 #' @return
 #' Logical vector indicating if a oin is correct (\code{TRUE}) or not (\code{FALSE})
@@ -155,7 +155,7 @@ oin_ctrl <- function(oin, force_logical = FALSE){
 #' @inheritParams oin_ctrl
 #' 
 #' @references 
-#' \href{http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1302507382017/70909.pdf}{SKV 709}
+#' \href{http://www.skatteverket.se/foretagochorganisationer/foretagare/startaochregistrera/organisationsnummer.4.361dc8c15312eff6fd235d1.html?q=organisationsnummer}{Organisationsnummer Skatteverket}
 #' 
 #' @return
 #' Factor with organization categories.
