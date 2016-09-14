@@ -122,7 +122,7 @@ We can also check the type of organization.
 oin_group(example_oin)
 ```
 
-Sometimes we want some example `pin`s. We can easily simulate `pin`s using `roin()`:
+Sometimes we want some example `oin`s. We can easily simulate `oin`s using `roin()`:
 
 ```{r example_roin, message=FALSE, eval=TRUE}
 roin(3)
@@ -145,10 +145,9 @@ citation("sweidnumbr")
 - [Population registration in Sweden](https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf)
 - [SKV 704 : Personnummer](https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf)
 - [SOU 2008:60 : Personnummer och samordningsnummer](http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/)
-- [Protected personal identity numbers](https://www.skatteverket.se/foretagorganisationer/myndigheter/aviseringavbefolkningsuppgifternavet/skyddadepersonuppgifter.4.18e1b10334ebe8bc80001399.html)
 - Personnummer: information fran Centrala folkbokförings- och uppbördsnämnden. (1967). Stockholm
 - Den svenska folkbokföringens historia under tre sekel. (1982). Solna: Riksskatteverket [URL](http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html)
-- [SKV 709 : Organisationsnummer](http://www.skatteverket.se/download/18.70ac421612e2a997f85800040284/1359707510840/70909.pdf)
+- [Lag (1974:174) om identitetsbeteckning for juridiska personer m.fl.](http://www.riksdagen.se/sv/dokument-lagar/dokument/svensk-forfattningssamling/lag-1974174-om-identitetsbeteckning-for_sfs-1974-174)
 
 
 ## Session info
