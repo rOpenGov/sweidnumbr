@@ -37,24 +37,85 @@ Up until now however, with the lack of a consistent R convention to handle "pins
 
 Let's look at some data (all pins are fake; they have a valid syntax but do not identify any real individuals):
 
-```{r, results='asis'}
+
+```r
 library(sweidnumbr)
+```
+
+```
+## sweidnumbr: R tools to handle swedish identity numbers.
+## https://github.com/rOpenGov/sweidnumbr
+```
+
+```r
 knitr::kable(tail(fake_pins,10))
 ```
 
+     pin             name                  
+---  --------------  ----------------------
+53   19471130-3022   TWIST, LIS            
+54   19440311-1131   NOBLESSE, RAGNAR JOHN 
+55   20000805-0523   NILSSON, CHOK         
+56   19240622-2286   CADBURY, LOVISA       
+57   19020517-1798   PLOPP, AUGUST         
+58   20050111-1123   MINT, MARIA ADA       
+59   19370215-1590   NILSSON, BARRY        
+60   19970430-3023   BERG, ANTO            
+61   20031010-1023   CENTER, PALL          
+62   20010218-1823   CACAO, EDA            
+
 So far, pin is just a standard character vector but let's change that to benefit from all of `sweidnumbr`'s features:
-```{r}
+
+```r
 pin <- as.pin(fake_pins$pin)
+```
+
+```
+## Assumption: Pin of format YYMMDDNNNC is assumed to be less than 100 years old
+```
+
+```r
 str(pin)
+```
+
+```
+##  'AsIs' chr [1:62] "191212121212" "201212121212" "191212121212" ...
 ```
 
 
 We can now also investigate some demographic characteristics almost on the fly (note that pins contained geographical information only up to 1989):
-```{r}
+
+```r
 par(mfrow = c(1,2))
 hist(pin_age(pin), 20, col = "lightgreen", main = "Age distribution")
+```
+
+```
+## The age has been calculated at 2019-03-15.
+```
+
+```
+## Note: method with signature 'Timespan#Timespan' chosen for function '%/%',
+##  target signature 'Interval#Period'.
+##  "Interval#ANY", "ANY#Period" would also be valid
+```
+
+```r
 pie(table(pin_sex(pin)), main = "Sex distribution")
+```
+
+![](blog_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
+```r
 pin_birthplace(pin[1:8])
+```
+
+```
+## [1] Stockholms län              Born after 31 december 1989
+## [3] Stockholms län              Born after 31 december 1989
+## [5] Born after 31 december 1989 Stockholm stad             
+## [7] Stockholms län              Born after 31 december 1989
+## 28 Levels: Stockholm stad Stockholms län Uppsala län ... Born after 31 december 1989
 ```
  
  
@@ -63,15 +124,53 @@ pin_birthplace(pin[1:8])
  `as.pin` can recognize pins in several different formats such as:
  
  
-```{r}
+
+```r
  as.pin(c("191212121212", "1212121212", "121212-1212", "121212+1212"))
 ```
 
+```
+## Assumption: Pin of format YYMMDDNNNC is assumed to be less than 100 years old
+```
+
+```
+## [1] "191212121212" "201212121212" "201212121212" "191212121212"
+## Personal identity number(s)
+```
+
 It also checks that the numbers follow the correct pin syntax:
-```{r}
+
+```r
 as.pin("181212121212") # Pins were introduced in 1946 and only for people not deceased before that
+```
+
+```
+## Warning in as.pin.character("181212121212"): Erroneous pin(s) (set to NA).
+```
+
+```
+## [1] NA
+## Personal identity number(s)
+```
+
+```r
 pin_ctrl("191212121211") # The last digit is a control number that is checked against preceeding digits
+```
+
+```
+## [1] FALSE
+```
+
+```r
 luhn_algo("191212121211") # The correct control number can be calculated by the Luhn algorithm
+```
+
+```
+## 'multiplier' set to: c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0)
+```
+
+```
+## [1] 2
 ```
 
 
