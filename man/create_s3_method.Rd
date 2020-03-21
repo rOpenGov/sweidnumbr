@@ -18,4 +18,3 @@ for example the "["-function.
 Helper function to create S3 method that preserves (most)
 }
 \keyword{internal}
-

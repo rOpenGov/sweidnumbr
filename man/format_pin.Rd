@@ -43,4 +43,3 @@ format_pin(x, "Borned \%d of \%B in \%Y (a \%A in week \%U) with suffix no: \%N"
 # Extract only the year
 format_pin(x, "\%Y")
 }
-

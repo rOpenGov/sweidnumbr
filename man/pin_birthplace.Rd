@@ -39,4 +39,3 @@ pin_birthplace(ex_pin)
 \references{
 \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
 }
-

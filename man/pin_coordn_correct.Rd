@@ -16,4 +16,3 @@ Character vector with pin, corrected for coordination numbers.
 Remove the change of day in coordination numbers (to enable age calculation).
 }
 \keyword{internal}
-

@@ -4,8 +4,13 @@
 \alias{rpin}
 \title{Generate a vector of random \code{pin}}
 \usage{
-rpin(n, start_date = "1900-01-01", end_date = Sys.Date(), p.male = 0.1,
-  p.coordn = 0.1)
+rpin(
+  n,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  p.male = 0.1,
+  p.coordn = 0.1
+)
 }
 \arguments{
 \item{n}{number of observations. If \code{length(n) > 1}, the length is taken to be the number required.}
@@ -32,4 +37,3 @@ pin_sex(x)
 pin_age(x)
 
 }
-

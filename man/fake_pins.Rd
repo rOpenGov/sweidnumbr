@@ -12,4 +12,3 @@
 \description{
 Data set with fake personal identity numbers and names to use as example.
 }
-

@@ -18,4 +18,3 @@ Character element on standard format.
 Converts one pin to standard format
 }
 \keyword{internal}
-

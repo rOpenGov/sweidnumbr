@@ -40,4 +40,3 @@ try(luhn_algo(c("12121212121", "850504333"))) ## Different formats should fail!
 https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf
 https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf
 }
-

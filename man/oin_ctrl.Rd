@@ -25,4 +25,3 @@ oin_ctrl(ex_oin)
 \references{
 \href{http://www.skatteverket.se/foretagochorganisationer/foretagare/startaochregistrera/organisationsnummer.4.361dc8c15312eff6fd235d1.html?q=organisationsnummer}{Organisationsnummer Skatteverket}
 }
-

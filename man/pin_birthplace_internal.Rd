@@ -20,4 +20,3 @@ Character element containing birthplace
 Internal computation of birthplace (one for each pin)
 }
 \keyword{internal}
-
