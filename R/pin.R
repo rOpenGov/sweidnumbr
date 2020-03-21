@@ -301,6 +301,10 @@ pin_coordn <- function(pin) {
 #'
 #' @export
 pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
+  date <- as.Date(date)
+  checkmate::assert_date(date, any.missing = FALSE)
+  checkmate::assert_choice(timespan, choices = c("years", "months", "weeks", "days"))
+  
   if (length(date) == 1) {
     message("The age has been calculated at ", as.character(date), 
             ".")
@@ -327,11 +331,11 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   timespan_lubridate <-
     switch(timespan,
            "years" = lubridate::years(1),
-           "months" = lubridate::new_period(month=1),
+           "months" = lubridate::period(months=1),
            "weeks" = lubridate::weeks(1),
            "days" = lubridate::days(1))
   
-  age <- as.integer(diff %/% timespan_lubridate)
+  age <- suppressMessages(as.integer(diff %/% timespan_lubridate))
   if(any(date < pin_dates)) warning("Negative age(s).")
   
   all_age <- rep(as.integer(NA), length(all_pins))
