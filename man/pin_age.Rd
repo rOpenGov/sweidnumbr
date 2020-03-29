@@ -40,6 +40,6 @@ pin_age(ex_pin, date = "2012-01-01")
 }
 \references{
 \itemize{
- \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
+ \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/blob/master/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
 }
 }

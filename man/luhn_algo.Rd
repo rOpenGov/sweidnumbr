@@ -39,7 +39,7 @@ try(luhn_algo(c("12121212121", "850504333"))) ## Different formats should fail!
 \references{
 \itemize{
  \item \href{https://en.wikipedia.org/wiki/Luhn_algorithm}{Luhn Algorithm}.
- \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv717B-4.pdf}{\emph{Population registration in Sweden}}. SKV 717B. (2007)
- \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
+ \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/blob/master/docs/skv717B-4.pdf}{\emph{Population registration in Sweden}}. SKV 717B. (2007)
+ \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/blob/master/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
 }
 }
