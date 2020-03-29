@@ -26,9 +26,9 @@
 #' 
 #' @references 
 #' \itemize{
-#'  \item \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677650/717B06.pdf}{Population registration in Sweden, SKV 717B6}
-#'  \item \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
-#'  \item \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
+#'  \item \href{https://github.com/rOpenGov/sweidnumbr/docs/skv717B-4.pdf}{Skatteverket, \emph{Population registration in Sweden}, SKV 717B} (2007)
+#'  \item \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{Skatteverket, \emph{Personnummer}, SKV 704} (2007)
+#'  \item \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer} (2008)
 #'  \item \emph{Personnummer: information fran Centrala folkbokförings- och uppbördsnämnden.} (1967). Stockholm
 #'  \item \emph{Den svenska folkbokföringens historia under tre sekel.} (1982). Solna: Riksskatteverket \href{http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html}{URL}
 #' }
@@ -179,9 +179,11 @@ is.pin <- function(pin) inherits(pin, "pin")
 #' @param force_logical If TRUE, force all NA in pin to be FALSE. Default is FALSE.
 #' 
 #' @references 
-#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
-#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
-#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
+#' \itemize{
+#'  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv717B-4.pdf}{\emph{Population registration in Sweden}}. SKV 717B. (2007)
+#'  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
+#'  \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}, (2008)
+#' }
 #' 
 #' @return
 #' Logical vector indicating if a pin is correct (\code{TRUE}) or not (\code{FALSE})
@@ -216,9 +218,11 @@ pin_ctrl <- function(pin, force_logical = FALSE){
 #' @inheritParams pin_ctrl
 #' 
 #' @references 
-#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
-#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
-#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
+#' \itemize{
+#'  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv717B-4.pdf}{\emph{Population registration in Sweden}}. SKV 717B. (2007)
+#'  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
+#'  \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}, (2008)
+#' }
 #' 
 #' @return
 #' Factor with label 'Male' and 'Female'.
@@ -246,9 +250,11 @@ pin_sex <- function(pin){
 #' @inheritParams pin_ctrl
 #' 
 #' @references 
-#' \href{https://www.skatteverket.se/download/18.8dcbbe4142d38302d74be9/1387372677724/717B06.pdf}{Population registration in Sweden}
-#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
-#' \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}
+#' \itemize{
+#'  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv717B-4.pdf}{\emph{Population registration in Sweden}}. SKV 717B. (2007)
+#'  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
+#'  \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}, (2008)
+#' }
 #' 
 #' @return
 #' Logical vector indicating if the pin is a coordination number (\code{TRUE}) or pin (\code{FALSE}).
@@ -283,7 +289,9 @@ pin_coordn <- function(pin) {
 #' }
 #'
 #' @references 
-#' \href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+#' \itemize{
+#'  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
+#' }
 #'   
 #' @return
 #' Age as an integer vector.

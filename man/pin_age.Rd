@@ -39,5 +39,7 @@ pin_age(ex_pin, date = "2012-01-01")
 
 }
 \references{
-\href{https://www.skatteverket.se/download/18.1e6d5f87115319ffba380001857/1285595720207/70408.pdf}{SKV 704}
+\itemize{
+ \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
+}
 }
