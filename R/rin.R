@@ -19,7 +19,7 @@
 #' pin_age(x)
 #' 
 #' @export
-rpin <- function(n, start_date = "1900-01-01", end_date = Sys.Date(), p.male = 0.1, p.coordn = 0.1){
+rpin <- function(n, start_date = "1900-01-01", end_date = Sys.Date(), p.male = 0.5, p.coordn = 0.1){
   if(length(n) > 1) n <- length(n)
   sd <- lubridate::ymd(start_date)
   ed <- lubridate::ymd(end_date)
