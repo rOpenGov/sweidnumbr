@@ -35,7 +35,7 @@ rpin <- function(n, start_date = "1900-01-01", end_date = Sys.Date(), p.male = 0
   xx <- formatC(xx, width = 2, format = "d", flag = "0")
   x <- sample(x = as.character(c(0,2,4,6,8,1,3,5,7,9)), prob = c(rep(1-p.male,5), rep(p.male,5)), replace = TRUE, size = n)
   yyyymmddxxx <- paste0(yyyymmdd, xx, x)
-  c <- as.character(luhn_algo(yyyymmddxxx, c(2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2)))
+  c <- as.character(luhn_algo(yyyymmddxxx, c(0, 0, 2, 1, 2, 1, 2, 1, 2, 1, 2)))
   as.pin(paste0(yyyymmddxxx,c))
 }
   
