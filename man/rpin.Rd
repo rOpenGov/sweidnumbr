@@ -8,7 +8,7 @@ rpin(
   n,
   start_date = "1900-01-01",
   end_date = Sys.Date(),
-  p.male = 0.1,
+  p.male = 0.5,
   p.coordn = 0.1
 )
 }
