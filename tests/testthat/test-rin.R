@@ -2,10 +2,12 @@
 context("roin and rpin")
 
 test_that(desc="roin",{
+  expect_equal(length(roin(c(1,2))), 2)
   expect_silent(x <- roin(100000))
 })
 
 test_that(desc="rpin",{
+  expect_equal(length(rpin(c(1,2))), 2)
   expect_silent(x <- rpin(100000))
   expect_silent(x <- rpin(100000, p.male = 0))
   expect_equal(as.numeric(table(pin_sex(x))), 100000)

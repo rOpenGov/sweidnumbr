@@ -4,11 +4,13 @@
 \name{fake_pins}
 \alias{fake_pins}
 \title{Fake personal identity numbers and names}
-\format{A data frame with 62 rows and 2 variables:
+\format{
+A data frame with 62 rows and 2 variables:
 \describe{
   \item{pin}{Personal identification number, as character}
   \item{name}{Fictional Swedish names}
-}}
+}
+}
 \description{
 Data set with fake personal identity numbers and names to use as example.
 }

@@ -29,8 +29,8 @@ test_that(desc="Frequencies in test file: pin_birthplace",{
   expect_equal(as.numeric(table(pin_birthplace(test_pins$pin)))[c(1,2,10,27:28)], c(5,3,46,7724,9105))  
 })
 
-test_that(desc="Frequencies in test file: pin_to_date",{
-  expect_equal(as.character(min(unique(pin_to_date(test_pins$pin)))), "1890-01-01")  
-  expect_equal(as.character(max(unique(pin_to_date(test_pins$pin)))), "2014-12-31")  
+test_that(desc="Frequencies in test file: pin_date",{
+  expect_equal(as.character(min(unique(pin_date(test_pins$pin)))), "1890-01-01")  
+  expect_equal(as.character(max(unique(pin_date(test_pins$pin)))), "2014-12-31")  
 })
 

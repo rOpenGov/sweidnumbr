@@ -39,5 +39,5 @@ test_that(desc="Negative ages",{
 
 test_that("multiple dates", {
   expect_error(pin_age(pin_test, c("2010-10-10", "2000-01-01"), "Multiple dates used."))
-  expect_error(pin_age(pin_test, c("2010-10-10", "2000-01-01", "2002-12-31", "2010-05-06"), "Multiple dates used."))
+  expect_error(pin_age(pin_test, c("2010-10-10", "2000-01-01", "2002-12-31", "2010-05-06", "2012-01-01")))
 })
