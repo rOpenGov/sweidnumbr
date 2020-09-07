@@ -6,6 +6,9 @@
 \usage{
 pin_to_date(pin)
 }
+\arguments{
+\item{pin}{Swedish ID number}
+}
 \value{
 Date of birth as a vector in date format.
 }

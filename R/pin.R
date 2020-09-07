@@ -351,15 +351,11 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   all_age
 }
 
-
-#' @title
-#' Calculate the date of birth from a \code{pin}
-#' 
-#' @description
-#' Calculates the date of birth in date format.
-#' 
-#' @return
-#' Date of birth as a vector in date format.
+## pin_to_date
+#' @title Calculate the date of birth from a \code{pin}
+#' @description Calculates the date of birth in date format.
+#' @param pin Swedish ID number
+#' @return Date of birth as a vector in date format.
 #' 
 #' @name pin_to_date-deprecated
 #' @usage pin_to_date(pin)
@@ -367,14 +363,13 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
 #' @keywords internal
 NULL
 
-#' @examples
-#' # Examples taken from SKV 704 (see references)
-#' ex_pin <- c("196408233234", "186408833224")
-#' pin_to_date(ex_pin)
+#' @rdname sweidnumbr-deprecated
+#' @section \code{pin_to_date}:
+#' For \code{pin_to_date}, use \code{\link{pin_date}}.
 #' 
 #' @export
 pin_to_date <- function(pin) {
-  .Deprecated("pin_date")
+  .Deprecated(new = "pin_date", package = "sweidnumbr")
   if(!is.pin(pin)) pin <- as.pin(pin)
   pin <- pin_coordn_correct(pin)
   lubridate::ymd(substr(pin,1,8))
