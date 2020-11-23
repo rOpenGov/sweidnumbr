@@ -1,5 +1,9 @@
-[![Build Status](https://travis-ci.org/rOpenGov/sweidnumbr.svg?branch=master)](https://travis-ci.org/rOpenGov/sweidnumbr) [![Coverage Status](https://coveralls.io/repos/github/rOpenGov/sweidnumbr/badge.svg?branch=master)](https://coveralls.io/github/rOpenGov/sweidnumbr?branch=master) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/sweidnumbr)](http://cran.rstudio.com/web/packages/sweidnumbr)
+<!-- badges: start -->
+  [![R build status](https://github.com/rOpenGov/sweidnumbr/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/sweidnumbr/actions)
+  [![Coverage Status](https://coveralls.io/repos/github/rOpenGov/sweidnumbr/badge.svg?branch=master)](https://coveralls.io/github/rOpenGov/sweidnumbr?branch=master) 
+  [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
+  [![cran version](http://www.r-pkg.org/badges/version/sweidnumbr)](http://cran.rstudio.com/web/packages/sweidnumbr)
+  <!-- badges: end -->
 
 sweidnumbr
 ==========
