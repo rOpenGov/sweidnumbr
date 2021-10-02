@@ -1,6 +1,6 @@
 <!-- badges: start -->
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
-  [![R build status](https://github.com/rOpenGov/sweidnumbr/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/sweidnumbr/actions)
+  [![R-CMD-check](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml)
   [![codecov](https://codecov.io/gh/ropengov/sweidnumbr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropengov/sweidnumbr) 
   [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
   [![cran version](http://www.r-pkg.org/badges/version/sweidnumbr)](https://CRAN.R-project.org/package=sweidnumbr)
