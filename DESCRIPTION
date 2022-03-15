@@ -27,8 +27,5 @@ Suggests:
     knitr
 LazyData: true
 RoxygenNote: 7.1.1
-<<<<<<< HEAD
-=======
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
->>>>>>> 04a2d002ad02bab0f57980a4d7585a5d8378e574
