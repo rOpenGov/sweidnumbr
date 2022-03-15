@@ -1,8 +1,12 @@
-[![Build Status](https://travis-ci.org/rOpenGov/sweidnumbr.svg?branch=master)](https://travis-ci.org/rOpenGov/sweidnumbr) [![Coverage Status](https://coveralls.io/repos/github/rOpenGov/sweidnumbr/badge.svg?branch=master)](https://coveralls.io/github/rOpenGov/sweidnumbr?branch=master) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/sweidnumbr)](http://cran.rstudio.com/web/packages/sweidnumbr)
+<!-- badges: start -->
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
+  [![R-CMD-check](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml)
+  [![codecov](https://codecov.io/gh/ropengov/sweidnumbr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropengov/sweidnumbr) 
+  [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
+  [![cran version](http://www.r-pkg.org/badges/version/sweidnumbr)](https://CRAN.R-project.org/package=sweidnumbr)
+  <!-- badges: end -->
 
-sweidnumbr
-==========
+# sweidnumbr <a href='https://ropengov.github.io/sweidnumbr/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 ## Introduction
 
@@ -17,6 +21,7 @@ install.packages(sweidnumbr)
 ```
 
 Use the `devtools` package to install the latest version from GitHub:
+
 ```r
 devtools::install_github("rOpenGov/sweidnumbr")
 library(sweidnumbr)
@@ -32,5 +37,6 @@ vignette("sweidnumbr")
 Please use the GitHub issue tracker [here](https://github.com/rOpenGov/sweidnumbr/issues) for reporting bugs and making further feature requests.
 
 IMPORTANT: When submitting a bug, you can make the lives of the developers easier by submitting the following information along with your bug report:
+
 - The output of `sessionInfo()`
 - The output of `packageVersion("sweidnumbr")`

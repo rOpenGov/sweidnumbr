@@ -36,5 +36,5 @@ format_pin <- function(x, format. = "%Y%m%d%N", ...) {
   if (format. == "%P") format. <- "(%C) %y-%m-%d - %N"
   gsub_v <- Vectorize(gsub, "replacement")
   f <- gsub_v("%N", substr(x, 9, 12), format.)
-  mapply(format, pin_to_date(x), f)
+  mapply(format, pin_date(x), f)
 }

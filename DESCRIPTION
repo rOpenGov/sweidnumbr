@@ -10,7 +10,8 @@ Description: Structural handling of identity numbers used in the Swedish
     organizational identity numbers ('organisationsnummer').
 VignetteBuilder: rmarkdown,
     knitr
-URL: https://github.com/rOpenGov/sweidnumbr/
+URL: https://github.com/rOpenGov/sweidnumbr,
+    http://ropengov.github.io/sweidnumbr/
 BugReports: https://github.com/rOpenGov/sweidnumbr/issues
 License: BSD_2_clause + file LICENSE
 Depends: 
@@ -26,3 +27,8 @@ Suggests:
     knitr
 LazyData: true
 RoxygenNote: 7.1.1
+<<<<<<< HEAD
+=======
+X-schema.org-isPartOf: http://ropengov.org/
+X-schema.org-keywords: ropengov
+>>>>>>> 04a2d002ad02bab0f57980a4d7585a5d8378e574
