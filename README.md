@@ -1,42 +1,54 @@
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
+
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
-  [![R-CMD-check](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml)
-  [![codecov](https://codecov.io/gh/ropengov/sweidnumbr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropengov/sweidnumbr) 
-  [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
-  [![cran version](http://www.r-pkg.org/badges/version/sweidnumbr)](https://CRAN.R-project.org/package=sweidnumbr)
-  <!-- badges: end -->
+[![R-CMD-check](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/sweidnumbr/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/ropengov/sweidnumbr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropengov/sweidnumbr)
+[![rstudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/sweidnumbr)](https://github.com/metacran/cranlogs.app)
+[![cran
+version](http://www.r-pkg.org/badges/version/sweidnumbr)](https://CRAN.R-project.org/package=sweidnumbr)
+<!-- badges: end -->
 
-# sweidnumbr <a href='https://ropengov.github.io/sweidnumbr/'><img src='man/figures/logo.png' align="right" height="139" /></a>
+<br>
 
-## Introduction
+sweidnumbr <a href='https://ropengov.github.io/sweidnumbr/'><img src='man/figures/logo.png' align="right" height="139" /></a>
+=============================================================================================================================
 
-`sweidnumbr` is an R package for structural handling of identity numbers used in the swedish administration such as personal identity numbers (personnummer) and organizational identity numbers (organisationsnummer).
+Introduction
+------------
 
-## Installation
+`sweidnumbr` is an R package for structural handling of identity numbers
+used in the swedish administration such as personal identity numbers
+(personnummer) and organizational identity numbers
+(organisationsnummer).
+
+Installation
+------------
 
 To install from CRAN just write:
 
-```r
-install.packages(sweidnumbr)
-```
+    install.packages(sweidnumbr)
 
 Use the `devtools` package to install the latest version from GitHub:
 
-```r
-devtools::install_github("rOpenGov/sweidnumbr")
-library(sweidnumbr)
-```
+    devtools::install_github("rOpenGov/sweidnumbr")
+    library(sweidnumbr)
 
 A tutorial is included with the package and can be viewed with:
-```r
-vignette("sweidnumbr")
-```
 
-## Reporting bugs
+    vignette("sweidnumbr")
 
-Please use the GitHub issue tracker [here](https://github.com/rOpenGov/sweidnumbr/issues) for reporting bugs and making further feature requests.
+Reporting bugs
+--------------
 
-IMPORTANT: When submitting a bug, you can make the lives of the developers easier by submitting the following information along with your bug report:
+Please use the GitHub issue tracker
+[here](https://github.com/rOpenGov/sweidnumbr/issues) for reporting bugs
+and making further feature requests.
 
-- The output of `sessionInfo()`
-- The output of `packageVersion("sweidnumbr")`
+IMPORTANT: When submitting a bug, you can make the lives of the
+developers easier by submitting the following information along with
+your bug report:
+
+-   The output of `sessionInfo()`
+-   The output of `packageVersion("sweidnumbr")`
