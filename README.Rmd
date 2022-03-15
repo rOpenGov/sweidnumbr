@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 <br>
- 
+
 # sweidnumbr <a href='https://ropengov.github.io/sweidnumbr/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 ## Introduction
