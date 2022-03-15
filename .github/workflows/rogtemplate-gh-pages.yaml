@@ -35,8 +35,6 @@ jobs:
             ropengov/rogtemplate
             any::magick
 
-          needs: website
-
       - name: Build logo if not present and prepare template
         run: |
           # Check that logo is not present
