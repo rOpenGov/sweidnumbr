@@ -15,7 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto%20Mono-0.4.0/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="sweidnumbr : Structural handling of swedish identity numbers">
 <meta property="og:description" content="sweidnumbr">
@@ -32,19 +33,21 @@
 <!-- rogtemplate style sheet --><link href="../BS5/rogtemplate.css" rel="stylesheet">
 </head>
 <body>
-    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    
     <a class="navbar-brand me-2" href="../index.html">sweidnumbr</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.3</small>
 
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="active nav-item">
   <a class="nav-link" href="../articles/sweidnumbr.html">Get started</a>
@@ -54,7 +57,7 @@
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
       <ul class="navbar-nav">
@@ -66,17 +69,22 @@
 </li>
       </ul>
 </div>
+
+    
   </div>
-</nav><div class="container template-article" id="container">
-<script src="sweidnumbr_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1 data-toc-skip>sweidnumbr : Structural handling of swedish identity numbers</h1>
+</nav><div class="container template-article">
+
+
+
+
+<div class="row">
+  <main id="main"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>sweidnumbr : Structural handling of swedish identity numbers</h1>
                         <h4 data-toc-skip class="author">Mans Magnusson and Erik Bulow</h4>
             
-            <h4 data-toc-skip class="date">2021-10-26</h4>
+            <h4 data-toc-skip class="date">2022-03-15</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/rOpenGov/sweidnumbr/blob/master/vignettes/sweidnumbr.Rmd" class="external-link"><code>vignettes/sweidnumbr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rOpenGov/sweidnumbr/blob/HEAD/vignettes/sweidnumbr.Rmd" class="external-link"><code>vignettes/sweidnumbr.Rmd</code></a></small>
       <div class="d-none name"><code>sweidnumbr.Rmd</code></div>
     </div>
 
@@ -115,44 +123,44 @@
 <code class="sourceCode R"><span class="va">example_pin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"640823-3234"</span>, <span class="st">"6408233234"</span>, <span class="st">"19640823-3230"</span><span class="op">)</span>
 <span class="va">example_pin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as.pin.html">as.pin</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span>
 <span class="va">example_pin</span></code></pre></div>
-<pre><code>## [1] "196408233234" "196408233234" "196408233230"
-## Personal identity number(s)</code></pre>
+<pre><code><span class="co">## [1] "196408233234" "196408233234" "196408233230"</span>
+<span class="co">## Personal identity number(s)</span></code></pre>
 <p>The next step is to test if the vector is a <code>pin</code> object. To do this we use the <code><a href="../reference/as.pin.html">is.pin()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/as.pin.html">is.pin</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<pre><code><span class="co">## [1] TRUE</span></code></pre>
 <p>This only check the format of the pin. To check the pin using the control number we use <code><a href="../reference/pin_ctrl.html">pin_ctrl()</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_ctrl.html">pin_ctrl</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
+<pre><code><span class="co">## [1]  TRUE  TRUE FALSE</span></code></pre>
 <p>We can now use <code><a href="../reference/pin_birthplace.html">pin_birthplace()</a></code> and <code><a href="../reference/pin_sex.html">pin_sex()</a></code>. To get information on sex and birthplace.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_sex.html">pin_sex</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] Male Male Male
-## Levels: Male</code></pre>
+<pre><code><span class="co">## [1] Male Male Male</span>
+<span class="co">## Levels: Male</span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_birthplace.html">pin_birthplace</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] Gotlands län Gotlands län Gotlands län
-## 28 Levels: Stockholm stad Stockholms län Uppsala län ... Born after 31 december 1989</code></pre>
+<pre><code><span class="co">## [1] Gotlands län Gotlands län Gotlands län</span>
+<span class="co">## 28 Levels: Stockholm stad Stockholms län Uppsala län ... Born after 31 december 1989</span></code></pre>
 <p>As the last step we can calculate the age based on the pin. We choose the date where we want to calculate the age. If date is not specified the current date is used.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_age.html">pin_age</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 57 57 57</code></pre>
+<pre><code><span class="co">## [1] 57 57 57</span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_age.html">pin_age</a></span><span class="op">(</span><span class="va">example_pin</span>, date <span class="op">=</span> <span class="st">"2000-01-01"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 35 35 35</code></pre>
+<pre><code><span class="co">## [1] 35 35 35</span></code></pre>
 <p>It is also possible to format the pin for presentation in different forms. (Note however that the output of <code>format_pin</code> is just a character and no longer a <code>pin</code> object):</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/format_pin.html">format_pin</a></span><span class="op">(</span><span class="va">example_pin</span>, <span class="st">"%Y-%m-%d-%N"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "1964-08-23-3234" "1964-08-23-3234" "1964-08-23-3230"</code></pre>
+<pre><code><span class="co">## [1] "1964-08-23-3234" "1964-08-23-3234" "1964-08-23-3230"</span></code></pre>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/format_pin.html">format_pin</a></span><span class="op">(</span><span class="va">example_pin</span>, <span class="st">"%P"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "(19) 64-08-23 - 3234" "(19) 64-08-23 - 3234" "(19) 64-08-23 - 3230"</code></pre>
+<pre><code><span class="co">## [1] "(19) 64-08-23 - 3234" "(19) 64-08-23 - 3234" "(19) 64-08-23 - 3230"</span></code></pre>
 <p>Sometimes we want some example <code>pin</code>s. We can easily simulate <code>pin</code>s using <code><a href="../reference/rpin.html">rpin()</a></code>:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/rpin.html">rpin</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "196608237431" "199910204602" "195303286685"
-## Personal identity number(s)</code></pre>
+<pre><code><span class="co">## [1] "190308195007" "194912234830" "191302056450"</span>
+<span class="co">## Personal identity number(s)</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="example-organizational-identity-numbers">
@@ -163,28 +171,28 @@
 <code class="sourceCode R"><span class="va">example_oin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"556000-4615"</span>, <span class="st">"232100-0156"</span>, <span class="st">"802002-4280"</span><span class="op">)</span>
 <span class="va">example_oin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as.oin.html">as.oin</a></span><span class="op">(</span><span class="va">example_oin</span><span class="op">)</span>
 <span class="va">example_oin</span></code></pre></div>
-<pre><code>## [1] "556000-4615" "232100-0156" "802002-4280"
-## Organizational identity number(s)</code></pre>
+<pre><code><span class="co">## [1] "556000-4615" "232100-0156" "802002-4280"</span>
+<span class="co">## Organizational identity number(s)</span></code></pre>
 <p>We can test if the vector has a correct format in a similar way as for <code>pin</code>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/is.oin.html">is.oin</a></span><span class="op">(</span><span class="va">example_oin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<pre><code><span class="co">## [1] TRUE</span></code></pre>
 <p>With a vector of <code>oin</code> we can check if the organizational number is correct.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/oin_ctrl.html">oin_ctrl</a></span><span class="op">(</span><span class="va">example_oin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] TRUE TRUE TRUE</code></pre>
+<pre><code><span class="co">## [1] TRUE TRUE TRUE</span></code></pre>
 <p>We can also check the type of organization.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/oin_group.html">oin_group</a></span><span class="op">(</span><span class="va">example_oin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] Aktiebolag                             
-## [2] Stat, landsting, kommuner, församlingar
-## [3] Ideella föreningar och stiftelser      
-## 3 Levels: Aktiebolag ... Stat, landsting, kommuner, församlingar</code></pre>
+<pre><code><span class="co">## [1] Aktiebolag                             </span>
+<span class="co">## [2] Stat, landsting, kommuner, församlingar</span>
+<span class="co">## [3] Ideella föreningar och stiftelser      </span>
+<span class="co">## 3 Levels: Aktiebolag ... Stat, landsting, kommuner, församlingar</span></code></pre>
 <p>Sometimes we want some example <code>oin</code>s. We can easily simulate <code>oin</code>s using <code><a href="../reference/roin.html">roin()</a></code>:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/roin.html">roin</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "244615-5893" "653157-3092" "379534-6562"
-## Organizational identity number(s)</code></pre>
+<pre><code><span class="co">## [1] "113192-0272" "986712-0777" "103473-0323"</span>
+<span class="co">## Organizational identity number(s)</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="licensing-and-citations">
@@ -194,22 +202,22 @@
 <p>Kindly cite the work as follows</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"sweidnumbr"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Kindly cite the sweidnumbr R package as follows:
-## 
-##   Magnusson, Mans and Bulow, Erik (2020). sweidnumbr: R tools to handle
-##   of swedish identity numbers. R package version 1.4.3 URL:
-##   http://github.com/rOpenGov/sweidnumbr
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Misc{,
-##     title = {sweidnumbr: R tools to handle of swedish identity numbers.},
-##     author = {Mans Magnusson and Erik Bulow},
-##     url = {http://github.com/rOpenGov/sweidnumbr},
-##     year = {2020},
-##     note = {R package version 1.4.3},
-##   }</code></pre>
+<pre><code><span class="co">## </span>
+<span class="co">## Kindly cite the sweidnumbr R package as follows:</span>
+<span class="co">## </span>
+<span class="co">##   Magnusson, Mans and Bulow, Erik (2022). sweidnumbr: R tools to handle</span>
+<span class="co">##   of swedish identity numbers. R package version 1.4.3 URL:</span>
+<span class="co">##   http://github.com/rOpenGov/sweidnumbr</span>
+<span class="co">## </span>
+<span class="co">## A BibTeX entry for LaTeX users is</span>
+<span class="co">## </span>
+<span class="co">##   @Misc{,</span>
+<span class="co">##     title = {sweidnumbr: R tools to handle of swedish identity numbers.},</span>
+<span class="co">##     author = {Mans Magnusson and Erik Bulow},</span>
+<span class="co">##     url = {http://github.com/rOpenGov/sweidnumbr},</span>
+<span class="co">##     year = {2022},</span>
+<span class="co">##     note = {R package version 1.4.3},</span>
+<span class="co">##   }</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="references">
@@ -234,45 +242,39 @@
 <p>This vignette was created with</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## R version 4.1.1 (2021-08-10)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.3 LTS
-## 
-## Matrix products: default
-## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
-## 
-## locale:
-##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-## [1] sweidnumbr_1.4.3
-## 
-## loaded via a namespace (and not attached):
-##  [1] knitr_1.36               magrittr_2.0.1           R6_2.5.1                
-##  [4] ragg_1.1.3               rlang_0.4.12             fastmap_1.1.0           
-##  [7] stringr_1.4.0            tools_4.1.1              checkmate_2.0.0         
-## [10] xfun_0.27                jquerylib_0.1.4          htmltools_0.5.2         
-## [13] systemfonts_1.0.3        yaml_2.2.1               digest_0.6.28           
-## [16] rprojroot_2.0.2          pkgdown_1.9000.9000.9000 crayon_1.4.1            
-## [19] textshaping_0.3.6        sass_0.4.0               fs_1.5.0                
-## [22] memoise_2.0.0            cachem_1.0.6             evaluate_0.14           
-## [25] rmarkdown_2.11           stringi_1.7.5            compiler_4.1.1          
-## [28] bslib_0.3.1              backports_1.2.1          generics_0.1.1          
-## [31] desc_1.4.0               jsonlite_1.7.2           lubridate_1.8.0</code></pre>
+<pre><code><span class="co">## R version 4.1.3 (2022-03-10)</span>
+<span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
+<span class="co">## Running under: Ubuntu 20.04.4 LTS</span>
+<span class="co">## </span>
+<span class="co">## Matrix products: default</span>
+<span class="co">## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
+<span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span>
+<span class="co">## </span>
+<span class="co">## locale:</span>
+<span class="co">##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
+<span class="co">##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span>
+<span class="co">##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span>
+<span class="co">## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+<span class="co">## </span>
+<span class="co">## attached base packages:</span>
+<span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+<span class="co">## </span>
+<span class="co">## other attached packages:</span>
+<span class="co">## [1] sweidnumbr_1.4.3</span>
+<span class="co">## </span>
+<span class="co">## loaded via a namespace (and not attached):</span>
+<span class="co">##  [1] knitr_1.37        magrittr_2.0.2    R6_2.5.1          ragg_1.2.2       </span>
+<span class="co">##  [5] rlang_1.0.2       fastmap_1.1.0     stringr_1.4.0     tools_4.1.3      </span>
+<span class="co">##  [9] checkmate_2.0.0   xfun_0.30         cli_3.2.0         jquerylib_0.1.4  </span>
+<span class="co">## [13] htmltools_0.5.2   systemfonts_1.0.4 yaml_2.3.5        digest_0.6.29    </span>
+<span class="co">## [17] rprojroot_2.0.2   pkgdown_2.0.2     textshaping_0.3.6 purrr_0.3.4      </span>
+<span class="co">## [21] sass_0.4.0        fs_1.5.2          memoise_2.0.1     cachem_1.0.6     </span>
+<span class="co">## [25] evaluate_0.15     rmarkdown_2.13    stringi_1.7.6     compiler_4.1.3   </span>
+<span class="co">## [29] bslib_0.3.1       backports_1.4.1   generics_0.1.2    desc_1.4.1       </span>
+<span class="co">## [33] lubridate_1.8.0   jsonlite_1.8.0</span></code></pre>
 </div>
-  </div>
- <div class="col-md-3" id="pkgdown-sidebar">
-        <nav id="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
@@ -284,7 +286,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer>
