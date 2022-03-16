@@ -21,7 +21,8 @@ Introduction
 `sweidnumbr` is an R package for structural handling of identity numbers
 used in the swedish administration such as personal identity numbers
 (personnummer) and organizational identity numbers
-(organisationsnummer).
+(organisationsnummer). For a quick introduction on how to use the package, 
+see the [vignette](https://htmlpreview.github.io/?https://cran.r-project.org/web/packages/sweidnumbr/vignettes/sweidnumbr.html).
 
 Installation
 ------------
