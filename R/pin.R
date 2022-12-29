@@ -295,6 +295,7 @@ pin_coordn <- function(pin) {
 #'   \item \code{weeks}
 #'   \item \code{days}
 #' }
+#' @param verbose Should messages be printed? Default is \code{TRUE}.
 #'
 #' @references 
 #' \itemize{

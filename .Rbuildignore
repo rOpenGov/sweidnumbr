@@ -5,6 +5,7 @@
 ^data-raw$
 ^blog$
 README.md
+README.Rmd
 ^.*\.o$
 docs/*
 ^\.github$

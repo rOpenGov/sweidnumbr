@@ -19,6 +19,8 @@ of the same length as the \code{pin} argument.}
   \item \code{weeks}
   \item \code{days}
 }}
+
+\item{verbose}{Should messages be printed? Default is \code{TRUE}.}
 }
 \value{
 Age as an integer vector.
