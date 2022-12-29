@@ -52,6 +52,12 @@ ex_pin5 <-c("205012090122", "186512090122", "121209-0122", "121209-012A")
 as.pin(pin = ex_pin5)
 pin <-c("201212090122", "201212090122", "121209-0122", "1212090122")
 
+ex_pin <- rpin(3)
+is.pin(ex_pin)
+
+ex_pin_char <- as.character(ex_pin)
+is.pin(ex_pin_char)
+
 }
 \references{
 \itemize{

@@ -60,7 +60,7 @@ luhn_algo <- function(id, multiplier){
     ## If multiplier specified, it should match the length of id
   } else if (!is.atomic(multiplier)){
     stop("'multiplier' is not an atomic vector!")
-  }else if (length(multiplier) != n[1]){
+  } else if (length(multiplier) != n[1]){
     stop("Number of digits in 'id', does not match the length of 'multiplier'!")
   }
   
