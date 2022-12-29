@@ -4,7 +4,7 @@
 \alias{pin_age}
 \title{Calculate age of \code{pin} for a given date}
 \usage{
-pin_age(pin, date = Sys.Date(), timespan = "years")
+pin_age(pin, date = Sys.Date(), timespan = "years", verbose = TRUE)
 }
 \arguments{
 \item{pin}{A vector of class \code{pin}. See \link{as.pin}.}
@@ -19,6 +19,8 @@ of the same length as the \code{pin} argument.}
   \item \code{weeks}
   \item \code{days}
 }}
+
+\item{verbose}{Should messages be printed? Default is \code{TRUE}.}
 }
 \value{
 Age as an integer vector.

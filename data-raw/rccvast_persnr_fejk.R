@@ -1,6 +1,6 @@
 
 # Note that package gdata is required below.
-# This is not formally specified since this skript is just intended 
+# This is not formally specified since this script is just intended 
 # for internal use
 
 # test_pin_skatteverket.csv contain test cases from Skatteverket that should not exist

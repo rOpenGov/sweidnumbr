@@ -132,7 +132,7 @@ as.pin.character <- function(pin){
       if (i %in% 5:8) {
         msg[2] <- paste("people with birth year before 1967 and",
                         "character 'A', 'T' or 'X' instead of control number",
-                        "assumed deceast before 1967.")
+                        "assumed deceased before 1967.")
       }
     }
   }
@@ -165,6 +165,14 @@ as.pin.character <- function(pin){
 }
 
 #' @rdname as.pin
+#' 
+#' @examples
+#' ex_pin <- rpin(3)
+#' is.pin(ex_pin)
+#' 
+#' ex_pin_char <- as.character(ex_pin)
+#' is.pin(ex_pin_char)
+#' 
 #' @export
 is.pin <- function(pin) inherits(pin, "pin")
 
@@ -287,6 +295,7 @@ pin_coordn <- function(pin) {
 #'   \item \code{weeks}
 #'   \item \code{days}
 #' }
+#' @param verbose Should messages be printed? Default is \code{TRUE}.
 #'
 #' @references 
 #' \itemize{
@@ -308,18 +317,18 @@ pin_coordn <- function(pin) {
 #' pin_age(ex_pin, date = "2012-01-01")
 #'
 #' @export
-pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
+pin_age <- function(pin, date=Sys.Date(), timespan = "years", verbose = TRUE) {
   date <- as.Date(date)
   checkmate::assert_date(date, any.missing = FALSE)
   checkmate::assert_choice(timespan, choices = c("years", "months", "weeks", "days"))
+  checkmate::assert_flag(verbose)
   
   if (length(date) == 1) {
-    message("The age has been calculated at ", as.character(date), 
-            ".")
+    if(verbose) message("The age has been calculated at ", as.character(date), ".")
   } else if (length(date) == length(pin)){
-    message("The age is calculated relative to the '", deparse(substitute(date)), "' date")
+    if(verbose) message("The age has been calculated at based on supplied dates.")
   } else {
-    stop("Multiple dates used.")
+    stop("Incorrect length of 'date'.")
   }
   
   date <- lubridate::ymd(date)

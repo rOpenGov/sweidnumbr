@@ -21,6 +21,14 @@
 #' @export
 rpin <- function(n, start_date = "1900-01-01", end_date = Sys.Date(), p.male = 0.5, p.coordn = 0.1){
   if(length(n) > 1) n <- length(n)
+  checkmate::assert_int(n)
+  start_date <- as.Date(start_date)
+  end_date <- as.Date(end_date)
+  checkmate::assert_date(start_date)  
+  checkmate::assert_date(end_date)  
+  checkmate::assert_number(p.male, lower = 0, upper = 1)
+  checkmate::assert_number(p.coordn, lower = 0, upper = 1)
+  
   sd <- lubridate::ymd(start_date)
   ed <- lubridate::ymd(end_date)
   days <- as.numeric(ed - sd) + 1
@@ -57,6 +65,8 @@ rpin <- function(n, start_date = "1900-01-01", end_date = Sys.Date(), p.male = 0
 #' @export
 roin <- function(n){
   if(length(n) > 1) n <- length(n)
+  checkmate::assert_int(n)
+  
   g <- sample(x = c("1", "2", "3", "5", "6", "7", "8", "9"), replace = TRUE, size = n)
   x <- sample(x = as.character(c(0:9)), replace = TRUE, size = n)
   xxxx <- floor(stats::runif(n)*8000) + 2000

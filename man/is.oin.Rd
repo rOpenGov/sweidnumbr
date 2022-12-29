@@ -17,7 +17,10 @@ Test which elements in a text vector that contains organization identity
 number.
 }
 \examples{
-ex_oin <- c("556000-4615", "232100-0156", "802002-4280", "8020024280", "AA2002-4280")
+ex_oin <- roin(3)
 is.oin(ex_oin)
+
+ex_oin_char <- as.character(ex_oin)
+is.oin(ex_oin_char)
 
 }
