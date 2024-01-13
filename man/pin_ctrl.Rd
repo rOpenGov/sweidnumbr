@@ -28,6 +28,6 @@ pin_ctrl(ex_pin)
 \itemize{
  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/blob/master/docs/skv717B-4.pdf}{\emph{Population registration in Sweden}}. SKV 717B. (2007)
  \item Skatteverket, \href{https://github.com/rOpenGov/sweidnumbr/blob/master/docs/skv704-8.pdf}{\emph{Personnummer}}. SKV 704. (2007)
- \href{http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/}{SOU 2008:60 : Personnummer och samordningsnummer}, (2008)
+ \href{https://www.riksdagen.se/sv/dokument-och-lagar/dokument/statens-offentliga-utredningar/personnummer-och-samordningsnummer-del-1_gwb360/}{SOU 2008:60 : Personnummer och samordningsnummer}, (2008)
 }
 }

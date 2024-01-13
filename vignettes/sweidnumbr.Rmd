@@ -131,7 +131,7 @@ roin(3)
 
 ## <a name="licens"></a>Licensing and Citations
 
-This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/MansMeg/sweidnumbr/blob/master/DESCRIPTION).
+This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/rOpenGov/sweidnumbr/blob/master/DESCRIPTION).
 
 Kindly cite the work as follows
 
@@ -144,7 +144,7 @@ citation("sweidnumbr")
 
 - [Population registration in Sweden](https://github.com/rOpenGov/sweidnumbr/blob/master/docs/skv717B-4.pdf). (2007)
 - [SKV 704 : Personnummer](https://github.com/rOpenGov/sweidnumbr/blob/master/docs/skv704-8.pdf). (2007)
-- [SOU 2008:60 : Personnummer och samordningsnummer](http://www.riksdagen.se/sv/Dokument-Lagar/Utredningar/Statens-offentliga-utredningar/Personnummer-och-samordningsnu_GWB360/). (2008)
+- [SOU 2008:60 : Personnummer och samordningsnummer](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/statens-offentliga-utredningar/personnummer-och-samordningsnummer-del-1_gwb360/). (2008)
 - Personnummer: information fran Centrala folkbokförings- och uppbördsnämnden. (1967). Stockholm
 - Den svenska folkbokföringens historia under tre sekel. (1982). Solna: Riksskatteverket [URL](http://www.skatteverket.se/privat/folkbokforing/omfolkbokforing/folkbokforingigaridag/densvenskafolkbokforingenshistoriaundertresekler.4.18e1b10334ebe8bc80004141.html)
 - [Lag (1974:174) om identitetsbeteckning for juridiska personer m.fl.](http://www.riksdagen.se/sv/dokument-lagar/dokument/svensk-forfattningssamling/lag-1974174-om-identitetsbeteckning-for_sfs-1974-174)

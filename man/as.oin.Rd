@@ -27,5 +27,5 @@ as.oin(ex_oin)
 
 }
 \references{
-\href{http://www.riksdagen.se/sv/dokument-lagar/dokument/svensk-forfattningssamling/lag-1974174-om-identitetsbeteckning-for_sfs-1974-174}{Lag (1974:174) om identitetsbeteckning for juridiska personer m.fl.}
+\href{https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-1974174-om-identitetsbeteckning-for_sfs-1974-174/}{Lag (1974:174) om identitetsbeteckning for juridiska personer m.fl.}
 }
