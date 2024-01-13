@@ -2,7 +2,7 @@ Package: sweidnumbr
 Type: Package
 Title: Handling of Swedish Identity Numbers
 Version: 1.5.0
-Date: 2022-12-29
+Date: 2024-01-13
 Author: Mans Magnusson and Erik Bulow
 Maintainer: Mans Magnusson <mons.magnusson@gmail.com>
 Description: Structural handling of identity numbers used in the Swedish
