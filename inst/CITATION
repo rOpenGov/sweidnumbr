@@ -10,13 +10,13 @@ citEntry(entry="misc",
 	   person(given = "Erik", family= "Bulow", email = "eriklgb@gmail.com")
          ),
 	 journal = "",
-	 URL = "http://github.com/rOpenGov/sweidnumbr", 
+	 URL = "https://github.com/rOpenGov/sweidnumbr", 
    year = year,
    note = vers,
          textVersion =
          paste("Magnusson, Mans and Bulow, Erik (",year,"). ",
                "sweidnumbr: R tools to handle of swedish identity numbers. ",
                vers,
-	             " URL: http://github.com/rOpenGov/sweidnumbr",
+	             " URL: https://github.com/rOpenGov/sweidnumbr",
                sep="")
                 )
