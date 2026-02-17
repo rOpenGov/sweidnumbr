@@ -1,0 +1,4 @@
+# License
+
+    YEAR: 2014-2015
+    COPYRIGHT HOLDER: Mans Magnusson, Erik Bulow
