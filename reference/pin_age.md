@@ -54,7 +54,7 @@ today_pin <-
   paste(paste(unlist(strsplit(as.character(Sys.Date()),split = "-")), collapse = ""),
         "0000",sep="")
 pin_age(today_pin)
-#> The age has been calculated at 2026-02-17.
+#> The age has been calculated at 2026-02-26.
 #> [1] 0
 
 # Examples taken from SKV 704 (see references)

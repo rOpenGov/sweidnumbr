@@ -133,7 +133,7 @@ using
 rpin(3)
 ```
 
-    ## [1] "191003104971" "200503272890" "197510117349"
+    ## [1] "191003104971" "200504042896" "197510167344"
     ## Personal identity number(s)
 
 ## Example: organizational identity numbers
