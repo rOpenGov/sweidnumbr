@@ -133,7 +133,7 @@ using
 rpin(3)
 ```
 
-    ## [1] "191003104971" "200504042896" "197510167344"
+    ## [1] "191003114970" "200504142894" "197510247344"
     ## Personal identity number(s)
 
 ## Example: organizational identity numbers
@@ -270,11 +270,11 @@ sessionInfo()
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] cli_3.6.5         knitr_1.51        rlang_1.1.7       xfun_0.56        
-    ##  [5] stringi_1.8.7     generics_0.1.4    textshaping_1.0.4 jsonlite_2.0.0   
-    ##  [9] glue_1.8.0        backports_1.5.0   htmltools_0.5.9   ragg_1.5.0       
+    ##  [5] stringi_1.8.7     generics_0.1.4    textshaping_1.0.5 jsonlite_2.0.0   
+    ##  [9] glue_1.8.0        backports_1.5.0   htmltools_0.5.9   ragg_1.5.1       
     ## [13] sass_0.4.10       rmarkdown_2.30    evaluate_1.0.5    jquerylib_0.1.4  
     ## [17] fastmap_1.2.0     yaml_2.3.12       lifecycle_1.0.5   stringr_1.6.0    
-    ## [21] compiler_4.5.2    fs_1.6.6          timechange_0.4.0  htmlwidgets_1.6.4
-    ## [25] systemfonts_1.3.1 digest_0.6.39     R6_2.6.1          magrittr_2.0.4   
+    ## [21] compiler_4.5.2    fs_1.6.7          timechange_0.4.0  htmlwidgets_1.6.4
+    ## [25] systemfonts_1.3.2 digest_0.6.39     R6_2.6.1          magrittr_2.0.4   
     ## [29] checkmate_2.3.4   bslib_0.10.0      tools_4.5.2       lubridate_1.9.5  
     ## [33] pkgdown_2.2.0     cachem_1.1.0      desc_1.4.3

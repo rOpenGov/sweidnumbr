@@ -28,8 +28,8 @@ x <- roin(3)
 oin_ctrl(x)
 #> [1] TRUE TRUE TRUE
 oin_group(x)
-#> [1] Dödsbo                                 
-#> [2] Ekonomiska föreningar                  
-#> [3] Stat, landsting, kommuner, församlingar
-#> 3 Levels: Dödsbo ... Stat, landsting, kommuner, församlingar
+#> [1] Enkelt bolag                           
+#> [2] Stat, landsting, kommuner, församlingar
+#> [3] Ekonomiska föreningar                  
+#> 3 Levels: Ekonomiska föreningar ... Stat, landsting, kommuner, församlingar
 ```

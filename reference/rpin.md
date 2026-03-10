@@ -50,9 +50,9 @@ x <- rpin(3)
 pin_ctrl(x)
 #> [1] TRUE TRUE TRUE
 pin_sex(x)
-#> [1] Female Male   Male  
+#> [1] Female Female Male  
 #> Levels: Female Male
 pin_age(x)
-#> The age has been calculated at 2026-02-26.
-#> [1]  69  79 122
+#> The age has been calculated at 2026-03-10.
+#> [1]  45  42 114
 ```
