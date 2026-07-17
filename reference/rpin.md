@@ -53,6 +53,6 @@ pin_sex(x)
 #> [1] Female Female Male  
 #> Levels: Female Male
 pin_age(x)
-#> The age has been calculated at 2026-03-10.
+#> The age has been calculated at 2026-07-17.
 #> [1]  45  42 114
 ```

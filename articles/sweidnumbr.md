@@ -23,18 +23,21 @@ identity number)
 Install the stable release version in R:
 
 ``` r
+
 install.packages("sweidnumbr")
 ```
 
 Test the installation by loading the library:
 
 ``` r
+
 library(sweidnumbr)
 ```
 
 We also recommend setting the UTF-8 encoding:
 
 ``` r
+
 Sys.setlocale(locale="UTF-8") 
 ```
 
@@ -44,6 +47,7 @@ As a first step we need to convert personal identity numbers (pin) to
 the same standard format used by the Swedish tax authority.
 
 ``` r
+
 example_pin <- c("640823-3234", "6408233234", "19640823-3230")
 example_pin <- as.pin(example_pin)
 example_pin
@@ -58,6 +62,7 @@ use the
 function.
 
 ``` r
+
 is.pin(example_pin)
 ```
 
@@ -68,6 +73,7 @@ control number we use
 [`pin_ctrl()`](https://ropengov.github.io/sweidnumbr/reference/pin_ctrl.md).
 
 ``` r
+
 pin_ctrl(example_pin)
 ```
 
@@ -80,6 +86,7 @@ and
 To get information on sex and birthplace.
 
 ``` r
+
 pin_sex(example_pin)
 ```
 
@@ -87,6 +94,7 @@ pin_sex(example_pin)
     ## Levels: Male
 
 ``` r
+
 pin_birthplace(example_pin)
 ```
 
@@ -98,12 +106,14 @@ the date where we want to calculate the age. If date is not specified
 the current date is used.
 
 ``` r
+
 pin_age(example_pin)
 ```
 
     ## [1] 61 61 61
 
 ``` r
+
 pin_age(example_pin, date = "2000-01-01")
 ```
 
@@ -114,12 +124,14 @@ forms. (Note however that the output of `format_pin` is just a character
 and no longer a `pin` object):
 
 ``` r
+
 format_pin(example_pin, "%Y-%m-%d-%N")
 ```
 
     ## [1] "1964-08-23-3234" "1964-08-23-3234" "1964-08-23-3230"
 
 ``` r
+
 format_pin(example_pin, "%P")
 ```
 
@@ -130,10 +142,11 @@ using
 [`rpin()`](https://ropengov.github.io/sweidnumbr/reference/rpin.md):
 
 ``` r
+
 rpin(3)
 ```
 
-    ## [1] "191003114970" "200504142894" "197510247344"
+    ## [1] "191003224977" "200507312890" "197601097343"
     ## Personal identity number(s)
 
 ## Example: organizational identity numbers
@@ -142,6 +155,7 @@ Handling of organizational identity numbers is done in a similar
 fashion. But organizational numbers are only allowed to have one format.
 
 ``` r
+
 example_oin <- c("556000-4615", "232100-0156", "802002-4280")
 example_oin <- as.oin(example_oin)
 example_oin
@@ -154,6 +168,7 @@ We can test if the vector has a correct format in a similar way as for
 `pin`.
 
 ``` r
+
 is.oin(example_oin)
 ```
 
@@ -163,6 +178,7 @@ With a vector of `oin` we can check if the organizational number is
 correct.
 
 ``` r
+
 oin_ctrl(example_oin)
 ```
 
@@ -171,6 +187,7 @@ oin_ctrl(example_oin)
 We can also check the type of organization.
 
 ``` r
+
 oin_group(example_oin)
 ```
 
@@ -184,6 +201,7 @@ using
 [`roin()`](https://ropengov.github.io/sweidnumbr/reference/roin.md):
 
 ``` r
+
 roin(3)
 ```
 
@@ -199,6 +217,7 @@ file](https://github.com/rOpenGov/sweidnumbr/blob/master/DESCRIPTION).
 Kindly cite the work as follows
 
 ``` r
+
 citation("sweidnumbr")
 ```
 
@@ -242,12 +261,13 @@ citation("sweidnumbr")
 This vignette was created with
 
 ``` r
+
 sessionInfo()
 ```
 
-    ## R version 4.5.2 (2025-10-31)
+    ## R version 4.6.1 (2026-06-24)
     ## Platform: x86_64-pc-linux-gnu
-    ## Running under: Ubuntu 24.04.3 LTS
+    ## Running under: Ubuntu 24.04.4 LTS
     ## 
     ## Matrix products: default
     ## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -269,12 +289,12 @@ sessionInfo()
     ## [1] sweidnumbr_1.5.0
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] cli_3.6.5         knitr_1.51        rlang_1.1.7       xfun_0.56        
-    ##  [5] stringi_1.8.7     generics_0.1.4    textshaping_1.0.5 jsonlite_2.0.0   
-    ##  [9] glue_1.8.0        backports_1.5.0   htmltools_0.5.9   ragg_1.5.1       
-    ## [13] sass_0.4.10       rmarkdown_2.30    evaluate_1.0.5    jquerylib_0.1.4  
-    ## [17] fastmap_1.2.0     yaml_2.3.12       lifecycle_1.0.5   stringr_1.6.0    
-    ## [21] compiler_4.5.2    fs_1.6.7          timechange_0.4.0  htmlwidgets_1.6.4
-    ## [25] systemfonts_1.3.2 digest_0.6.39     R6_2.6.1          magrittr_2.0.4   
-    ## [29] checkmate_2.3.4   bslib_0.10.0      tools_4.5.2       lubridate_1.9.5  
-    ## [33] pkgdown_2.2.0     cachem_1.1.0      desc_1.4.3
+    ##  [1] cli_3.6.6         knitr_1.51        rlang_1.3.0       xfun_0.60        
+    ##  [5] stringi_1.8.7     otel_0.2.0        generics_0.1.4    textshaping_1.0.5
+    ##  [9] jsonlite_2.0.0    glue_1.8.1        backports_1.5.1   htmltools_0.5.9  
+    ## [13] ragg_1.5.2        sass_0.4.10       rmarkdown_2.31    evaluate_1.0.5   
+    ## [17] jquerylib_0.1.4   fastmap_1.2.0     yaml_2.3.12       lifecycle_1.0.5  
+    ## [21] stringr_1.6.0     compiler_4.6.1    fs_2.1.0          timechange_0.4.0 
+    ## [25] htmlwidgets_1.6.4 systemfonts_1.3.2 digest_0.6.39     R6_2.6.1         
+    ## [29] magrittr_2.0.5    checkmate_2.3.4   bslib_0.11.0      tools_4.6.1      
+    ## [33] lubridate_1.9.5   pkgdown_2.2.1     cachem_1.1.0      desc_1.4.3
